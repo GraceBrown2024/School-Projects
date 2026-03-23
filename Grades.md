@@ -97,7 +97,7 @@
   <tr>
     <th> Program 3 </th>
     <th> March 25 2026</th>
-    <th> IN PROGRESS</th>
+    <th> COMPLETE </th>
     <th> </th>
   </tr>
   <tr>
