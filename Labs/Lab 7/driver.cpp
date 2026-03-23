@@ -1,6 +1,6 @@
 /*
     Name        : Grace Brown
-    Last Updated: 16 March 2026
+    Last Updated: 23 March 2026
     File Name   : driver.cpp
     Purpose     : Main function for lab 7 -- holds loops for file input/output
 */
@@ -31,8 +31,10 @@ int main(){
     }
     cin.ignore(100, '\n');
 
+    cout << setfill('-') << setw(50) << " " << endl;
+    
     while(getline(dinoDirFile, dinoName, '#')){
-        cout << "\n" << dinoName << "\n";
+        
     }
     dinoDirFile.close();
     return 0;
