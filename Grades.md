@@ -40,7 +40,7 @@
     <th> Lab 6</th>
     <th> March 11 2026</th>
     <th> COMPLETE </th>
-    <th> </th>
+    <th> 100 </th>
   </tr>
    <tr>
     <th> Lab 7</th>
