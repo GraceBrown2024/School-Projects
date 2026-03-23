@@ -15,8 +15,8 @@
 #include <iomanip>
 using namespace std;
 
-void printOver10(string, string, string, string, string);
-void printSaurus(string, string, string, string, string);
+void printOver10(string dName, string dHeight, string dMass, string dEat, string dDesc);
+void printSaurus(string dName, string dHeight, string dMass, string dEat, string dDesc);
 bool overTenGrand(string);
 
 #endif
