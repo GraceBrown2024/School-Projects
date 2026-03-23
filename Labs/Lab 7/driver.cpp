@@ -8,11 +8,7 @@
 #include "lab7.h"
 
 int main(){
-    cout << "\n✧*̥˚ Welcome to the Dino-almanac *̥˚✧"
-         << "\n  Here you can see info on Dinos   "
-         << "\n   Hope you have fun haha yay      "
-         << "\n-----------------------------------\n"
-         << "\n What is the name of your Dino-almanac? --> ";
+    cout << "\nDinosaur Directory File Name (dinoDirectory.txt): ";
     
     string almanac, dinoName;
     ifstream dinoDirFile;
@@ -24,7 +20,7 @@ int main(){
     while(!dinoDirFile.is_open()){
         cin.clear();
         cin.ignore(100, '\n');
-        cout << "\nAlmanac not Found :( \nPlease enter a valid name! --> ";
+        cout << "\nText not Found :( \nPlease enter a valid text name! --> ";
         cin >> almanac;
 
         dinoDirFile.open(almanac);
@@ -32,10 +28,26 @@ int main(){
     cin.ignore(100, '\n');
 
     cout << setfill('-') << setw(50) << " " << endl;
-    
-    while(getline(dinoDirFile, dinoName, '#')){
+
+    while(getline(dinoDirFile, dinoName, '#')){ //stays looping as long as text is being read
+        //total dinos: acculumator for reading lines
+
+        //begin if statement for saurus
+        //begin accululator for that total
+
+        //print "Dinos with Saurus: accululator"
+
+        //printSaurus()
+
+        //begin if statement for overTenGrand
+        //call overTenGrand for acculumator to add up
         
+        //Dinos over TEN THOUSAND pounds: overTenGrand()
+
+        //printOver10()
     }
+    cout << setfill('-') << setw(50) << " " << endl;
+
     dinoDirFile.close();
     return 0;
 }
