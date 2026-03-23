@@ -8,6 +8,10 @@
 #include "lab7.h"
 
 int main(){
+    int overTenAccum = 0;
+    int saurusAccum = 0;
+    int totalDinoAccum = 0;
+
     cout << "\nDinosaur Directory File Name (dinoDirectory.txt): ";
     
     string almanac, dinoName;
@@ -27,27 +31,24 @@ int main(){
     }
     cin.ignore(100, '\n');
 
-    cout << setfill('-') << setw(50) << " " << endl;
-
     while(getline(dinoDirFile, dinoName, '#')){ //stays looping as long as text is being read
         //total dinos: acculumator for reading lines
 
         //begin if statement for saurus
         //begin accululator for that total
 
-        //print "Dinos with Saurus: accululator"
-
-        //printSaurus()
 
         //begin if statement for overTenGrand
         //call overTenGrand for acculumator to add up
         
-        //Dinos over TEN THOUSAND pounds: overTenGrand()
-
-        //printOver10()
     }
-    cout << setfill('-') << setw(50) << " " << endl;
 
     dinoDirFile.close();
+
+    cout << setfill('-') << setw(50) << " " << endl
+         << setfill(' ') << setw(16) << " " << "TOAL DINOS: " << totalDinoAccum << "\n"
+         << setw(4) << " " << "DINOS OVER 100,000 LBS: " << overTenAccum << "\n"
+         << "DINO NAMES END IN 'SAURUS': " << saurusAccum << "\n"
+         << setfill('-') << setw(50) << " " << endl;
     return 0;
 }
