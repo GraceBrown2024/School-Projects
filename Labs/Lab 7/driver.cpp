@@ -11,10 +11,10 @@ int main(){
     int overTenAccum = 0;
     int saurusAccum = 0;
     int totalDinoAccum = 0;
+    string dName, dHeight, dMass, dEat, dDesc, dino, almanac; //holds the info for each line
 
     cout << "\nDinosaur Directory File Name (dinoDirectory.txt): ";
     
-    string almanac, dinoName;
     ifstream dinoDirFile;
     
 
@@ -31,12 +31,21 @@ int main(){
     }
     cin.ignore(100, '\n');
 
-    while(getline(dinoDirFile, dinoName, '#')){ //stays looping as long as text is being read
-        //total dinos: acculumator for reading lines
+    while(getline(dinoDirFile, dName, '#')){ //stays looping as long as text is being read
+        getline(dinoDirFile, dHeight, '#'); //grabs the next line and puts it in variable
+        getline(dinoDirFile, dMass, '#'); //ditto 
+        getline(dinoDirFile, dEat, '#'); 
+        getline(dinoDirFile, dDesc, '#'); 
+        totalDinoAccum++;           //total dinos: acculumator for reading lines
 
-        //begin if statement for saurus
-        //begin accululator for that total
-
+        //USING THIS REFERENCE FOR FIND FUNCTION
+        //https://en.cppreference.com/w/cpp/string/basic_string/find
+        //USING THIS REFERENCE FOR NPOS CONSTANT
+        //https://www.geeksforgeeks.org/cpp/stringnpos-in-c-with-examples/
+        if(dName.find("saurus") != string::npos){ //searches for word "saurus" in the dino NAME
+            saurusAccum++;
+            printSaurus(dName, dHeight, dMass, dEat, dDesc);
+        }
 
         //begin if statement for overTenGrand
         //call overTenGrand for acculumator to add up
@@ -53,11 +62,33 @@ int main(){
 
     cout << "\n" <<  setw(50) << "\n"
          << setfill(' ') << setw(10) << " " << "DINOSAURS WITH SAURUS" << endl;
-    printOver10("Hello", "This works", "Dino", "Yay", "Hooray");
+    ifstream saurusIn;
+    saurusIn.open("saurus.txt");
+    if(saurusIn.is_open()){
+        string lineOfData;
+        while(getline(saurusIn, lineOfData)){
+            cout << lineOfData << endl;;
+         }
+        
+    }else{
+        cout << "File could not be found!" << endl;
+    }
+    saurusIn.close();
     
     cout << "\n" << setfill('-') << setw(50) << "\n"
          << setfill(' ') << setw(10) << " " << "DINO OVER TEN GRAND" << endl;
-    printSaurus("Hello", "This works", "Dino", "Yay", "Hooray");
+    ifstream overTenIn;
+    overTenIn.open("over10Grand.txt");
+    if(overTenIn.is_open()){
+        string lineOfData;
+        while(getline(overTenIn, lineOfData)){
+            cout << lineOfData << endl;;
+         }
+        
+    }else{
+        cout << "File could not be found!" << endl;
+    }
+    overTenIn.close();
 
     return 0;
 }
