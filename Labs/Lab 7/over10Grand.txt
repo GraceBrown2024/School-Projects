@@ -1,0 +1,5 @@
+DINOSAUR NAME: Hello
+HEIGHT/LENGTH: This works
+MASS:           Dino
+EATS:           Yay
+DESCRIPTION:    Hooray

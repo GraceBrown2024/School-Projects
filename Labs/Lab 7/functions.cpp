@@ -9,6 +9,27 @@
 
 void printOver10(string dName, string dHeight, string dMass, string dEat, string dDesc){
     //print out file holding the dinos that are over 10 grand
+    ofstream overTenOut;
+    ifstream overTenIn;
+    overTenOut.open("over10Grand.txt");
+    overTenOut << "DINOSAUR NAME: " << dName << endl
+            << "HEIGHT/LENGTH: " << dHeight << endl
+            << "MASS:" << setw(10) << " " <<  dMass << endl
+            << "EATS:" << setw(10) << " " << dEat << endl
+            << "DESCRIPTION:" << setw(3) << " " << dDesc << endl;
+    overTenOut.close();
+
+    overTenIn.open("over10Grand.txt");
+    if(overTenIn.is_open()){
+        string lineOfData;
+        while(overTenIn >> lineOfData){
+            cout << lineOfData << endl;
+        }
+    }else{
+        cout << "File could not be found!" << endl;
+    }
+    overTenIn.close();
+
 }
 
 void printSaurus(string dName, string dHeight, string dMass, string dEat, string dDesc){

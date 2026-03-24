@@ -50,5 +50,8 @@ int main(){
          << setw(4) << " " << "DINOS OVER 100,000 LBS: " << overTenAccum << "\n"
          << "DINO NAMES END IN 'SAURUS': " << saurusAccum << "\n"
          << setfill('-') << setw(50) << " " << endl;
+
+    printOver10("Hello", "This works", "Dino", "Yay", "Hooray");
+
     return 0;
 }
