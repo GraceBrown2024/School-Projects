@@ -17,11 +17,10 @@ int main(){
     
     ifstream dinoDirFile;
     
-
-    cin >> almanac;
+    cin >> almanac; //allows for user input to locate file
 
     dinoDirFile.open(almanac);
-    while(!dinoDirFile.is_open()){
+    while(!dinoDirFile.is_open()){ //USER VALIDATION LOOP
         cin.clear();
         cin.ignore(100, '\n');
         cout << "\nText not Found :( \nPlease enter a valid text name! --> ";
@@ -47,11 +46,12 @@ int main(){
             printSaurus(dName, dHeight, dMass, dEat, dDesc);
         }
 
-        //begin if statement for overTenGrand
-        //call overTenGrand for acculumator to add up
+        if(overTenGrand(dMass) == true){
+            overTenAccum++;
+            printOver10(dName, dHeight, dMass, dEat, dDesc);
+        }
         
     }
-
     dinoDirFile.close();
 
     cout << setfill('-') << setw(50) << " " << endl

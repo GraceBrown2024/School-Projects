@@ -11,7 +11,7 @@ void printOver10(string dName, string dHeight, string dMass, string dEat, string
     //print out file holding the dinos that are over 10 grand
     ofstream overTenOut;
     ifstream overTenIn;
-    overTenOut.open("over10Grand.txt", ios::app);
+    overTenOut.open("over10Grand.txt", ios::app); //opens file... appends to allow more dinos to be added
     overTenOut << "\n"
                << "DINOSAUR NAME: " << dName << endl
                << "HEIGHT/LENGTH: " << dHeight << endl
@@ -20,26 +20,12 @@ void printOver10(string dName, string dHeight, string dMass, string dEat, string
                << "DESCRIPTION:" << setw(3) << " " << dDesc << endl;
     overTenOut.close();
 
-    /*
-    overTenIn.open("over10Grand.txt");
-    if(overTenIn.is_open()){
-        string lineOfData;
-        while(getline(overTenIn, lineOfData)){
-            cout << lineOfData << endl;;
-         }
-        
-    }else{
-        cout << "File could not be found!" << endl;
-    }
-    overTenIn.close();
-    */
-
 }
 
 void printSaurus(string dName, string dHeight, string dMass, string dEat, string dDesc){
     ofstream saurusOut;
     ifstream saurusIn;
-    saurusOut.open("saurus.txt", ios::app);
+    saurusOut.open("saurus.txt", ios::app); //opens file... appends to allow more dinos to be added
     saurusOut << "\n"
               << "DINOSAUR NAME: " << dName << endl
               << "HEIGHT/LENGTH: " << dHeight << endl
@@ -47,24 +33,17 @@ void printSaurus(string dName, string dHeight, string dMass, string dEat, string
               << "EATS:" << setw(10) << " " << dEat << endl
               << "DESCRIPTION:" << setw(3) << " " << dDesc << endl;
     saurusOut.close();
-
-    /*
-    saurusIn.open("saurus.txt");
-    if(saurusIn.is_open()){
-        string lineOfData;
-        while(getline(saurusIn, lineOfData)){
-            cout << lineOfData << endl;;
-         }
-        
-    }else{
-        cout << "File could not be found!" << endl;
-    }
-    saurusIn.close(); 
-    */
-
 }
 
-bool overTenGrand(string){
-    
+bool overTenGrand(string dMass){
+    //Using THIS for reference
+    //https://www.geeksforgeeks.org/cpp/iterate-over-characters-of-a-string-in-c/
+    int num = dMass.length();
+    for(int i = 0; i < num; i++){
+        char innerChar = dMass[i];
+        while(!isdigit(innerChar)){
+            dMass.erase(i, 1);
+        }
+    }
     return true;
 }
