@@ -1,6 +1,6 @@
 /*
     Name        : Grace Brown
-    Last Updated: 23 March 2026
+    Last Updated: 24 March 2026
     File Name   : driver.cpp
     Purpose     : Main function for lab 7 -- holds loops for file input/output
 */
@@ -51,7 +51,13 @@ int main(){
          << "DINO NAMES END IN 'SAURUS': " << saurusAccum << "\n"
          << setfill('-') << setw(50) << " " << endl;
 
+    cout << "\n" <<  setw(50) << "\n"
+         << setfill(' ') << setw(10) << " " << "DINOSAURS WITH SAURUS" << endl;
     printOver10("Hello", "This works", "Dino", "Yay", "Hooray");
+    
+    cout << "\n" << setfill('-') << setw(50) << "\n"
+         << setfill(' ') << setw(10) << " " << "DINO OVER TEN GRAND" << endl;
+    printSaurus("Hello", "This works", "Dino", "Yay", "Hooray");
 
     return 0;
 }

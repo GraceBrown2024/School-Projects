@@ -1,6 +1,6 @@
 /*
     Name        : Grace Brown
-    Last Updated: 23 March 2026
+    Last Updated: 24 March 2026
     File Name   : functions.cpp
     Purpose     : Defines functions for driver.cpp 
 */
@@ -13,18 +13,19 @@ void printOver10(string dName, string dHeight, string dMass, string dEat, string
     ifstream overTenIn;
     overTenOut.open("over10Grand.txt");
     overTenOut << "DINOSAUR NAME: " << dName << endl
-            << "HEIGHT/LENGTH: " << dHeight << endl
-            << "MASS:" << setw(10) << " " <<  dMass << endl
-            << "EATS:" << setw(10) << " " << dEat << endl
-            << "DESCRIPTION:" << setw(3) << " " << dDesc << endl;
+               << "HEIGHT/LENGTH: " << dHeight << endl
+               << "MASS:" << setw(10) << " " <<  dMass << endl
+               << "EATS:" << setw(10) << " " << dEat << endl
+               << "DESCRIPTION:" << setw(3) << " " << dDesc << endl;
     overTenOut.close();
 
     overTenIn.open("over10Grand.txt");
     if(overTenIn.is_open()){
         string lineOfData;
-        while(overTenIn >> lineOfData){
-            cout << lineOfData << endl;
-        }
+        while(getline(overTenIn, lineOfData)){
+            cout << lineOfData << endl;;
+         }
+        
     }else{
         cout << "File could not be found!" << endl;
     }
@@ -33,8 +34,27 @@ void printOver10(string dName, string dHeight, string dMass, string dEat, string
 }
 
 void printSaurus(string dName, string dHeight, string dMass, string dEat, string dDesc){
-    //create text file called saurus.txt
-    //add labels that enhance readability each line
+    ofstream saurusOut;
+    ifstream saurusIn;
+    saurusOut.open("saurus.txt");
+    saurusOut << "DINOSAUR NAME: " << dName << endl
+               << "HEIGHT/LENGTH: " << dHeight << endl
+               << "MASS:" << setw(10) << " " <<  dMass << endl
+               << "EATS:" << setw(10) << " " << dEat << endl
+               << "DESCRIPTION:" << setw(3) << " " << dDesc << endl;
+    saurusOut.close();
+
+    saurusIn.open("saurus.txt");
+    if(saurusIn.is_open()){
+        string lineOfData;
+        while(getline(saurusIn, lineOfData)){
+            cout << lineOfData << endl;;
+         }
+        
+    }else{
+        cout << "File could not be found!" << endl;
+    }
+    saurusIn.close();
 
 }
 
