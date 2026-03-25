@@ -36,14 +36,36 @@ void printSaurus(string dName, string dHeight, string dMass, string dEat, string
 }
 
 bool overTenGrand(string dMass){
-    //Using THIS for reference
+    string massContainer = ""; //empty string that will later hold the new isolated mass
+    int largeMass = 0; //empty int for the LARGEST mass we can find in the couple
+    int numMass;
+
+    //Using THIS for loop syntax setup
     //https://www.geeksforgeeks.org/cpp/iterate-over-characters-of-a-string-in-c/
-    int num = dMass.length();
-    for(int i = 0; i < num; i++){
-        char innerChar = dMass[i];
-        while(!isdigit(innerChar)){
-            dMass.erase(i, 1);
+    for(int i = 0; i < dMass.length(); i++){
+        if(isdigit(dMass[i])){
+            massContainer += dMass[i]; //adds the number to the mass Container
+        }else if(dMass[i] == ','){
+            continue; //USING https://www.geeksforgeeks.org/cpp/continue-statement-cpp/ FOR THIS IDEA
+        }else if(!massContainer.empty()){
+            int numMass = stoi(massContainer); //USING THIS REFERENCE FOR STOI() https://www.geeksforgeeks.org/cpp/stdstoi-function-in-cpp/
+            if(numMass > largeMass){
+                largeMass = numMass;
+            }
+            massContainer = ""; //cleaning the container to allow for the SECOND number
+        }
+        
+        if(!massContainer.empty()){ //reads to see if container is ready for second number
+            numMass = stoi(massContainer);
+            if (numMass > largeMass){
+                largeMass = numMass;
+            }
+        }
+
+        if(largeMass >= 10000){ //checks weight condition
+            return true;
         }
     }
-    return true;
+    return false; //returns false if it doesnt hit the if condition
+    
 }

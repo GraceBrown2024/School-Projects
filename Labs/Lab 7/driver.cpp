@@ -28,7 +28,7 @@ int main(){
 
         dinoDirFile.open(almanac);
     }
-    cin.ignore(100, '\n');
+    cin.ignore();
 
     while(getline(dinoDirFile, dName, '#')){ //stays looping as long as text is being read
         getline(dinoDirFile, dHeight, '#'); //grabs the next line and puts it in variable
@@ -46,13 +46,13 @@ int main(){
             printSaurus(dName, dHeight, dMass, dEat, dDesc);
         }
 
-        if(overTenGrand(dMass) == true){
+        if(overTenGrand(dMass)){
             overTenAccum++;
             printOver10(dName, dHeight, dMass, dEat, dDesc);
         }
-        
     }
     dinoDirFile.close();
+    
 
     cout << setfill('-') << setw(50) << " " << endl
          << setfill(' ') << setw(16) << " " << "TOAL DINOS: " << totalDinoAccum << "\n"
