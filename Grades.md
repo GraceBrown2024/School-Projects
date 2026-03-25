@@ -45,33 +45,33 @@
    <tr>
     <th> Lab 7</th>
     <th> March 25 2026 </th>
-    <th> IN PROGRESS </th>
+    <th> COMPLETE </th>
     <th> </th>
   </tr>
    <tr>
     <th> Lab 8</th>
-    <th> </th>
-    <th> </th>
+    <th> April 9</th>
+    <th> INCOMPLETE</th>
     <th> </th>
   </tr>
    <tr>
     <th> Lab 9</th>
     <th> </th>
-    <th> </th>
-    <th> </th>
-  </tr>
-   <tr>
-    <th> Lab 11</th>
-    <th> </th>
-    <th> </th>
+    <th> INCOMPLETE</th>
     <th> </th>
   </tr>
    <tr>
-    <th> Lab 11</th>
+    <th> Lab 10</th>
     <th> </th>
-    <th> </th>
+    <th> INCOMPLETE</th>
     <th> </th>
   </tr>
+  <tr>
+    <th> Lab 11</th>
+    <th> </th>
+    <th> INCOMPLETE</th>
+    <th> </th>
+
 </table>
 
 <table> 
