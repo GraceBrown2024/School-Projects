@@ -9,5 +9,5 @@ Date Modified: 27 March 2026
 #include "budget.h"
 
 int main(){
-    cout << "hlelo";
+    cout << "hlelo" << endl;
 }

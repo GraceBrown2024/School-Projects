@@ -13,4 +13,4 @@ run:		Budget
 			./budget	
 
 clean:		Budget
-			rm -f ./budget
+			rm -f budget
