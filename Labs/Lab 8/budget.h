@@ -14,4 +14,13 @@ Date Modified: 27 March 2026
 #include <string>
 #include <iomanip>
 using namespace std;
+
+string getUserInput();
+
+int calculateBalance();
+
+int getHighest();
+
+int getLowest();
+
 #endif
