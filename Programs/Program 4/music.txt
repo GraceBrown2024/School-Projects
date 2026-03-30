@@ -1,0 +1,15 @@
+What is the speed of music called?#tempo#200
+What is the main tune of a song called?#melody#300
+What is a group of notes played together called?#chord#300
+What is a single musical sound called?#note#100
+What is the structure of a musical piece called?#form#400
+What is a pattern of beats called?#rhythm#100
+What is the combination of notes played together called?#harmony#300
+What set of rules guides musical composition?#music theory#500
+What is a sequence of musical notes called?#scale#200
+What describes how high or low a sound is?#pitch#200
+What term describes a category of musical style?#genre#500
+What type of scale is often described as happy sounding?#major scale#500
+What is the basic unit of time in music called?#beat#100
+What term describes the volume of music?#dynamics#400
+Who leads and coordinates a group of musicians?#conductor#400

@@ -1,0 +1,15 @@
+What state of matter has a definite shape and volume?#solid#100
+What state of matter has a definite volume but no fixed shape?#liquid#100
+What state of matter has neither fixed shape nor volume?#gas#100
+What is the ability to do work called?#energy#200
+What is a push or pull on an object called?#force#200
+What is the amount of matter in an object called?#mass#200
+What is speed with direction called?#velocity#300
+What is a system of interacting living and nonliving things called?#ecosystem#300
+What is the smallest unit of matter called?#atom#300
+What law states that an object in motion stays in motion?#first law#400
+What process do plants use to make food from sunlight?#photosynthesis#400
+What molecule carries genetic information?#DNA#400
+What theory explains space time and gravity?#relativity#500
+What branch of science studies very small particles?#quantum mechanics#500
+What force pulls objects toward each other?#gravity#500

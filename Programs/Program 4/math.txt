@@ -1,0 +1,15 @@
+What is the measure of instantaneous rate of change called?#derivative#500
+What is the rate of change between two variables called?#slope#100
+What is the point where a graph crosses the y axis called?#y intercept#400
+What is used to control the order of operations in expressions?#parentheses#200
+What is the term for a function with no breaks or jumps?#continuous#100
+What operation undoes multiplication?#division#300
+What part of an equation affects the steepness of a graph?#coefficient#400
+What concept is used to formally define continuity?#limit#500
+What type of relation assigns exactly one output to each input?#function#200
+What do you find when you solve an equation?#solution#300
+What does a negative exponent represent?#reciprocal#300
+What represents the accumulation of quantities like area under a curve?#integral#500
+What is a symbol used to represent an unknown value?#variable#100
+What do two lines have if they never intersect?#same slope#200
+What describes a function whose outputs increase as inputs increase?#increasing#400
