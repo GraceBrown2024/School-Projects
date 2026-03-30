@@ -92,7 +92,7 @@
     <th> Program 2 </th>
     <th> March 6 2026</th>
     <th> COMPLETE</th>
-    <th> </th>
+    <th> 100 </th>
   </tr>
   <tr>
     <th> Program 3 </th>
