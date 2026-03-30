@@ -1,7 +1,7 @@
 /*
-    Author: Kelsey Rainey, (Add your name)
-    Date Modified: 3/25/26
-    Filename: given_functions.cpp (rename to functions.cpp)
+    Author: Kelsey Rainey, Grace Brown
+    Date Modified: 3/30/26
+    Filename: functions.cpp
     Summary: This file contains the implementations of the functions for "Jeopardy"
 */
 
@@ -14,6 +14,8 @@
     It will return true if there are still spots on the board available to answer
 
 */
+#include "jeopardy.h"
+
 bool showBoard(string categories[], int** board, int rows, int columns) {
     bool available = false;
     string separator(60, '-');
