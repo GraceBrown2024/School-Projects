@@ -1,6 +1,6 @@
 /*
     Author: Kelsey Rainey, Grace Brown
-    Date Modified: 3/30/26
+    Date Modified: 4/8/26
     Filename: functions.cpp
     Summary: This file contains the implementations of the functions for "Jeopardy"
 */
@@ -59,4 +59,50 @@ void printWelcomeMessage() {
     cout << "*" << blankSpacePart << "Welcome to \"Jeopardy...\"" << blankSpacePart << "*" << endl;
     cout << "*" << blankSpaceFull << "*" << endl;
     cout << lineOfStars << endl << endl;
+}
+
+void loadQuestionAndAnswers(string[], string**, string**, int, int){
+    /*
+        each category's question file should be opened
+        question and answer should be pulled from the file
+        the points attributed to the question should be used to determine WHERE answer is put
+        IF QUESTION/ANSWER OF THAT POINT VALUE HAS BEEN FILLED -- SKIP LINE
+    */
+}
+
+void initializeBoard(int**, int, int){
+    /*
+        Initialize EACH SPOT ON THE BOARD ARRAY TO ONE!!!
+        3 random indexes (catgeory AND question) chosen as daily double which will be initialized to 2
+    */
+}
+
+int getWinner(int[], int){
+    /*
+        takes in array with user points and its parralel user names array
+        RETURN !!!INDEX!!!! OF THE USER WITH MOST POINTS (see lab 8 for how i did it)
+    */
+}
+
+string printQuestionsGetAnswer(string**, int**, int, int){
+    /*
+        print correct question attributed to category and point amount
+        UPDATE board status to 0 for the selected question
+        RETURN USERS ANSWER INPUT!!!
+    */
+}
+
+string toLowerString(string){
+    /*
+        change EACH CHARACTER to lowercase 
+        RETURN NEW LOWERCASE STRING
+    */
+}
+
+bool checkAnswer(string**, string, int, int){
+    /*
+        MAKE SURE USERS ANSWER IS ALL LOWERCASE!
+        return TRUE if user answer == correct answer EXACTLY OR CONTAINS a correct phrase
+        return false otherwise
+    */
 }
