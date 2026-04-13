@@ -82,6 +82,7 @@ int getWinner(int[], int){
         takes in array with user points and its parralel user names array
         RETURN !!!INDEX!!!! OF THE USER WITH MOST POINTS (see lab 8 for how i did it)
     */
+   return 0; //CHANGE
 }
 
 string printQuestionsGetAnswer(string**, int**, int, int){
@@ -90,6 +91,7 @@ string printQuestionsGetAnswer(string**, int**, int, int){
         UPDATE board status to 0 for the selected question
         RETURN USERS ANSWER INPUT!!!
     */
+   return "Hello"; //CHANGE
 }
 
 string toLowerString(string){
@@ -97,6 +99,7 @@ string toLowerString(string){
         change EACH CHARACTER to lowercase 
         RETURN NEW LOWERCASE STRING
     */
+   return "Hello"; //CHANGE
 }
 
 bool checkAnswer(string**, string, int, int){
@@ -105,4 +108,5 @@ bool checkAnswer(string**, string, int, int){
         return TRUE if user answer == correct answer EXACTLY OR CONTAINS a correct phrase
         return false otherwise
     */
+   return true; //CHANGE
 }

@@ -8,29 +8,25 @@
 #include "jeopardy.h"
 
 int main(){
-    /* 
-    need 3 const size variables :
-              num of users (3)
-              num of categories (5)
-              num of questions (5)
+    const int USERSIZE = 3;
+    const int CATEGSIZE = 5;
+    const int NUMQUESTIONS = 5;
 
-    need categories string array (HOLDS NAMES)
+    string categories[CATEGSIZE] = {"Comics", "History", "Math", "Music", "Science"};
+    string userNames[USERSIZE];
+    int points[USERSIZE]; 
 
-    need 3 POINTERS to an array of pointers (dynamic allocation)
-              1.) holds questions
-              2.) Holds answers
-              3.) Board status
-    
-    need string array to hold NAMES
-    need int array to hold POINTS
+    string **questions = nullptr;
+    string **answers = nullptr;
+    int **boardStatus = nullptr;
+
+    loadQuestionAndAnswers(categories, questions, answers, CATEGSIZE, NUMQUESTIONS);
+    initializeBoard(boardStatus, CATEGSIZE, NUMQUESTIONS);
+    printWelcomeMessage();
 
 
-    */
 
     /*
-        loadQuestionsAndAnswers()
-        initializeBoard()
-        printWelcome()
         -------
         Then user input for NAMES (put in array)
         -------
