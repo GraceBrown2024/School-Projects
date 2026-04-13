@@ -11,7 +11,14 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
+
+const int USERSIZE = 3;
+const int CATEGSIZE = 5;
+const int NUMQUESTIONS = 5;
 
 bool showBoard(string[], int**, int, int);
 

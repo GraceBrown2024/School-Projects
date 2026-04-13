@@ -61,20 +61,55 @@ void printWelcomeMessage() {
     cout << lineOfStars << endl << endl;
 }
 
-void loadQuestionAndAnswers(string[], string**, string**, int, int){
+void loadQuestionAndAnswers(string categories[], string **questions, string **answers, int CATEGSIZE, int NUMQUESTIONS){
+    
+    /*USING THIS SOURCE FOR THE IDEA OF CONCATENATING THE 
+       NAME IN THE ARRAY TO MATCH THE FILE IN MY COMPUTER!!!
+       https://stackoverflow.com/questions/38553895/c-using-a-loop-to-open-files
+       (see where the answer has "+ filename +" !!! )*/
+    for(int i = 0; i < CATEGSIZE; i++){
+        ifstream infile;
+        string questions, answers, points;
+        string categFile = categories[i] + ".txt"; //Here i concatenate the extension to the name in the array!!!
+
+        infile.open(categFile);
+
+        if(infile.is_open()){
+            while(getline(infile, questions, '#')){
+                getline(infile, answers, '#');
+                getline(infile, points); //no delimiter since txt
+            }
+                //ASSIGN TO 2d POINTER ARRAY
+            infile.close();
+        }else{
+            cout << "Could not open " << categFile << "!";
+        }
+
+    }
     /*
-        each category's question file should be opened
-        question and answer should be pulled from the file
         the points attributed to the question should be used to determine WHERE answer is put
         IF QUESTION/ANSWER OF THAT POINT VALUE HAS BEEN FILLED -- SKIP LINE
     */
 }
 
-void initializeBoard(int**, int, int){
-    /*
-        Initialize EACH SPOT ON THE BOARD ARRAY TO ONE!!!
-        3 random indexes (catgeory AND question) chosen as daily double which will be initialized to 2
-    */
+void initializeBoard(int **boardStatus, int CATEGSIZE, int NUMQUESTIONS){
+    int dailyDoubles = 0; //intializing amount chosen to 0 . as a new one is places the number will increase until it hits the three quota
+
+    for(int i = 0; i < CATEGSIZE; i++){ //Loop to set every spot to 1
+        for(int j = 0; j < NUMQUESTIONS; j++){ //inner loop that ensures each column is iterated through
+            boardStatus[i][j] = 1;
+        }
+    }
+    
+    while(dailyDoubles < 3){ //repeats until the 3 quota is hit
+        int randCateg = rand() % CATEGSIZE; //picks random index for category
+        int randQuestion = rand() % NUMQUESTIONS; //random index for questions
+
+        if(boardStatus[randCateg][randQuestion] != 2){ //checks if specific spot has been chosen already
+            boardStatus[randCateg][randQuestion] = 2;
+            dailyDoubles++; //adds one to the daily doubles counter
+        }
+    }
 }
 
 int getWinner(int[], int){
