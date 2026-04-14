@@ -57,7 +57,7 @@
    <tr>
     <th> Lab 9</th>
     <th> April 15 2026</th>
-    <th> INCOMPLETE</th>
+    <th> COMPLETE </th>
     <th> </th>
   </tr>
    <tr>
