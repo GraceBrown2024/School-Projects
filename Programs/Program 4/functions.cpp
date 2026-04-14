@@ -69,27 +69,44 @@ void loadQuestionAndAnswers(string categories[], string **questions, string **an
        (see where the answer has "+ filename +" !!! )*/
     for(int i = 0; i < CATEGSIZE; i++){
         ifstream infile;
-        string questions, answers, points;
+        int numPoints;
+        string strPoints, strQuestions, strAnswers; //temp variables that will be put into the arrays
         string categFile = categories[i] + ".txt"; //Here i concatenate the extension to the name in the array!!!
 
         infile.open(categFile);
-
+        
         if(infile.is_open()){
-            while(getline(infile, questions, '#')){
-                getline(infile, answers, '#');
-                getline(infile, points); //no delimiter since txt ends with blank line
+            for(int j = 0; j < NUMQUESTIONS; j++){
+                getline(infile, strQuestions, '#');
+                getline(infile, strAnswers, '#');
+                getline(infile, strPoints);
+
+                numPoints = stoi(strPoints);
+
+                if(numPoints == 100){
+                    questions[i][0] = strQuestions;
+                    answers[i][0]= strAnswers;
+                }else if(numPoints == 200){
+                    questions[i][1] = strQuestions;
+                    answers[i][1]= strAnswers;
+                }else if(numPoints == 300){
+                    questions[i][2] = strQuestions;
+                    answers[i][2]= strAnswers;
+                }else if(numPoints == 400){
+                    questions[i][3] = strQuestions;
+                    answers[i][3]= strAnswers;
+                }else{
+                    questions[i][4] = strQuestions;
+                    answers[i][4]= strAnswers;
+                }
             }
-                //ASSIGN TO 2d POINTER ARRAY
-            infile.close();
-        }else{
+
+          infile.close();  
+        }
+        else{
             cout << "Could not open " << categFile << "!";
         }
-
     }
-    /*
-        the points attributed to the question should be used to determine WHERE answer is put
-        IF QUESTION/ANSWER OF THAT POINT VALUE HAS BEEN FILLED -- SKIP LINE
-    */
 }
 
 void initializeBoard(int **boardStatus, int CATEGSIZE, int NUMQUESTIONS){
@@ -120,28 +137,32 @@ int getWinner(int points[], int USERSIZE){
    return 0; //CHANGE
 }
 
-string printQuestionsGetAnswer(string**, int**, int, int){
-    /*
-        print correct question attributed to category and point amount
-        UPDATE board status to 0 for the selected question
-        RETURN USERS ANSWER INPUT!!!
-    */
-   return "Hello"; //CHANGE
+string printQuestionsGetAnswer(string **questions, int **boardStatus, int userCategory, int userQuestion){
+    string userAnswer; //holds user answer
+
+    cout << "\nQuestion: " << questions[userCategory][userQuestion] << "\n"
+         << "Your Answer: ";
+    getline(cin, userAnswer);
+
+    boardStatus[userCategory][userQuestion] = 0; //changes the array value based on user inputted index
+    
+   return userAnswer; 
 }
 
-string toLowerString(string){
+string toLowerString(string input){
+    string lowerString;
     /*
         change EACH CHARACTER to lowercase 
         RETURN NEW LOWERCASE STRING
     */
-   return "Hello"; //CHANGE
+   return lowerString; 
 }
 
-bool checkAnswer(string**, string, int, int){
+bool checkAnswer(string **answers, string userAnswer, int userCategory, int userQuestion){
     /*
         MAKE SURE USERS ANSWER IS ALL LOWERCASE!
         return TRUE if user answer == correct answer EXACTLY OR CONTAINS a correct phrase
         return false otherwise
     */
-   return true; //CHANGE
+   return false; 
 }

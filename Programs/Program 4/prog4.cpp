@@ -17,7 +17,7 @@ int main(){
     string **answers = new string *[CATEGSIZE]; //points to new array that holds ANSWERS to the questions (parrallel to categories)
     int **boardStatus = new int *[CATEGSIZE]; //points to new array that holds the 1, 2, or 0 for question availability 
 
-    for(int i = 0; i < CATEGSIZE; i++){     //begins loop that goes column by column and allocates questions 
+    for(int i = 0; i < CATEGSIZE; i++){     //begins loop that goes row by row and allocates columns (questions) 
         questions[i] = new string [NUMQUESTIONS];
         answers[i] = new string [NUMQUESTIONS];
         boardStatus[i] = new int [NUMQUESTIONS];
@@ -56,25 +56,33 @@ int main(){
 
             cout << "Select a Question (1-5): ";
             cin >> userQuestionChoice;
-            while(!cin || (userQuestionChoice > 5 || userQuestionChoice < 1)){  //user validationb
+            while(!cin || (userQuestionChoice > 5 || userQuestionChoice < 1) || (boardStatus[userCategChoice][userQuestionChoice] == 0)){  //user validationb
                 cin.clear();
                 cin.ignore(100, '\n');
-                cout << "INVALID INPUT -- Please select a question 1-5: ";
+                if(boardStatus[userCategChoice - 1][userQuestionChoice - 1] == 0){
+                    cout << "\nThat Question is not available! Please select another choice: ";
+                }else{
+                    cout << "\nINVALID INPUT -- Please select a question 1-5: ";
+                }
             cin >> userQuestionChoice;
             }
             cin.ignore();
+
+            userCategChoice -= 1;   //adjusts user input to match index
+            userQuestionChoice -= 1;
+
+
+            if(boardStatus[userCategChoice][userQuestionChoice] == 2){
+                cout << "\n DAILY DOUBLE!!!!! \n";
+            }
+
+            userAnswer = printQuestionsGetAnswer(questions, boardStatus, userCategChoice, userQuestionChoice); //stores function return in variable
 
         }
         
     }while(gameCont);
     /*
         GAME LOOP BEGINS -- continue until there are NO MORE QUESTIONS
-        - call showBoard()
-        - allow user input to choose category and question
-        - VALIDATE USER INPUT!!!
-        - check if question is "daily double" -- print message if so
-        - call printQuestionGetAnswer()
-        - user input answer ... VALIDATE
         - PASS answer to checkAnswer()
             - IF CORRECT: message prints and new total is added to user points
             - IF INCORRECT: SUBTRACT points from user points 
