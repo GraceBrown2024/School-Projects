@@ -2,13 +2,13 @@
 	TO COMPILE:  	g++ -fopenmp parallel.cpp -std=c++20
 	
 	Title:  		parallel.cpp
-	Author: 		PUT YOUR NAME HERE
+	Author: 		Grace Brown
 	Description: 	A program that computes runtime to read in words 
 					from a text file, prepend the number of characters
 					in the word to each word, and then sort the words
 					in ascending order.			
 	Date Created:	June 2025
-	Last Updated:	
+	Last Updated:	April 13
 ************************************************************************/
 
 #include <fstream>
@@ -17,7 +17,8 @@
 #include <iomanip>
 #include <chrono> //to calculate time elapsed (date and time library)
 #include <string>
-//what library needs to be included to use OpenMP?
+#include <algorithm>
+#include <omp.h>  //im getting a red squiggle on my computer for this but i have the library installed AND it compiles perfectly. So. idk how to fix that
 
 using namespace std;
 
@@ -30,31 +31,49 @@ int main()
 {
 	//create variables & setprecision
 	vector<string> words;
+
 	
 	//Force setting the number of threads to use to 5
-	
+	const int threads_wanted = 2;
+	omp_set_dynamic(false);
+	omp_set_num_threads(threads_wanted);
+
 	//read from the file into the vector (call readFromFile function and if the file was able to be read then continue the program. (otherwise the program should quit)
-	
+	if(readFromFile(words) == false){
+		return 0; //quits program
+	}
+
 	//Get the current timestamp (call chrono's now() function)
-	
+	auto timestamp = chrono::high_resolution_clock::now(); //i chose high resolution beacuse the c++ website said it had the shortest tick  im not sure if thats right im sorry
+
 	/*
 		create a traditional for loop 
 		to go through each element of vector and modify it 
 		exactly as done in sequential.cpp.
 		However, use an OpenMP directive to parallelize	the for loop.
 	*/
+	#pragma omp parallel for
+	for (unsigned int i = 0; i < words.size(); i++) { //i lowekey just copy pasted this from sequential.cpp
+			int string_length = words[i].length();
+			words[i] = to_string(string_length) + "_" + words[i];
+	}
 	
 	//call the parallelBubbleSort function to sort the vector
+	parallelBubbleSort(words);
 	
 	//the printVector function call can be commented out after you test to make sure your code works (sorts the strings) with the smallest text file.
-	cout << "\n\nAfter sorting:\n";
-	printVector(words);
+	//cout << "\n\nAfter sorting:\n";
+	//printVector(words);
 	
 	//Get the current timestamp (call chrono's now() function)
+	auto lastTimestamp = chrono::high_resolution_clock::now();
+
 	//compute the elapsed time 
-	
+	auto durationTime = lastTimestamp - timestamp; //auto because when I used double it got mad at me
+	double compute_time_s = chrono::duration<double>(lastTimestamp - timestamp).count();
+
 	//print resulting computation time
-	
+	cout << "Computation time for parallel = "  << compute_time_s << " Seconds." << endl << endl;
 	return 0;
 }
 

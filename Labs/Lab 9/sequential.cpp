@@ -8,7 +8,7 @@
 					in the word to each word, and then sort the words
 					in ascending order.			
 	Date Created:	March 2024
-	Last Updated:	July 2024
+	Last Updated:	April 2026
 ************************************************************************/
 
 #include <fstream>
@@ -54,8 +54,8 @@ int main()
 		bubbleSort(words);
 		
 		//Comment out the following two lines after you test to make sure your sort function is working correctly. Test only with smallest text file.
-		cout << "\n\nAfter sorting:\n";
-		printVector(words);
+		//cout << "\n\nAfter sorting:\n";
+		//printVector(words);
 		
 		//Get the ending timestamp
 		auto end = chrono::high_resolution_clock::now();

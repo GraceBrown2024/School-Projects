@@ -1,0 +1,29 @@
+RESULTS !!!!!
+
+1. 8 
+
+2. 
+    a.) 0.018 seconds
+    b.) 5.518 seconds
+    c.) 21.951 seconds
+    d.) 60.928 seconds
+    e.) Not doing allat
+
+3.
+    a.) 0.019806 seconds
+    b.) 2.05355 seconds
+    c.) 7.65684 seconds
+    d.) 19.5687 seconds
+    e.) yikes!
+
+4. 63.1749 seconds (see attached image in folder)
+
+5. 11.3782 seconds
+
+6. The surprising result was how fast it was with only two threads. The unexpected part
+    was that my computer did NOT shut off like it usually does when it gets overwhelmed
+
+7. Mine is with 8 cores, but it was slower than the example.
+    The reason might be because I have spotify open, Outlook open, messenger open, 
+    four tabs open on Brave Browser, and Preview open. So that might have something
+    to do with the slow times. 
