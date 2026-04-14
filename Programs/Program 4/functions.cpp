@@ -77,7 +77,7 @@ void loadQuestionAndAnswers(string categories[], string **questions, string **an
         if(infile.is_open()){
             while(getline(infile, questions, '#')){
                 getline(infile, answers, '#');
-                getline(infile, points); //no delimiter since txt
+                getline(infile, points); //no delimiter since txt ends with blank line
             }
                 //ASSIGN TO 2d POINTER ARRAY
             infile.close();
@@ -112,7 +112,7 @@ void initializeBoard(int **boardStatus, int CATEGSIZE, int NUMQUESTIONS){
     }
 }
 
-int getWinner(int[], int){
+int getWinner(int points[], int USERSIZE){
     /*
         takes in array with user points and its parralel user names array
         RETURN !!!INDEX!!!! OF THE USER WITH MOST POINTS (see lab 8 for how i did it)
