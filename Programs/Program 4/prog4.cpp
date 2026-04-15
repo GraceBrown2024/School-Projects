@@ -56,7 +56,7 @@ int main(){
 
             cout << "Select a Question (1-5): ";
             cin >> userQuestionChoice;
-            while(!cin || (userQuestionChoice > 5 || userQuestionChoice < 1) || (boardStatus[userCategChoice][userQuestionChoice] == 0)){  //user validationb
+            while(!cin || (userQuestionChoice > 5 || userQuestionChoice < 1) || (boardStatus[userCategChoice - 1][userQuestionChoice - 1] == 0)){  //user validationb
                 cin.clear();
                 cin.ignore(100, '\n');
                 if(boardStatus[userCategChoice - 1][userQuestionChoice - 1] == 0){
@@ -78,12 +78,12 @@ int main(){
 
             userAnswer = printQuestionsGetAnswer(questions, boardStatus, userCategChoice, userQuestionChoice); //stores function return in variable
 
+            checkAnswer(answers, userAnswer, userCategChoice, userQuestionChoice);
         }
         
     }while(gameCont);
     /*
         GAME LOOP BEGINS -- continue until there are NO MORE QUESTIONS
-        - PASS answer to checkAnswer()
             - IF CORRECT: message prints and new total is added to user points
             - IF INCORRECT: SUBTRACT points from user points 
         - End round after ALL PLAYERS HAVE HAD TURN 
@@ -93,5 +93,5 @@ int main(){
         at END OF MAIN -- RELEASE ALL DYNAMICALLY ALLOCATED MEMORY!!!!
     */
     
-    return 0; 
+    return 0;
 }

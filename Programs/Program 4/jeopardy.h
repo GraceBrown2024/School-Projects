@@ -14,6 +14,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <cctype>
 using namespace std;
 
 const int USERSIZE = 3;

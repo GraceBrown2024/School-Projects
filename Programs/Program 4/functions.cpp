@@ -150,17 +150,25 @@ string printQuestionsGetAnswer(string **questions, int **boardStatus, int userCa
 }
 
 string toLowerString(string input){
-    string lowerString;
-    /*
-        change EACH CHARACTER to lowercase 
-        RETURN NEW LOWERCASE STRING
-    */
+    string lowerString = ""; //initializing an empty string container
+
+    for(int i = 0; i < input.length(); i++){
+        if(isupper(input[i])){ //used the cctype library https://cplusplus.com/reference/cctype/
+            input[i] = tolower(input[i]);
+        }
+        lowerString += input[i]; //adding the individual letter to the empty string container?? idk if this woeks
+    }
    return lowerString; 
 }
 
 bool checkAnswer(string **answers, string userAnswer, int userCategory, int userQuestion){
+    string lowerUserAnswer = toLowerString(userAnswer); //calling the above function to ensure the answer is all lowercase
+    string lowerRealAnswer = toLowerString(answers[userCategory][userQuestion]);
+
+    cout << lowerUserAnswer << endl;
+    cout << lowerRealAnswer;
+
     /*
-        MAKE SURE USERS ANSWER IS ALL LOWERCASE!
         return TRUE if user answer == correct answer EXACTLY OR CONTAINS a correct phrase
         return false otherwise
     */
