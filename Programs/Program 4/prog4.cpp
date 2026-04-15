@@ -1,6 +1,6 @@
 /*
     Author: Grace Brown
-    Date Modified: 4/8/26
+    Date Modified: 4/14/26
     Filename: prog4.cpp
     Summary: Jeopardy
 */
@@ -8,6 +8,8 @@
 #include "jeopardy.h"
 
 int main(){
+
+    srand(time(0)); //for randomized double points AND for random question index 
 
     string categories[CATEGSIZE] = {"comics", "history", "math", "music", "science"};
     string userNames[USERSIZE];
@@ -27,8 +29,6 @@ int main(){
     loadQuestionAndAnswers(categories, questions, answers, CATEGSIZE, NUMQUESTIONS);
     initializeBoard(boardStatus, CATEGSIZE, NUMQUESTIONS);
     printWelcomeMessage();
-
-    srand(time(0)); //for randomized double points
 
     for(int i = 0; i < USERSIZE; i++){
         cout << "\nPlayer " << i + 1 << ", what is your name? --> ";
@@ -78,10 +78,14 @@ int main(){
 
             userAnswer = printQuestionsGetAnswer(questions, boardStatus, userCategChoice, userQuestionChoice); //stores function return in variable
 
-            checkAnswer(answers, userAnswer, userCategChoice, userQuestionChoice);
+            if(checkAnswer(answers, userAnswer, userCategChoice, userQuestionChoice) == true){
+                cout << userNames[i] << " is CORRECT! The answer was " << answers[userCategChoice][userQuestionChoice];
+            }else{
+                cout << userNames[i] << " is INCORRECT! The answer was " << answers[userCategChoice][userQuestionChoice];
+            }
         }
         
-    }while(gameCont);
+    }while(gameCont); //CHANGE THIS
 
     for(int i = 0; i < CATEGSIZE; i++ ){ //deleted the columns dynamically allocated memory
         delete [] questions[i];
@@ -91,6 +95,7 @@ int main(){
     delete [] questions; //begin deleting the rows of the dynamically allocated arrays
     delete [] answers;
     delete [] boardStatus;
+
     /*
         GAME LOOP BEGINS -- continue until there are NO MORE QUESTIONS
             - IF CORRECT: message prints and new total is added to user points

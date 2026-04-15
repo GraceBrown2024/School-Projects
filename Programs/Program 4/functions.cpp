@@ -1,6 +1,6 @@
 /*
     Author: Kelsey Rainey, Grace Brown
-    Date Modified: 4/8/26
+    Date Modified: 4/14/26
     Filename: functions.cpp
     Summary: This file contains the implementations of the functions for "Jeopardy"
 */
@@ -92,6 +92,7 @@ void loadQuestionAndAnswers(string categories[], string **questions, string **an
             int k5 = 0; // i tried to do JUST k++ but got a billion errors. But this worked
 
             int randIndex = rand() % 3;  //chooses a random number that will pick an index in each questions array
+            
             for(int j = 0; j < 15; j++){
                 
                 getline(infile, strQuestions, '#');
@@ -124,7 +125,7 @@ void loadQuestionAndAnswers(string categories[], string **questions, string **an
             }
             infile.close();  
             
-            questions[i][0] = points100[randIndex][0];
+            questions[i][0] = points100[randIndex][0]; //beginning of me assigning the USABLE array some values
             answers[i][0] = points100[randIndex][1];
 
             questions[i][1] = points200[randIndex][0];
@@ -192,7 +193,7 @@ string toLowerString(string input){
         if(isupper(input[i])){ //used the cctype library https://cplusplus.com/reference/cctype/
             input[i] = tolower(input[i]);
         }
-        lowerString += input[i]; //adding the individual letter to the empty string container?? idk if this woeks
+        lowerString += input[i]; //adding the individual letter to the empty string container?? idk if this works 
     }
    return lowerString; 
 }
@@ -201,12 +202,28 @@ bool checkAnswer(string **answers, string userAnswer, int userCategory, int user
     string lowerUserAnswer = toLowerString(userAnswer); //calling the above function to ensure the answer is all lowercase
     string lowerRealAnswer = toLowerString(answers[userCategory][userQuestion]);
 
-    cout << lowerUserAnswer << endl;
-    cout << lowerRealAnswer;
+    string realAnswerArray[2] = {"", ""}; // will be filled with the split strings 
+    int words = 0;
+    string tempRealString = ""; //holds container for the real answer
 
-    /*
-        return TRUE if user answer == correct answer EXACTLY OR CONTAINS a correct phrase
-        return false otherwise
-    */
+    for(int i = 0; i < lowerRealAnswer.length(); i++ ){ //Made up this concept. Not sure if its legal
+        
+        if(lowerRealAnswer[i] != ' '){
+            tempRealString += lowerRealAnswer[i];
+        }else{
+            realAnswerArray[words] = tempRealString;
+            words++; //keeps track of how many words are in the array
+            tempRealString = ""; //cleans container for second string
+        }
+    }
+
+    if(lowerUserAnswer == lowerRealAnswer){
+        return true;
+    }else if(realAnswerArray[0] != "" && lowerUserAnswer.find(realAnswerArray[0]) != string::npos){ //using same sources as LAB 7!!!
+        return true;
+    }else if(realAnswerArray[1] != "" && lowerUserAnswer.find(realAnswerArray[1]) != string::npos){
+        return true;
+    }
+    
    return false; 
 }
