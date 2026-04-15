@@ -22,6 +22,8 @@ int main(){
     int rounds = 0; //initializes rounds to keep track in gameloop
     bool dailyDouble; //keeps track of the daily doubles
     int potentialPoints; //keeps track of possible points from userQuestion
+    bool contGame = true; //keeps game going until board is 0
+    string strip(20, '=');
 
     for(int i = 0; i < CATEGSIZE; i++){     //begins loop that goes row by row and allocates columns (questions) 
         questions[i] = new string [NUMQUESTIONS];
@@ -39,15 +41,16 @@ int main(){
     }
     
     do{
-        string strip(20, '=');
 
         if(rounds > 0){
             cout << endl << strip << " Round " << rounds + 1 << "!" << strip;
         }else{
             cout << endl << strip << " Game Start! " << strip;
         }
+        int numAvailable = 0; // keeps track of how many questions are open in BoardStatus
 
         for(int i = 0; i < USERSIZE; i++){
+
             int userCategChoice;    //these variables hold user input
             string userAnswer;
             int userQuestionChoice;
@@ -124,11 +127,31 @@ int main(){
                 points[i] -= potentialPoints;
                 cout << "You LOST " << potentialPoints << " points! You now have " << points[i] << " points." << endl;
             }
+
+            for(int i = 0; i < CATEGSIZE; i++){     //checks if theres any questions left
+                for(int j = 0; j < NUMQUESTIONS; j++){
+                    if(boardStatus[i][j] > 0){
+                        numAvailable += boardStatus[i][j];
+                    }
+                }
+            }   
+            if(numAvailable == 0){
+                contGame = false; //stops game if all questions are used up
+                break;
+            }
         }
         rounds++;
-    }while(rounds < 9); 
+    }while(contGame == true); 
 
-    cout << "Congratulations " << userNames[getWinner(points, USERSIZE)] << "! You WIN with " << points[getWinner(points, USERSIZE)] << " points!" << endl;
+    cout << strip << " END GAME! " << strip << endl;
+
+    cout << "\nCurrent Standings:\n"
+         << userNames[0] << ": " << points[0] << endl
+         << userNames[1] << ": " << points[1] << endl
+         << userNames[2] << ": " << points[2] << endl
+         << strip << strip << endl;
+ 
+    cout << "\nCongratulations " << userNames[getWinner(points, USERSIZE)] << "! You WIN with " << points[getWinner(points, USERSIZE)] << " points!" << endl;
 
     for(int i = 0; i < CATEGSIZE; i++ ){ //deleted the columns dynamically allocated memory
         delete [] questions[i];
@@ -138,16 +161,6 @@ int main(){
     delete [] questions; //begin deleting the rows of the dynamically allocated arrays
     delete [] answers;
     delete [] boardStatus;
-
-    /*
-        GAME LOOP BEGINS -- continue until there are NO MORE QUESTIONS
-            - IF CORRECT: message prints and new total is added to user points
-            - IF INCORRECT: SUBTRACT points from user points 
-        - End round after ALL PLAYERS HAVE HAD TURN 
-        - Program prints current standing
-        -------
-        ONCE ALL QUESTIONS ANSWERED -- call getWinner() and print message
-    */
     
     return 0;
 }
