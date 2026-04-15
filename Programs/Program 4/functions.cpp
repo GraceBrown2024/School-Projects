@@ -73,35 +73,71 @@ void loadQuestionAndAnswers(string categories[], string **questions, string **an
         string strPoints, strQuestions, strAnswers; //temp variables that will be put into the arrays
         string categFile = categories[i] + ".txt"; //Here i concatenate the extension to the name in the array!!!
 
+        //Here I am throwing ideas at the wall. There is probably an easier way to do this but Im not figuring that out right now
+        //I am going to put all the questions of the same point value in an array... then I will SELECT A RANDOM INDEX from that array
+        //if this works, then call me telso the way im so smart
+        string points100[3][2]; //three for three questions, two for question slot and answer slot 
+        string points200[3][2];
+        string points300[3][2];
+        string points400[3][2];
+        string points500[3][2]; //this MIGHt be the new meta
+
         infile.open(categFile);
         
         if(infile.is_open()){
-            for(int j = 0; j < NUMQUESTIONS; j++){
+            int k1 = 0; //counter for amount of items in array
+            int k2 = 0; // once again, throwing things at the wall. 
+            int k3 = 0; // Thought process is: I loop 15 times (amoutn of questions in the txt files) but k# keeps the 3 index for each array?
+            int k4 = 0; 
+            int k5 = 0; // i tried to do JUST k++ but got a billion errors. But this worked
+
+            int randIndex = rand() % 3;  //chooses a random number that will pick an index in each questions array
+            for(int j = 0; j < 15; j++){
+                
                 getline(infile, strQuestions, '#');
                 getline(infile, strAnswers, '#');
-                getline(infile, strPoints);
+                getline(infile, strPoints, '\n');
 
-                numPoints = stoi(strPoints);
+                numPoints = stoi(strPoints); //converts the string points from file into integer ... https://www.geeksforgeeks.org/cpp/stdstoi-function-in-cpp/
 
                 if(numPoints == 100){
-                    questions[i][0] = strQuestions;
-                    answers[i][0]= strAnswers;
+                    points100[k1][0] = strQuestions;
+                    points100[k1][1] = strAnswers;
+                    k1++;
                 }else if(numPoints == 200){
-                    questions[i][1] = strQuestions;
-                    answers[i][1]= strAnswers;
+                    points200[k2][0] = strQuestions;
+                    points200[k2][1] = strAnswers;
+                    k2++;
                 }else if(numPoints == 300){
-                    questions[i][2] = strQuestions;
-                    answers[i][2]= strAnswers;
+                    points300[k3][0] = strQuestions;
+                    points300[k3][1] = strAnswers;
+                    k3++;
                 }else if(numPoints == 400){
-                    questions[i][3] = strQuestions;
-                    answers[i][3]= strAnswers;
-                }else{
-                    questions[i][4] = strQuestions;
-                    answers[i][4]= strAnswers;
+                    points400[k4][0] = strQuestions;
+                    points400[k4][1] = strAnswers;
+                    k4++;
+                }else if(numPoints == 500){
+                    points500[k5][0] = strQuestions;
+                    points500[k5][1] = strAnswers;
+                    k5++;
                 }
             }
+            infile.close();  
+            
+            questions[i][0] = points100[randIndex][0];
+            answers[i][0] = points100[randIndex][1];
 
-          infile.close();  
+            questions[i][1] = points200[randIndex][0];
+            answers[i][1] = points200[randIndex][1];
+
+            questions[i][2] = points300[randIndex][0];
+            answers[i][2] = points300[randIndex][1];
+
+            questions[i][3] = points400[randIndex][0];
+            answers[i][3] = points400[randIndex][1];
+
+            questions[i][4] = points500[randIndex][0];
+            answers[i][4] = points500[randIndex][1];
         }
         else{
             cout << "Could not open " << categFile << "!";

@@ -54,26 +54,26 @@ int main(){
             }
             cin.ignore();
 
+            userCategChoice -= 1;   //adjusts user input to match index
+
             cout << "Select a Question (1-5): ";
             cin >> userQuestionChoice;
-            while(!cin || (userQuestionChoice > 5 || userQuestionChoice < 1) || (boardStatus[userCategChoice - 1][userQuestionChoice - 1] == 0)){  //user validationb
+            while(!cin || (userQuestionChoice > 5 || userQuestionChoice < 1) || ((userQuestionChoice >= 1 && userQuestionChoice <= 5) && boardStatus[userCategChoice][userQuestionChoice - 1] == 0)){  //user validationb
                 cin.clear();
                 cin.ignore(100, '\n');
-                if(boardStatus[userCategChoice - 1][userQuestionChoice - 1] == 0){
+                if(boardStatus[userCategChoice][userQuestionChoice - 1] == 0){
                     cout << "\nThat Question is not available! Please select another choice: ";
                 }else{
                     cout << "\nINVALID INPUT -- Please select a question 1-5: ";
                 }
-            cin >> userQuestionChoice;
+                cin >> userQuestionChoice;
             }
             cin.ignore();
 
-            userCategChoice -= 1;   //adjusts user input to match index
-            userQuestionChoice -= 1;
-
+            userQuestionChoice -= 1; //adjusts user input to match index
 
             if(boardStatus[userCategChoice][userQuestionChoice] == 2){
-                cout << "\n DAILY DOUBLE!!!!! \n";
+                cout << "\nDAILY DOUBLE!!!!!\n";
             }
 
             userAnswer = printQuestionsGetAnswer(questions, boardStatus, userCategChoice, userQuestionChoice); //stores function return in variable
@@ -82,6 +82,15 @@ int main(){
         }
         
     }while(gameCont);
+
+    for(int i = 0; i < CATEGSIZE; i++ ){ //deleted the columns dynamically allocated memory
+        delete [] questions[i];
+        delete [] answers[i];
+        delete [] boardStatus[i];
+    }
+    delete [] questions; //begin deleting the rows of the dynamically allocated arrays
+    delete [] answers;
+    delete [] boardStatus;
     /*
         GAME LOOP BEGINS -- continue until there are NO MORE QUESTIONS
             - IF CORRECT: message prints and new total is added to user points
@@ -90,7 +99,6 @@ int main(){
         - Program prints current standing
         -------
         ONCE ALL QUESTIONS ANSWERED -- call getWinner() and print message
-        at END OF MAIN -- RELEASE ALL DYNAMICALLY ALLOCATED MEMORY!!!!
     */
     
     return 0;
