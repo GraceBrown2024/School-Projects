@@ -1,6 +1,6 @@
 /*
     Author: Kelsey Rainey, Grace Brown
-    Date Modified: 4/14/26
+    Date Modified: 4/15/26
     Filename: functions.cpp
     Summary: This file contains the implementations of the functions for "Jeopardy"
 */
@@ -61,6 +61,13 @@ void printWelcomeMessage() {
     cout << lineOfStars << endl << endl;
 }
 
+/* 
+    Returns: void
+    Params: string[], string**, string**, int, int
+
+   This function will assign and load all the questions into the right spots on the board
+
+*/
 void loadQuestionAndAnswers(string categories[], string **questions, string **answers, int CATEGSIZE, int NUMQUESTIONS){
     
     /*USING THIS SOURCE FOR THE IDEA OF CONCATENATING THE 
@@ -93,7 +100,7 @@ void loadQuestionAndAnswers(string categories[], string **questions, string **an
 
             int randIndex = rand() % 3;  //chooses a random number that will pick an index in each questions array
             
-            for(int j = 0; j < 15; j++){
+            for(int j = 0; j < 15; j++){ //begins loop for columns
                 
                 getline(infile, strQuestions, '#');
                 getline(infile, strAnswers, '#');
@@ -125,7 +132,7 @@ void loadQuestionAndAnswers(string categories[], string **questions, string **an
             }
             infile.close();  
             
-            questions[i][0] = points100[randIndex][0]; //beginning of me assigning the USABLE array some values
+            questions[i][0] = points100[randIndex][0]; //beginning of me assigning the questions/answers array some values
             answers[i][0] = points100[randIndex][1];
 
             questions[i][1] = points200[randIndex][0];
@@ -137,7 +144,7 @@ void loadQuestionAndAnswers(string categories[], string **questions, string **an
             questions[i][3] = points400[randIndex][0];
             answers[i][3] = points400[randIndex][1];
 
-            questions[i][4] = points500[randIndex][0];
+            questions[i][4] = points500[randIndex][0];  //do you guys actually read these comments please lmk
             answers[i][4] = points500[randIndex][1];
         }
         else{
@@ -146,6 +153,13 @@ void loadQuestionAndAnswers(string categories[], string **questions, string **an
     }
 }
 
+/* 
+    Returns: void
+    Params: int**, int, int
+
+    This function assigns "point value" to each question which marks if their single points or double points, 
+
+*/
 void initializeBoard(int **boardStatus, int CATEGSIZE, int NUMQUESTIONS){
     int dailyDoubles = 0; //intializing amount chosen to 0 . as a new one is places the number will increase until it hits the three quota
 
@@ -166,14 +180,32 @@ void initializeBoard(int **boardStatus, int CATEGSIZE, int NUMQUESTIONS){
     }
 }
 
+/* 
+    Returns: int
+    Params: int[], int
+
+   This function iterates through the points array and picks out the highest number, returns the index which is parallel to the Username array
+
+*/
 int getWinner(int points[], int USERSIZE){
-    /*
-        takes in array with user points and its parralel user names array
-        RETURN !!!INDEX!!!! OF THE USER WITH MOST POINTS (see lab 8 for how i did it)
-    */
-   return 0; //CHANGE
+    int winner = 0;                     //holds points of the current winner 
+    int winnerIndex = 0;                //holds index of the owner of said points
+
+    for(int i = 0; i < USERSIZE; i++){ //used same concept from lab 8 with finding the greatest value's index 
+        if(points[i] > winner){
+            winner = points[i];
+            winnerIndex = i;
+        }  
+    }
+   return winnerIndex; 
 }
 
+/* 
+    Returns: string
+    Params: string**, int**, int, int
+
+   This function prints the question that corresponds to the user's selected position on the board. It will return the user's answer 
+*/
 string printQuestionsGetAnswer(string **questions, int **boardStatus, int userCategory, int userQuestion){
     string userAnswer; //holds user answer
 
@@ -186,6 +218,13 @@ string printQuestionsGetAnswer(string **questions, int **boardStatus, int userCa
    return userAnswer; 
 }
 
+/* 
+    Returns: string
+    Params: string
+
+   This function iterates through the inputted string and converts whatever uppercase letter there is to lowercase
+
+*/
 string toLowerString(string input){
     string lowerString = ""; //initializing an empty string container
 
@@ -198,6 +237,15 @@ string toLowerString(string input){
    return lowerString; 
 }
 
+/* 
+    Returns: bool
+    Params: string**, string, int, int
+
+    This function iterates through the user's string and the file's string then compares the two answers based on the lowercase relation.
+    There is a setup I made where if the file has two words, each word was split into two elements in an array which are 
+    individually compared to the concatenated user string as a whole.
+
+*/
 bool checkAnswer(string **answers, string userAnswer, int userCategory, int userQuestion){
     string lowerUserAnswer = toLowerString(userAnswer); //calling the above function to ensure the answer is all lowercase
     string lowerRealAnswer = toLowerString(answers[userCategory][userQuestion]);
