@@ -103,7 +103,7 @@
   <tr>
     <th> Program 4 </th>
     <th> April 15 2026 </th>
-    <th> IN PROGRESS </th>
+    <th> COMPLETE </th>
     <th> </th>
   </tr>
   <tr>
