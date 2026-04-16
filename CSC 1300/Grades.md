@@ -7,70 +7,70 @@
     <th> Grade</th>
   </tr>
   <tr>
-    <th> Lab 1</th>
-    <th> Feb 4 2026 </th>
-    <th> COMPLETE</th>
-    <th> 100 </th>
+    <td> Lab 1</td>
+    <td> Feb 4 2026 </td>
+    <td> COMPLETE</td>
+    <td> 100 </td>
   </tr>
    <tr>
-    <th> Lab 2</th>
-    <th> Feb 11 2026</th>
-    <th> COMPLETE</th>
-    <th> 100 </th>
+    <td> Lab 2</td>
+    <td> Feb 11 2026</td>
+    <td> COMPLETE</td>
+    <td> 100 </td>
   </tr>
    <tr>
-    <th> Lab 3</th>
-    <th> Feb 18 2026</th>
-    <th> COMPLETE</th>
-    <th> 100</th>
+    <td> Lab 3</td>
+    <td> Feb 18 2026</td>
+    <td> COMPLETE</td>
+    <td> 100</td>
   </tr>
    <tr>
-    <th> Lab 4</th>
-    <th> Feb 25 2026 </th>
-    <th> COMPLETE</th>
-    <th> 100 </th>
+    <td> Lab 4</td>
+    <td> Feb 25 2026 </td>
+    <td> COMPLETE</td>
+    <td> 100 </td>
   </tr>
    <tr>
-    <th> Lab 5</th>
-    <th> March 4 2026 </th>
-    <th> COMPLETE </th>
-    <th> 99</th>
+    <td> Lab 5</td>
+    <td> March 4 2026 </td>
+    <td> COMPLETE </td>
+    <td> 99</td>
   </tr>
    <tr>
-    <th> Lab 6</th>
-    <th> March 11 2026</th>
-    <th> COMPLETE </th>
-    <th> 100 </th>
+    <td> Lab 6</td>
+    <td> March 11 2026</td>
+    <td> COMPLETE </td>
+    <td> 100 </td>
   </tr>
    <tr>
-    <th> Lab 7</th>
-    <th> March 25 2026 </th>
-    <th> COMPLETE </th>
-    <th> 97 </th>
+    <td> Lab 7</td>
+    <td> March 25 2026 </td>
+    <td> COMPLETE </td>
+    <td> 97 </td>
   </tr>
    <tr>
-    <th> Lab 8</th>
-    <th> April 9 2026</th>
-    <th> COMPLETE</th>
-    <th> 90 </th>
+    <td> Lab 8</td>
+    <td> April 9 2026</td>
+    <td> COMPLETE</td>
+    <td> 90 </td>
   </tr>
    <tr>
-    <th> Lab 9</th>
-    <th> April 15 2026</th>
-    <th> COMPLETE </th>
-    <th> </th>
+    <td> Lab 9</td>
+    <td> April 15 2026</td>
+    <td> COMPLETE </td>
+    <td> </td>
   </tr>
    <tr>
-    <th> Lab 10</th>
-    <th> April 22 2026</th>
-    <th> INCOMPLETE</th>
-    <th> </th>
+    <td> Lab 10</td>
+    <td> April 22 2026</td>
+    <td> INCOMPLETE</td>
+    <td> </td>
   </tr>
   <tr>
-    <th> Lab 11</th>
-    <th> April 29 2026 </th>
-    <th> INCOMPLETE</th>
-    <th> </th>
+    <td> Lab 11</td>
+    <td> April 29 2026 </td>
+    <td> INCOMPLETE</td>
+    <td> </td>
 
 </table>
 
@@ -83,33 +83,33 @@
     <th> Grade </th>
   </tr>
   <tr>
-    <th> Program 1 </th>
-    <th> Feb 16 2026</th>
-    <th> COMPLETE</th>
-    <th> 100</th>
+    <td> Program 1 </td>
+    <td> Feb 16 2026</td>
+    <td> COMPLETE</td>
+    <td> 100</td>
   </tr>
   <tr>
-    <th> Program 2 </th>
-    <th> March 6 2026</th>
-    <th> COMPLETE</th>
-    <th> 100 </th>
+    <td> Program 2 </td>
+    <td> March 6 2026</td>
+    <td> COMPLETE</td>
+    <td> 100 </td>
   </tr>
   <tr>
-    <th> Program 3 </th>
-    <th> March 25 2026</th>
-    <th> COMPLETE </th>
-    <th> 90 </th>
+    <td> Program 3 </td>
+    <td> March 25 2026</td>
+    <td> COMPLETE </td>
+    <td> 90 </td>
   </tr>
   <tr>
-    <th> Program 4 </th>
-    <th> April 15 2026 </th>
-    <th> COMPLETE </th>
-    <th> </th>
+    <td> Program 4 </td>
+    <td> April 15 2026 </td>
+    <td> COMPLETE </td>
+    <td> </td>
   </tr>
   <tr>
-    <th> Program 5 </th>
-    <th> April 29 2026 </th>
-    <th> INCOMPLETE </th>
-    <th> </th>
+    <td> Program 5 </td>
+    <td> April 29 2026 </td>
+    <td> INCOMPLETE </td>
+    <td> </td>
   </tr>
 </table>
