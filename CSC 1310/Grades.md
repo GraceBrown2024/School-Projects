@@ -70,12 +70,6 @@
     <td> </td>
     <td> </td>
   </tr>
-  <tr>
-    <td> Lab 11</td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-  </tr>
 </table>
 
 </td>
@@ -109,12 +103,6 @@
   </tr>
   <tr>
     <td> Program 4 </td>
-    <td> </td>
-    <td> </td>
-    <td> </td>
-  </tr>
-  <tr>
-    <td> Program 5 </td>
     <td> </td>
     <td> </td>
     <td> </td>
