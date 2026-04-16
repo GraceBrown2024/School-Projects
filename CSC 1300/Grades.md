@@ -1,4 +1,7 @@
 <table>
+<tr>
+  <td valign="top">
+<table>
   <tr> <th colspan="4"> LABS </th> </tr>
   <tr>
     <th> Assignment </th>
@@ -71,8 +74,10 @@
     <td> April 29 2026 </td>
     <td> INCOMPLETE</td>
     <td> </td>
-
 </table>
+</td>
+  
+<td valign="top>
 
 <table> 
   <tr> <th colspan="4"> PROGRAMS </th></tr>
@@ -112,4 +117,8 @@
     <td> INCOMPLETE </td>
     <td> </td>
   </tr>
+</table>
+
+</td>
+</tr>
 </table>
