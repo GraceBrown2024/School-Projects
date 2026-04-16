@@ -52,7 +52,7 @@
     <th> Lab 8</th>
     <th> April 9 2026</th>
     <th> COMPLETE</th>
-    <th> </th>
+    <th> 90 </th>
   </tr>
    <tr>
     <th> Lab 9</th>
@@ -62,13 +62,13 @@
   </tr>
    <tr>
     <th> Lab 10</th>
-    <th> </th>
+    <th> April 22 2026</th>
     <th> INCOMPLETE</th>
     <th> </th>
   </tr>
   <tr>
     <th> Lab 11</th>
-    <th> </th>
+    <th> April 29 2026 </th>
     <th> INCOMPLETE</th>
     <th> </th>
 
@@ -108,8 +108,8 @@
   </tr>
   <tr>
     <th> Program 5 </th>
-    <th> </th>
-    <th> </th>
+    <th> April 29 2026 </th>
+    <th> INCOMPLETE </th>
     <th> </th>
   </tr>
 </table>
