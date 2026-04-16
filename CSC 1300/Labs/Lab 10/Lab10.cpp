@@ -10,5 +10,14 @@
 
 int main(){
 
+    /*
+        CONCEPT:
+            structure -- Furby
+                    string name
+                    int year
+                    string model
+                    double price
+                    
+    */
     return 0;
 }
