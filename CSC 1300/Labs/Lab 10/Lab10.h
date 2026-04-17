@@ -14,5 +14,26 @@
 #include <string>
 using namespace std;
 
+struct Furby{       //main struct for Furby info
+    string design;  //more info about designs can be found at https://official-furby.fandom.com/wiki/Official_Furby_Wiki
+    int year;       
+    double price;
+    bool goodCondition; //will raise price if true
+    bool inBox;         //will raise price if true
+}; 
+
+void homeScreen();
+
+int menu();
+
+void viewListings();
+
+void addListing();
+
+void removeListing();
+
+void editListing();
+
+
 
 #endif
