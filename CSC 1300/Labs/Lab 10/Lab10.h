@@ -30,19 +30,17 @@ struct Account{
     string password;
 };
 
-const int LISTSIZE = 0; // initializes list size to nothing 
-
 string homeScreen(Account*, int, int*);
 
 int menu();
 
-void viewListings();
+void viewListings(Furby*, int);
 
-void addListing();
+void addListing(Furby*, int*);
 
-void removeListing();
+void removeListing(Furby*, int*);
 
-void editListing();
+void editListing(Furby*, int);
 
 string userValidation();
 

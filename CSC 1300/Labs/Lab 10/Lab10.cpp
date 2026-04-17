@@ -14,9 +14,11 @@ int main(){
     int peopleNum = countPeople();
     int *userNameIndex = nullptr;   //creates pointer variable that will hold a username's index
     bool loggedIn = true;           //initializes login for menu to keep looping
+    int initialSize = 0;
+    int *listSize = &initialSize;
 
     Furby *listings;
-    listings = new Furby[LISTSIZE]; //dynamically allocates a new furby array
+    listings = new Furby[*listSize]; //dynamically allocates a new furby array
 
     Account *account;
     account = new Account[peopleNum];    // allocates new account array
@@ -28,16 +30,16 @@ int main(){
     do{                                 //begins loop that continues as long as we are logged in
         switch(menu()){
             case 1:                     //each case is attributed to a function
-                viewListings();
+                viewListings(listings, *listSize);
                 break;
             case 2:
-                addListing();
+                addListing(listings, listSize);
                 break;
             case 3:
-                editListing();
+                editListing(listings, *listSize);
                 break;
             case 4:
-                removeListing();
+                removeListing(listings, listSize);
                 break;
             case 5:
                 loggedIn = false;   //changes the bool variable to exit the switch loop
@@ -61,8 +63,8 @@ int main(){
 */
 string homeScreen(Account *account, int peopleNum, int *userNameIndex){
     
-    bool matchedAccount;
-    string existingAccount, userName, password;
+    bool matchedAccount, retry;
+    string existingAccount, userName, password, oneTwo;
     string border(40, '=');
     string smallBorder(40, '-');
 
@@ -81,19 +83,38 @@ string homeScreen(Account *account, int peopleNum, int *userNameIndex){
     }
 
     if(existingAccount == "y"){     //allows user to enter their existing account info
-        cout << "\nEnter Username: ";
-        getline(cin, userName);
-        matchedAccount = accountExists(account, userName, peopleNum, 1, userNameIndex);                  
+        do{
+            retry = false;
+            cout << "\nEnter Username: ";
+            getline(cin, userName);
+            matchedAccount = accountExists(account, userName, peopleNum, 1, userNameIndex);                  
 
-        if(matchedAccount == false){
-            cout << "\nUsername not found!";                //add option to retype username OR add account
-                                                    
-        }else{
-            cout << "\nWelcome back, " << userName << "!\n"
-                 << "\nEnter Password: ";
-            getline(cin, password);
-            matchedAccount = accountExists(account, password, peopleNum, 2, userNameIndex);
-        }
+            if(matchedAccount == false){
+                cout << "\nUsername not found!\n"                // option to retype username OR add account
+                    << "\nWould you like to..."
+                    << "\n\t1.) Create New Account"
+                    << "\n\t2.) Try Other Name\n"
+                    << "\n[1 or 2] --> ";
+                getline(cin, oneTwo);
+
+                while((oneTwo != "1") && (oneTwo != "2") ){ //user validation loop
+                oneTwo = userValidation();
+                }
+
+                if(oneTwo == "1"){
+                    userName = addAccount(account, peopleNum);
+
+                }else{
+                    retry = true;                   //allows user to retype name
+                }
+                                                        
+            }else{
+                cout << "\nWelcome back, " << userName << "!\n"
+                    << "\nEnter Password: ";
+                getline(cin, password);
+                matchedAccount = accountExists(account, password, peopleNum, 2, userNameIndex);
+            }
+        }while(retry == true);      //continues loop in case name needs to be retyped
     }else{
         userName = addAccount(account, peopleNum);  //adds username from addAccount function 
     }
@@ -102,7 +123,7 @@ string homeScreen(Account *account, int peopleNum, int *userNameIndex){
 
 /*
     Return Type : int
-    Parameters  : string
+    Parameters  : n/a
     Returns     : user choice for the menu to be used for a switch statement in main()
     Purpose     : displays the menu to alter/view your furbies that you are selling
 */
@@ -111,8 +132,8 @@ int menu(){
     string border(40, '-');
 
     cout << "\n" << border << "\n"
-         << setw(14) << "Select" << " One" << endl
-         << "1.) View Furbies\n"
+         << setw(17) << "Select" << " One" << endl
+         << "\n1.) View Furbies\n"
          << "2.) Add Furby Listing\n"
          << "3.) Edit Furby Listing\n"
          << "4.) Remove Furby Listing\n"
@@ -130,41 +151,96 @@ int menu(){
 
 /*
     Return Type : void
-    Parameters  : 
+    Parameters  : Furby*, int
     Returns     : n/a
     Purpose     : displays all the Furbies in your listing!!
 */
-void viewListings(){
-    cout << "View listings works";
+void viewListings(Furby *listings, int listSize){
+    string smallBorder(40, '-');
+    if(listSize == 0){                      //diaplys message if the listing array is blank
+        cout << "\n" << smallBorder << "\n"
+             << "\nNo Lists to See Here!\n";
+    }else{
+        for(int i = 0; i < listSize; i++){  //iterates through listing array and prints each item from struct elements
+            cout << "\n" << smallBorder << "\n"
+                 << "\nFurby " << i+1 << "\n"
+                 << "\nDesign        : " << listings[i].design
+                 << "\nYear          : " << listings[i].year
+                 << "\nOOB           : " << listings[i].inBox
+                 << "\nGood Condition: " << listings[i].goodCondition
+                 << "\nPrice         : " << listings[i].price << endl;
+        }   
+    }
+    cout << "\n" << smallBorder << "\n";
 }
 
 /*
     Return Type : void
-    Parameters  :
+    Parameters  : Furby*, int*
     Returns     : n/a
-    Purpose     : creates a new struct Furby listing! Adds to the listing number in the first array
+    Purpose     : creates a new struct Furby listing! Adds to the listing number in the listing array
 */
-void addListing(){
-    cout << "Add listings works";
+void addListing(Furby *listings, int *listSize){
+    string border(40, '+');
+    int generation;
+
+    *listSize += 1;
+    int index = *listSize - 1;
+    cout << "\n" << border << "\n"
+         << setw(15) << "NEW" << " FURBY\n"
+         << "Design (ex: Panda, Tiger, Snowball): ";
+    getline(cin, listings[index].design);
+
+    cout << "Generation (0 - 5): ";
+    cin >> generation;
+    while(!cin || (generation > 5 || generation < 0)){
+        generation = stoi(userValidation());        //converts the returned string into an int for comparison
+    }   
+    switch(generation){
+        case 0:
+            listings[index].year = 1997;
+            break;
+
+        case 1:
+            listings[index].year = 1998;
+            break;
+
+        case 2:
+            listings[index].year = 2005;
+            break;
+
+        case 3:
+            listings[index].year = 2012;
+            break;
+
+        case 4:
+            listings[index].year = 2016;
+            break;
+
+        case 5:
+            listings[index].year = 2023;
+            break;
+    }
+
 }
 
 /*
     Return Type : void
-    Parameters  :
+    Parameters  : Furby*, int*
     Returns     : n/a
     Purpose     : removes a furby in your listing array
 */
-void removeListing(){
+void removeListing(Furby *listings, int *listSize){
     cout << "Remove listings works";
 }
 
 /*
     Return Type : void
-    Parameters  :
+    Parameters  : Furby*, int
     Returns     : n/a
     Purpose     : allows you to edit any of your listing's qualities!
 */
-void editListing(){
+void editListing(Furby *listings, int listSize){
     cout << "Edit listings works";
 }
 
