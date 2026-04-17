@@ -12,6 +12,9 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <cctype>
+#include <fstream>
 using namespace std;
 
 struct Furby{       //main struct for Furby info
@@ -22,7 +25,9 @@ struct Furby{       //main struct for Furby info
     bool inBox;         //will raise price if true
 }; 
 
-void homeScreen();
+const int LISTSIZE = 0; // initializes list size to nothing 
+
+string homeScreen();
 
 int menu();
 
@@ -34,6 +39,17 @@ void removeListing();
 
 void editListing();
 
+string userValidation();
+
+string lowerCase(string);
+
+bool userNameFound(string userInput);
+
+bool passwordMatch(string userInput);
+
+string addAccount();
+
+void createAccountArray();
 
 
 #endif
