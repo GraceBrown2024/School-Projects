@@ -1,3 +1,12 @@
+/*
+    Author      : Grace Brown
+    Created     : 16 April 2026
+    Last Edited : 16 April 2026
+    File Name   : functions.cpp
+    Purpose     : 
+*/
+
+
 #include "Prog5.h"
 
 /*
@@ -7,6 +16,9 @@
 */
 int enterHeroes(int max, int numHeroes , Heroes* heroList)
 {
+	ifstream inputFile;
+	string filename, data;
+	int choice;
 	int numHeroesFromFile=0;
 	//there is code that you have to add right here
 	//make sure not already at capacity
@@ -27,7 +39,7 @@ int enterHeroes(int max, int numHeroes , Heroes* heroList)
 					if(!inputFile)
 					{
 						cout << filename << " does not exist or is corrupt.  Sorry.  Can't load heroes.\n";
-						cout << endl << numHeroesFromFile << " heroes from " << filename << " have been added to your condo 
+						cout << endl << numHeroesFromFile << " heroes from " << filename << " have been added to your condo"; 
 						return numHeroes;
 					}
 					//load heroes from file	
