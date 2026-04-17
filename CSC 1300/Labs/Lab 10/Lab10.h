@@ -25,9 +25,14 @@ struct Furby{       //main struct for Furby info
     bool inBox;         //will raise price if true
 }; 
 
+struct Account{
+    string username;
+    string password;
+};
+
 const int LISTSIZE = 0; // initializes list size to nothing 
 
-string homeScreen();
+string homeScreen(Account*);
 
 int menu();
 
@@ -43,13 +48,11 @@ string userValidation();
 
 string lowerCase(string);
 
-bool userNameFound(string userInput);
-
-bool passwordMatch(string userInput);
-
 string addAccount();
 
-void createAccountArray();
+void createAccountArray(Account*);
+
+int countPeople();
 
 
 #endif

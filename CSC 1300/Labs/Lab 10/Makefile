@@ -4,8 +4,8 @@
 
 all:	Furby
 
-Furby:	Lab10.cpp functions.cpp
-		g++ -Wall -o furby Lab10.cpp functions.cpp
+Furby:	Lab10.cpp 
+		g++ -Wall -o furby Lab10.cpp
 
 run:	furby
 		./furby

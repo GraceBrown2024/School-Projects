@@ -10,13 +10,15 @@
 #include "Lab10.h"
 
 int main(){
-    string userName;                //holds name of YOU! doesnt really impact gameplay
+    string userName;                //holds YOU!
 
     Furby *listings;
     listings = new Furby[LISTSIZE]; //dynamically allocates a new furby array
 
+    Account *account;
+    account = new Account[countPeople()];    // allocates new account array
     
-    userName = homeScreen();        //calls the login and intro screen function
+    userName = homeScreen(account);     //calls the login and intro screen function
     
     delete [] listings;             //deallocates the list 
     return 0;
@@ -24,12 +26,12 @@ int main(){
 
 /*
     Return Type : string
-    Parameters  : n/a
+    Parameters  : struct array for Furby
     Returns     : username of YOU!
     Purpose     : Allows user to login to ebay account
                   Adds some "realism" to the listing program
 */
-string homeScreen(){
+string homeScreen(Account *account){
     
     bool matchedAccount;
     string existingAccount, userName, password;
@@ -49,7 +51,7 @@ string homeScreen(){
     if(existingAccount == "y"){
         cout << "\nEnter Username: ";
         getline(cin, userName);
-        matchedAccount = userNameFound(userName);
+        matchedAccount = true;                  //CHANGE THIS
 
         if(matchedAccount == false){
             cout << "\nUsername not found!";
@@ -58,7 +60,6 @@ string homeScreen(){
             cout << "\nWelcome back, " << userName << "!\n"
                  << "\nEnter Password: ";
             getline(cin, password);
-            matchedAccount = passwordMatch(password);
         }
     }else{
         addAccount();
@@ -74,7 +75,7 @@ string homeScreen(){
     Purpose     : displays the menu to alter/view your furbies that you are selling
 */
 int menu(){
-    int userChoice;
+    int userChoice = 0;         // CHANGE
 
     return userChoice;
 }
@@ -156,52 +157,6 @@ string lowerCase(string userInput){
 }
 
 /*
-    Return Type : bool
-    Parameters  : string
-    Returns     : true if name is found in array, false if name not found
-    Purpose     : accesses array containing all created usernames and 
-                  transverses through it to find a matching name 
-                  ... Adds realism!!!
-*/
-bool userNameFound(string userInput){
-    /*                                                //NOTE!!!! Fix this to be sorting through an ARRAY 
-    ifstream usernames;
-    string names;
-
-    usernames.open("usernames.txt");
-    while(getline(usernames, names)){
-        if(names == userInput){
-            return true;
-        }
-    }
-    return false;
-    */
-}
-
-/*
-    Return Type : bool
-    Parameters  : string
-    Returns     : true if password is found in array, false if password not found
-    Purpose     : accesses array containing all created passwords and 
-                  transverses through it to find a matching password
-                  ... Adds realism!!!
-*/
-bool passwordMatch(string userInput){
-   /*                                                   //NOTE!!!! Fix this to be sorting through an ARRAY 
-   ifstream passwords;
-    string inputPassword;
-
-    passwords.open("passwords.txt");
-    while(getline(passwords, inputPassword)){
-        if(userInput == inputPassword){
-            return true;
-        }
-    }
-    return false;
-    */
-}
-
-/*
     Return Type : string
     Parameters  : n/a
     Returns     : newly created account name
@@ -220,11 +175,36 @@ string addAccount(){
 
 /*
     Return Type : void
-    Parameters  : n/a
+    Parameters  : Furby struct array
     Returns     : n/a
-    Purpose     : transverses username/passwords files and adds each respective name 
-                  and password to a 2d array
+    Purpose     : transverses username/passwords files and processes given info into dynamic array
 */
-void createAccountArray(){
+void createAccountArray(Account *account){
+    ifstream accounts;
+    accounts.open("accounts.txt");
+    int i = 0;
+    while(getline(accounts, account[i].username, '#')){
+        getline(accounts, account[i].password, '#');
+        i++;
+    }
 
+}
+
+/*
+    Return Type : void
+    Parameters  : n/a
+    Returns     : number of accounts in the acocunts file
+    Purpose     : iterates through accounts file and counts up how many different accounts there are
+                  return will be used to provide an itital array amount for account
+*/
+int countPeople(){
+    int accountNum = 0;
+    ifstream accounts;
+    string data;
+
+    accounts.open("accounts.txt");
+    while(getline(accounts, data)){
+        accountNum++;
+    }
+    return accountNum;
 }
