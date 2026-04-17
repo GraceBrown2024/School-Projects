@@ -32,7 +32,7 @@ struct Account{
 
 const int LISTSIZE = 0; // initializes list size to nothing 
 
-string homeScreen(Account*);
+string homeScreen(Account*, int, int*);
 
 int menu();
 
@@ -48,11 +48,13 @@ string userValidation();
 
 string lowerCase(string);
 
-string addAccount();
+string addAccount(Account*, int);
 
 void createAccountArray(Account*);
 
 int countPeople();
+
+bool accountExists(Account*, string, int, int, int*);
 
 
 #endif
