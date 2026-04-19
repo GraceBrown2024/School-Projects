@@ -1,7 +1,7 @@
 /*
     Author      : Grace Brown
     Created     : 16 April 2026
-    Last Edited : 16 April 2026
+    Last Edited : 19 April 2026
     File Name   : Lab10.cpp
     Purpose     : Sell your furbies on eBay! Keep track of
                   your listings!
@@ -16,6 +16,8 @@ int main(){
     bool loggedIn = true;           //initializes login for menu to keep looping
     int initialSize = 0;
     int *listSize = &initialSize;
+    int indexContainer = -1;        //creates space for userIndex to be stores in password check function
+    userNameIndex = &indexContainer;    //holds that space
 
     Furby *listings;
     listings = new Furby[*listSize]; //dynamically allocates a new furby array
@@ -68,9 +70,6 @@ string homeScreen(Account *account, int peopleNum, int *userNameIndex){
     string border(40, '=');
     string smallBorder(40, '-');
 
-    int indexContainer = -1;        //creates space for userIndex to be stores in password check function
-    userNameIndex = &indexContainer;    //holds that space
-
 
     cout << "\n" << border << "\n"
          << setw(14) << " " << "My eBay Login\n"
@@ -113,6 +112,12 @@ string homeScreen(Account *account, int peopleNum, int *userNameIndex){
                     << "\nEnter Password: ";
                 getline(cin, password);
                 matchedAccount = accountExists(account, password, peopleNum, 2, userNameIndex);
+                if(matchedAccount == false){
+                    cin.clear();
+                    cout << "\nInvalid Password! Try again: ";
+                    getline(cin, password);
+                    matchedAccount = accountExists(account, password, peopleNum, 2, userNameIndex);
+                }
             }
         }while(retry == true);      //continues loop in case name needs to be retyped
     }else{
@@ -143,8 +148,9 @@ int menu(){
     cin >> userChoice;
 
     while(!cin || (userChoice < 1 || userChoice > 5)){
-        userChoice = stoi(userValidation());
+        userChoice = intValidation();
     }
+    cin.ignore(100, '\n');
 
     return userChoice;
 }
@@ -156,19 +162,34 @@ int menu(){
     Purpose     : displays all the Furbies in your listing!!
 */
 void viewListings(Furby *listings, int listSize){
+    string trueFalseBox, trueFalseCond;
     string smallBorder(40, '-');
+
     if(listSize == 0){                      //diaplys message if the listing array is blank
         cout << "\n" << smallBorder << "\n"
              << "\nNo Lists to See Here!\n";
     }else{
         for(int i = 0; i < listSize; i++){  //iterates through listing array and prints each item from struct elements
+
+            if(listings[i].inBox == true){  //prevents the bool print from being 1 or 0
+                trueFalseBox = "No";        //swapped yes and no becuase line 190 is "OOB" which instead of "In box"
+            }else if(listings[i].inBox == false){
+                trueFalseBox = "Yes";
+            }
+            
+            if(listings[i].goodCondition == true){
+                trueFalseCond = "Yes";
+            }else if(listings[i].goodCondition == false){
+                trueFalseCond = "No";
+            }
+
             cout << "\n" << smallBorder << "\n"
                  << "\nFurby " << i+1 << "\n"
                  << "\nDesign        : " << listings[i].design
                  << "\nYear          : " << listings[i].year
-                 << "\nOOB           : " << listings[i].inBox
-                 << "\nGood Condition: " << listings[i].goodCondition
-                 << "\nPrice         : " << listings[i].price << endl;
+                 << "\nOOB           : " << trueFalseBox
+                 << "\nGood Condition: " << trueFalseCond
+                 << "\nPrice         : $" << listings[i].price << endl;
         }   
     }
     cout << "\n" << smallBorder << "\n";
@@ -180,12 +201,21 @@ void viewListings(Furby *listings, int listSize){
     Returns     : n/a
     Purpose     : creates a new struct Furby listing! Adds to the listing number in the listing array
 */
-void addListing(Furby *listings, int *listSize){
+void addListing(Furby *&listings, int *listSize){
     string border(40, '+');
-    int generation;
+    int generation, condition, inBox;
+    double desiredPrice;
 
     *listSize += 1;
     int index = *listSize - 1;
+    Furby *tempArray = new Furby[*listSize];    //creates new array with the new list size
+    for(int i = 0; i < index; i++){             //copies everything over onto this new array 
+        tempArray[i] = listings[i]; 
+    }
+    delete [] listings;                         //frees up old array so computer doesnt freak out at next step 
+
+    listings = tempArray;                       //throws all the new info into the array again
+
     cout << "\n" << border << "\n"
          << setw(15) << "NEW" << " FURBY\n"
          << "Design (ex: Panda, Tiger, Snowball): ";
@@ -194,44 +224,149 @@ void addListing(Furby *listings, int *listSize){
     cout << "Generation (0 - 5): ";
     cin >> generation;
     while(!cin || (generation > 5 || generation < 0)){
-        generation = stoi(userValidation());        //converts the returned string into an int for comparison
+        generation = intValidation();        //converts the returned string into an int for comparison
     }   
-    switch(generation){
-        case 0:
-            listings[index].year = 1997;
+    cin.ignore(100, '\n');
+
+    switch(generation){                             //im assuming you guys dont know which year is atrributed to which gen
+        case 0:                                     // so i converted it for you guys hehe
+            listings[index].year = 0;               //this is for prototypes.. VALUABLE!
+            listings[index].yearEnd = 0;
             break;
 
         case 1:
             listings[index].year = 1998;
+            listings[index].yearEnd = 2001;
             break;
 
         case 2:
             listings[index].year = 2005;
+            listings[index].yearEnd = 2007;
             break;
 
         case 3:
             listings[index].year = 2012;
+            listings[index].yearEnd = 2015;
             break;
 
         case 4:
             listings[index].year = 2016;
+            listings[index].yearEnd = 2017;
             break;
 
         case 5:
             listings[index].year = 2023;
+            listings[index].yearEnd = 2026;       
             break;
     }
+
+    cout << "Condition -\n"                     //evaluated condition of furby (subjective)
+         << setw(5) << "1.)" << " Good\n"
+         << setw(5) << "2.)" << " Bad\n"
+         << "Choose: ";
+    cin >> condition;
+    while(!cin || (condition > 2 || condition < 1)){
+        condition = intValidation();        //converts the returned string into an int for comparison
+    } 
+    cin.ignore(100, '\n');
+
+    if(condition == 1){
+        listings[index].goodCondition = true;
+    }else{
+        listings[index].goodCondition = false;
+    }
+    
+    if(listings[index].year == 0){
+        listings[index].inBox = false; //no prototypes are in box
+    }else{
+        cout << "Box -\n"                          //USER INPUT FOR BOX FIELD (raises price if true)
+             << setw(5) << "1.)" << " In Box\n"
+             << setw(5) << "2.)" << " Out of Box\n"
+             << "Choose: ";
+        cin >> inBox;
+        while(!cin || (inBox > 2 || inBox < 1)){
+            inBox = intValidation();        //converts the returned string into an int for comparison
+        } 
+        cin.ignore(100, '\n');
+
+        if(inBox == 1){
+            listings[index].inBox = true;
+        }else{
+            listings[index].inBox = false;
+        }
+    }
+
+    cout << "\nSuggested listing Price: $" << suggestedPrice(listings, index) << "\n"
+         << "Desired Price: $";
+    cin >> desiredPrice;
+
+    while(!cin || (desiredPrice < 0)){
+        cin.clear();
+        cin.ignore(100, '\n');
+        cout << "Invalid Price! Try again: ";
+        cin >> desiredPrice;
+    }
+    cin.ignore(100, '\n');
+    
+    roundPrice(listings, index, desiredPrice);
 
 }
 
 /*
     Return Type : void
-    Parameters  : Furby*, int*
+    Parameters  : Furby*&, int*
     Returns     : n/a
     Purpose     : removes a furby in your listing array
+                    Im not gonna hold you when I say I have NEVER made a sorting algorithm 
+                    so this was my best and first shot at it. Enjoy
 */
-void removeListing(Furby *listings, int *listSize){
-    cout << "Remove listings works";
+void removeListing(Furby *&listings, int *listSize){
+    string border(40, '-');
+    cout << "\n" << border << "\n";
+
+    if(*listSize == 0){
+        cout << "\nNo Furbies to Remove!\n";        //makes sure you arent trying to delete from an empty list
+    }else{
+        Furby *tempArray = new Furby[*listSize];
+    
+        for(int i = 0; i < *listSize; i++){
+            tempArray[i] = listings[i]; //copies everything over to tempArray
+        }
+
+        int heldItem;
+        delete [] listings;     //frees up listings for now
+
+        cout << "\nSelect the Number of the Furby you would like to delete:\n"; //prints out each name and price of the items
+        for(int i = 0; i < *listSize; i++){
+            cout << "\n" << i + 1 << ": " << tempArray[i].design
+                << "\n" << setw(6) << "$" << tempArray[i].price << "\n";
+        }
+
+        cout << "\nSelection: ";              //allows the user to choose the index for the item in the array                              
+        cin >> heldItem;
+        while(!cin || (heldItem < 1 || heldItem > *listSize)){
+            heldItem = intValidation();
+        }
+        cin.ignore();
+
+        heldItem -= 1;  // corrects the index number
+
+        *listSize -= 1;
+        listings = new Furby[*listSize];    //reallocating the array since the old one was freed 
+
+        int newIndex = 0;   //initializes a new array index so the loop doesnt overwrite an element once i is skipped
+
+        for(int i = 0; i < *listSize + 1; i++){ //Recreates the listing array WITHOUT the chosen list item
+            if(i == heldItem){
+                continue;
+            }else{
+                listings[newIndex] = tempArray[i]; //reassigns all the elements 
+            }
+            newIndex++; //increments the new index so it wont overwrite i
+        } 
+        delete [] tempArray;    //ELIMINATE the temporary array
+    }
+    cout << "\n" << border << "\n";
 }
 
 /*
@@ -422,4 +557,106 @@ bool accountExists(Account *account, string userInput, int numPeople, int situat
         }
     }
     return false;
+}
+
+/*
+    Return Type : double
+    Parameters  : Furby*, int
+    Returns     : Suggested price based on user inputs
+    Purpose     : Gives the furby seller the suggested average prices of whatever furby they are listing
+*/
+double suggestedPrice(Furby *listings, int listIndex){
+    double price = 0.0;     //container that will full with price based on user inputs from addListing
+    string easterEggName[5] = {"president", "bejwelled", "patriotic", "royal", "angel"};    //these are my DREAM 1998 furbies
+    string loweredName = "";
+
+    if(listings[listIndex].year == 1998 || listings[listIndex].year == 2012 || listings[listIndex].year == 2016){
+        price += 20.00;
+    }else if(listings[listIndex].year == 0){
+        price += 500.00;
+    }else if(listings[listIndex].year == 2023){
+        price += 20.00;
+    }else if(listings[listIndex].year == 2005){
+        price += 150.00;
+    }
+
+    if(listings[listIndex].inBox == true){
+        if(listings[listIndex].year == 2005){
+            price += 100.00;
+        }else if(listings[listIndex].year == 1998){
+            price += 20.00;
+        }else if(listings[listIndex].year == 0){
+            //nothing because the prototypes dont have boxes lolololololol
+        }else{
+            price += 10.00;
+        }
+    }
+
+    if(listings[listIndex].goodCondition == true){
+        if(listings[listIndex].year == 2005){
+            price += 50.00;
+        }else if(listings[listIndex].year == 1998){
+            price += 20.00;
+        }else if(listings[listIndex].year == 0){
+            price += 30.00;
+        }else{
+            price += 5.00;
+        }
+    }else if(listings[listIndex].goodCondition == false){
+        if(listings[listIndex].year == 2005){
+            price -= 50.00;
+        }else if(listings[listIndex].year == 1998){
+            price -= 10.00;
+        }else if(listings[listIndex].year == 0){
+            price -= 30.00;
+        }else{
+            price -= 5.00;
+        }
+    }
+
+    //easter eggs for me hehe
+    loweredName = lowerCase(listings[listIndex].design);
+    for(int i = 0; i < 5; i++){                             //only activates if the year is 1998 AND its one of my dream special edition designs
+        if(listings[listIndex].year == 1998){
+            if(loweredName == easterEggName[i]){
+                price += 500.00;    //NOT ACCURATE TO THE ACTUAL VALUE!!!!!! I just love these specials so much
+            }
+        }
+    }
+
+    return price;
+}
+
+/*
+    Return Type : void
+    Parameters  : Furby*, int, double
+    Returns     : n/a
+    Purpose     : adjusts the price inputted by user to change the decimal to two points, using a rounding system
+                  I found on https://stackoverflow.com/questions/25925290/c-round-a-double-up-to-2-decimal-places
+*/
+void roundPrice(Furby *listings, int index, double userPrice){
+    double multiplier = pow(10.0, 2);
+    listings[index].price = ceil(userPrice * multiplier) / multiplier;
+}
+
+/*
+    Return Type : int
+    Parameters  : n/a
+    Returns     : new inputted value for comparison
+    Purpose     : prevents me from having to constantly convert strings to integers in the verification sections
+*/
+int intValidation(){    //avoids the pain of having to validate an string and convert to int
+    int newValue;
+    
+    cin.clear();
+    cin.ignore(100, '\n');
+
+    cout << "Invalid input! Try again: ";
+    cin >> newValue;
+
+    if(!cin){
+        newValue = 0;
+    }
+
+    return newValue;
 }
