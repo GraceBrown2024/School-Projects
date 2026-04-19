@@ -186,7 +186,7 @@ void viewListings(Furby *listings, int listSize){
             cout << "\n" << smallBorder << "\n"
                  << "\nFurby " << i+1 << "\n"
                  << "\nDesign        : " << listings[i].design
-                 << "\nYear          : " << listings[i].year
+                 << "\nYear          : " << listings[i].year << "-" << listings[i].yearEnd
                  << "\nOOB           : " << trueFalseBox
                  << "\nGood Condition: " << trueFalseCond
                  << "\nPrice         : $" << listings[i].price << endl;
@@ -305,6 +305,9 @@ void addListing(Furby *&listings, int *listSize){
         cin.ignore(100, '\n');
         cout << "Invalid Price! Try again: ";
         cin >> desiredPrice;
+        if(!cin){               //forces the value to be out of bounds if the validated check is bs
+            desiredPrice = -1;
+        }
     }
     cin.ignore(100, '\n');
     
@@ -374,9 +377,131 @@ void removeListing(Furby *&listings, int *listSize){
     Parameters  : Furby*, int
     Returns     : n/a
     Purpose     : allows you to edit any of your listing's qualities!
+                    essentially the same as addListing() but instead it just overwrites an exisiting index
 */
 void editListing(Furby *listings, int listSize){
-    cout << "Edit listings works";
+    string border(40, '-');
+    string biggerBorder(40, '+');
+    cout << "\n" << border << "\n";
+
+    if(listSize == 0){                      //ensures you arent trying to edit an empty array 
+        cout << "\nNo Furbies to Edit!\n";
+    }else{
+        int editItem, generation, condition, inBox;
+        double desiredPrice;
+
+        cout << "\nSelect the Number of the Furby you wish to Edit:\n";
+        for(int i = 0; i < listSize; i++){                              //displays name and price of the furby
+            cout << "\n" << i + 1 << ": " << listings[i].design << "\n"
+                 << setw(6) << "$" << listings[i].price << "\n";
+        }
+        cout << "\nSelection: ";
+        cin >> editItem;
+
+        while(!cin || (editItem < 1 || editItem > listSize)){
+            editItem = intValidation();
+        }
+        cin.ignore();
+
+        editItem -= 1; //corrects the index of the Furby
+
+        cout << "\n" << biggerBorder << "\n"
+             << "Enter New Values for Furby " << editItem + 1 << "\n"
+             << "\nDesign: ";
+        getline(cin, listings[editItem].design);
+        
+        cout << "Generation (0-5): ";
+        cin >> generation;
+        while(!cin || (generation < 0 || generation > 5)){
+            generation = intValidation();
+        }
+        cin.ignore();
+
+        switch(generation){                             //Converts the generation to the year
+            case 0:                                     
+                listings[editItem].year = 0;               //this is for prototypes.. VALUABLE!
+                listings[editItem].yearEnd = 0;
+                break;
+
+            case 1:
+                listings[editItem].year = 1998;
+                listings[editItem].yearEnd = 2001;
+                break;
+
+            case 2:
+                listings[editItem].year = 2005;
+                listings[editItem].yearEnd = 2007;
+                break;
+
+            case 3:
+                listings[editItem].year = 2012;
+                listings[editItem].yearEnd = 2015;
+                break;
+
+            case 4:
+                listings[editItem].year = 2016;
+                listings[editItem].yearEnd = 2017;
+                break;
+
+            case 5:
+                listings[editItem].year = 2023;
+                listings[editItem].yearEnd = 2026;       
+                break;
+        }
+        cout << "Condition -\n"                     //evaluated condition of furby (subjective)
+            << setw(5) << "1.)" << " Good\n"
+            << setw(5) << "2.)" << " Bad\n"
+            << "Choose: ";
+        cin >> condition;
+        while(!cin || (condition > 2 || condition < 1)){
+            condition = intValidation();        //converts the returned string into an int for comparison
+        } 
+        cin.ignore(100, '\n');
+
+        if(condition == 1){
+            listings[editItem].goodCondition = true;
+        }else{
+            listings[editItem].goodCondition = false;
+        }
+        
+        if(listings[editItem].year == 0){
+            listings[editItem].inBox = false; //no prototypes are in box
+        }else{
+            cout << "Box -\n"                          //USER INPUT FOR BOX FIELD (raises price if true)
+                << setw(5) << "1.)" << " In Box\n"
+                << setw(5) << "2.)" << " Out of Box\n"
+                << "Choose: ";
+            cin >> inBox;
+            while(!cin || (inBox > 2 || inBox < 1)){
+                inBox = intValidation();        //converts the returned string into an int for comparison
+            } 
+            cin.ignore(100, '\n');
+
+            if(inBox == 1){
+                listings[editItem].inBox = true;
+            }else{
+                listings[editItem].inBox = false;
+            }
+        }
+
+        cout << "\nSuggested listing Price: $" << suggestedPrice(listings, editItem) << "\n"
+            << "Desired Price: $";
+        cin >> desiredPrice;
+
+        while(!cin || (desiredPrice < 0)){
+            cin.clear();
+            cin.ignore(100, '\n');
+            cout << "Invalid Price! Try again: ";
+            cin >> desiredPrice;
+            if(!cin){               //forces the value to be out of bounds if the validated check is bs
+                desiredPrice = -1;
+            }
+        }
+        cin.ignore(100, '\n');
+        
+        roundPrice(listings, editItem, desiredPrice);
+        }
+        cout << "\n" << border << "\n";
 }
 
 /*
