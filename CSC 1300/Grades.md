@@ -62,12 +62,12 @@
     <td> Lab 9</td>
     <td> April 15 2026</td>
     <td> COMPLETE </td>
-    <td> </td>
+    <td> 100 </td>
   </tr>
   <tr>
     <td> Lab 10</td>
     <td> April 22 2026</td>
-    <td> INCOMPLETE</td>
+    <td> IN PROGRESS </td>
     <td> </td>
   </tr>
   <tr>
