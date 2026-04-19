@@ -113,10 +113,12 @@ string homeScreen(Account *account, int peopleNum, int *userNameIndex){
                 getline(cin, password);
                 matchedAccount = accountExists(account, password, peopleNum, 2, userNameIndex);
                 if(matchedAccount == false){
-                    cin.clear();
-                    cout << "\nInvalid Password! Try again: ";
-                    getline(cin, password);
-                    matchedAccount = accountExists(account, password, peopleNum, 2, userNameIndex);
+                    while(matchedAccount == false){
+                        cin.clear();
+                        cout << "\nInvalid Password! Try again: ";
+                        getline(cin, password);
+                        matchedAccount = accountExists(account, password, peopleNum, 2, userNameIndex);
+                    }  
                 }
             }
         }while(retry == true);      //continues loop in case name needs to be retyped
@@ -162,7 +164,7 @@ int menu(){
     Purpose     : displays all the Furbies in your listing!!
 */
 void viewListings(Furby *listings, int listSize){
-    string trueFalseBox, trueFalseCond;
+    string trueFalseBox, trueFalseCond, protoType;
     string smallBorder(40, '-');
 
     if(listSize == 0){                      //diaplys message if the listing array is blank
@@ -178,18 +180,25 @@ void viewListings(Furby *listings, int listSize){
             }
             
             if(listings[i].goodCondition == true){
-                trueFalseCond = "Yes";
+                trueFalseCond = "Good";
             }else if(listings[i].goodCondition == false){
-                trueFalseCond = "No";
+                trueFalseCond = "Poor";
             }
 
             cout << "\n" << smallBorder << "\n"
                  << "\nFurby " << i+1 << "\n"
-                 << "\nDesign        : " << listings[i].design
-                 << "\nYear          : " << listings[i].year << "-" << listings[i].yearEnd
-                 << "\nOOB           : " << trueFalseBox
-                 << "\nGood Condition: " << trueFalseCond
-                 << "\nPrice         : $" << listings[i].price << endl;
+                 << "\nDesign    : " << listings[i].design;
+
+            if(listings[i].year == 0){
+                cout << "\nYear      : Prototype";
+            }else if(listings[i].year != 0){
+                cout << "\nYear      : " << listings[i].year << "-" << listings[i].yearEnd;
+            }
+
+            cout << "\nOOB       : " << trueFalseBox
+                 << "\nCondition : " << trueFalseCond
+                 << "\nPrice     : $" << fixed << setprecision(2) << listings[i].price << endl;
+                 
         }   
     }
     cout << "\n" << smallBorder << "\n";
@@ -300,7 +309,7 @@ void addListing(Furby *&listings, int *listSize){
          << "Desired Price: $";
     cin >> desiredPrice;
 
-    while(!cin || (desiredPrice < 0)){
+    while(!cin || (desiredPrice < 0) || cin.peek() != '\n' ){ //using this https://www.geeksforgeeks.org/cpp/cin-in-c/ for cin.peek()
         cin.clear();
         cin.ignore(100, '\n');
         cout << "Invalid Price! Try again: ";
@@ -342,7 +351,7 @@ void removeListing(Furby *&listings, int *listSize){
         cout << "\nSelect the Number of the Furby you would like to delete:\n"; //prints out each name and price of the items
         for(int i = 0; i < *listSize; i++){
             cout << "\n" << i + 1 << ": " << tempArray[i].design
-                << "\n" << setw(6) << "$" << tempArray[i].price << "\n";
+                << "\n" << setw(6) << "$" << fixed << setprecision(2) << tempArray[i].price << "\n";
         }
 
         cout << "\nSelection: ";              //allows the user to choose the index for the item in the array                              
@@ -393,7 +402,7 @@ void editListing(Furby *listings, int listSize){
         cout << "\nSelect the Number of the Furby you wish to Edit:\n";
         for(int i = 0; i < listSize; i++){                              //displays name and price of the furby
             cout << "\n" << i + 1 << ": " << listings[i].design << "\n"
-                 << setw(6) << "$" << listings[i].price << "\n";
+                 << setw(6) << "$" << fixed << setprecision(2) << listings[i].price << "\n";
         }
         cout << "\nSelection: ";
         cin >> editItem;
@@ -488,7 +497,7 @@ void editListing(Furby *listings, int listSize){
             << "Desired Price: $";
         cin >> desiredPrice;
 
-        while(!cin || (desiredPrice < 0)){
+        while(!cin || (desiredPrice < 0) || cin.peek() != '\n' ){ //used the geeksforgeeks article pasted in addListing for cin.peek()
             cin.clear();
             cin.ignore(100, '\n');
             cout << "Invalid Price! Try again: ";
@@ -546,7 +555,7 @@ string lowerCase(string userInput){
     Returns     : newly created account name
     Purpose     : adds new username and password to accounts text file for future program use
 */
-string addAccount(Account *account, int numPeople){
+string addAccount(Account *account, int &numPeople){
     string addedName, addedPassword, yesNo;
     string correctedName = "";      //creates container just in case name has space and needs to be corrected to underscore
     ofstream acc;                   //allows the accepted username and password to be written to the file
@@ -619,7 +628,11 @@ string addAccount(Account *account, int numPeople){
             
     }while(userGood == false);                      //replays if password is illegal
     
-    acc << "\n" << correctedName + '#' + addedPassword; //adds username and password to file
+    acc << correctedName + '#' + addedPassword + "\n"; //adds username and password to file
+
+    account[numPeople].username = correctedName;    //updates the acccount array
+    account[numPeople].password = addedPassword;
+    numPeople++; //updates the amount of people in the array after creation
 
     return correctedName;
 }
@@ -638,6 +651,7 @@ void createAccountArray(Account *account){
         getline(accounts, account[i].password);
         i++;
     }
+    accounts.close();
 
 }
 
@@ -657,6 +671,7 @@ int countPeople(){
     while(getline(accounts, data)){
         accountNum++;
     }
+    accounts.close();
     return accountNum;
 }
 
@@ -761,7 +776,7 @@ double suggestedPrice(Furby *listings, int listIndex){
 */
 void roundPrice(Furby *listings, int index, double userPrice){
     double multiplier = pow(10.0, 2);
-    listings[index].price = ceil(userPrice * multiplier) / multiplier;
+    listings[index].price = round(userPrice * multiplier) / multiplier;
 }
 
 /*

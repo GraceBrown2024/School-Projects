@@ -63,7 +63,7 @@ string userValidation();
 
 string lowerCase(string);
 
-string addAccount(Account*, int);
+string addAccount(Account*, int&);
 
 void createAccountArray(Account*);
 
