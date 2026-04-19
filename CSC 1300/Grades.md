@@ -67,7 +67,7 @@
   <tr>
     <td> Lab 10</td>
     <td> April 22 2026</td>
-    <td> IN PROGRESS </td>
+    <td> COMPLETE </td>
     <td> </td>
   </tr>
   <tr>
