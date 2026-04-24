@@ -73,7 +73,7 @@
   <tr>
     <td> Lab 11</td>
     <td> April 29 2026 </td>
-    <td> INCOMPLETE</td>
+    <td> COMPLETE </td>
     <td> </td>
   </tr>
 </table>
@@ -116,7 +116,7 @@
   <tr>
     <td> Program 5 </td>
     <td> April 29 2026 </td>
-    <td> INCOMPLETE </td>
+    <td> IN PROGRESS </td>
     <td> </td>
   </tr>
 </table>

@@ -1,4 +1,4 @@
-#include "lab11_given.h"
+#include "lab11.h"
 int main()
 {
     int numTravelers, randomTraveler, random;
@@ -35,19 +35,19 @@ int main()
         }
         cin.ignore();
         switch(choice){
-            case 1;
+            case 1:
                 inputTravelerData(tArray, numTravelers);
                 break;
-            case 2;
+            case 2:
                 displayTravelerData(tArray, numTravelers);
                 break;
-            case 3;
+            case 3:
                 editTravelerData(tArray, numTravelers);
                 break;
-            case 4;
+            case 4:
                 printToFile(tArray, numTravelers);
                 break;
-            case 5;
+            case 5:
                 cout << "\n\nNow, YOU get to go to one of the places that the other travelers went!\n";
                 randomTraveler = rand() % numTravelers;
                 random = rand() % tArray[randomTraveler].numPlaces;
@@ -55,7 +55,7 @@ int main()
                 cout << "You will go to ....................." << randomPlaceName << "!!!!\n\n";
                 break;
         }
-    }while(true);
+    }while(runAgain);
 	cout << "\nNow removing the traveler array...";
     delete [] tArray;
     for (int i = 0; i < numTravelers; i++){
@@ -67,7 +67,7 @@ int main()
 }
 
 void inputTravelerData(Traveler* arr, int num){
-    for (int i == 0; i < num; i++){
+    for (int i = 0; i < num; i++){
         cout << "\nTRAVELER " << i + 1 << endl;
         cout << "Name: ";
         getline(cin, arr[i].name);
@@ -148,14 +148,14 @@ void editTravelerData(Traveler* arr, int num){
 
 void printToFile(Traveler* arr, int num){
     cout << "\nPrinted traveler data to file...\n" << endl;
-    ifstream outfile;
-    outfile.open("travelers.txt");
-    while(int i = 0; i < num; i++){
+    ofstream outfile;
+    outfile.open("travelers.txt");  
+    for(int i = 0; i < num; i++){
         outfile << arr[i].name << "@" << arr[i].numPlaces << "@";
-        while (int j = 0; j < arr[i].numPlaces; j++){
-            outfile << arr[i].placeArray[j].name << "@"
-                    << arr[i].placeArray[j].country << "@"
-                    << arr[i].placeArray[j].year << "@";
+        for(int j = 0; j < arr[i].numPlaces; j++){
+            outfile << arr[i].placeArray[j].name << "@" <<
+                    arr[i].placeArray[j].country << "@" <<
+                    arr[i].placeArray[j].year << "@";
         }
     }
 }
