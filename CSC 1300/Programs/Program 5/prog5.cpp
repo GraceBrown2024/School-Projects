@@ -36,15 +36,15 @@ int main(){
             cout << "Please enter a valid choice: ";
             cin >> choice;
         }
-        cin.ignore();
+        cin.ignore(100, '\n');
         cout << "\n₊˚ ✧ ━━━━━━━━━━━━⊱⋆⊰━━━━━━━━━━━━ ✧ ₊˚\n";
 
         switch(choice){
             case 1:
-                enterHeroes(max, numHeroes, heroArray);
+                numHeroes = enterHeroes(max, numHeroes, heroArray);
                 break;
             case 2:
-                deleteHero(numHeroes, heroArray, homelanderStatus);
+                numHeroes = deleteHero(numHeroes, heroArray, homelanderStatus);
                 break;
             case 3:
                 printHeroes(numHeroes, heroArray);
@@ -57,11 +57,16 @@ int main(){
                 break;
         }
 
-        if(homelanderStatus == 1){                      //quits program if you try to delete homelander
+        if(homelanderStatus == 1){    //quits program if you try to delete homelander
+            ofstream uhOh;    
+            uhOh.open("oi_ohmlanda.txt");   //prevents program from playing again if this is present on your folder 
+            uhOh << "Warning.";
+
             cout << "\nYou shouldn't have done that.\n"
                  << "Goodbye. You are no longer safe.\n"
                  << "Program has exited\n";
             break;
+            uhOh.close();
         }
 
     }while(choice != 5);

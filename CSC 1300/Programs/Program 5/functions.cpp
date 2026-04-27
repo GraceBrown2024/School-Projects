@@ -15,7 +15,7 @@
 			 after user inputs info of their new hero
 	
 */
-int enterHeroes(int max, int &numHeroes , Heroes* heroList)
+int enterHeroes(int max, int numHeroes , Heroes* heroList)
 {
 	ifstream inputFile;
 	string filename, data;
@@ -50,7 +50,6 @@ int enterHeroes(int max, int &numHeroes , Heroes* heroList)
 			case 1: //Load heroes from a file
 			
 					cout << "What is the name of the file with your list of superheroes? (ex: filename.txt)\n";
-					cin.ignore();
 					cout << "FILENAME:  ";
 					getline(cin,filename);
 					cout << endl;
@@ -100,7 +99,7 @@ int enterHeroes(int max, int &numHeroes , Heroes* heroList)
 						cout << "DESCRIPTION: ";
 						getline(cin, heroList[numHeroes].description);
 
-						cout << "ARE THEY DANGEROUS? (y/n): ";
+						cout << "\nARE THEY DANGEROUS? (y/n): ";
 						cin >> tempChar;
 						tempChar = toupper(tempChar);
 						while(!cin || (tempChar != 'Y' && tempChar != 'N')){
@@ -117,7 +116,7 @@ int enterHeroes(int max, int &numHeroes , Heroes* heroList)
 							heroList[numHeroes].dangerous = false;
 						}
 
-						cout << "How much does " << heroList[numHeroes].name << " pay for rent per month?\n"
+						cout << "\nHow much does " << heroList[numHeroes].name << " pay for rent per month?\n"
 							 << "RENT PRICE: ";
 						cin >> heroList[numHeroes].rentPrice;
 						while(!cin || heroList[numHeroes].rentPrice < 0){
@@ -171,7 +170,7 @@ int enterHeroes(int max, int &numHeroes , Heroes* heroList)
 	Purpose:  
 	
 */
-int deleteHero(int &numHero, Heroes* heroArray, int& homelanderStatus){
+int deleteHero(int numHero, Heroes* heroArray, int& homelanderStatus){
 	int choice, heroIndex;
 	string matchedHero;
 
@@ -192,7 +191,7 @@ int deleteHero(int &numHero, Heroes* heroArray, int& homelanderStatus){
 
 	heroIndex = choice - 1;
 
-	if(heroIndex == 0){	//consequences for removing homelander
+	if(heroArray[heroIndex].name == "Homelander"){	//consequences for removing homelander
 		homelanderStatus = 1;
 		return numHero;
 	}
@@ -255,7 +254,7 @@ bool moveArrayElements(string name, int numHero, Heroes*& heroArray){
 void printHeroes(int numHero, Heroes* heroArray){
 	for(int i = 0; i < numHero ; i++){
 		string yesNo;
-		if(heroArray[i].dangerous == 'Y'){
+		if(heroArray[i].dangerous == true){
 			yesNo = "Yes";
 		}else{
 			yesNo = "No";
@@ -279,7 +278,27 @@ void printHeroes(int numHero, Heroes* heroArray){
 	
 */
 void printRentDetails(int numHero, Heroes* heroArray){
+	string borderLine(50, '-');
+	double totalPrice = 0;
+	double totalDamage = 0;
 
+	cout << fixed << setprecision(2); //for the decimal points
+
+	cout << "\nRENT DETAILS OF EACH HERO:\n" << endl
+		 << left << setw(20) << "SUPERHERO" << right << setw(15) << "MONTHLY" << " RENT" << right << setw(15) << "DAMAGE" << " COST" << endl;
+	
+	for(int i = 0; i < numHero; i++){
+
+		cout << left << setw(20) << heroArray[i].name << " $"
+			 << right << setw(10) << heroArray[i].rentPrice << " $"
+			 << right << setw(10) << heroArray[i].damageCost << "\n";
+		totalPrice += heroArray[i].rentPrice;
+		totalDamage += heroArray[i].damageCost;
+	}
+	cout << borderLine << "\n" << endl
+		 << left << setw(20) << "TOTALS:" << " $"
+		 << right << setw(10) << totalPrice << " $"
+		 << right << setw(10) << totalDamage << "\n";
 }
 
 /*
@@ -288,5 +307,47 @@ void printRentDetails(int numHero, Heroes* heroArray){
 	
 */
 void saveToFile(int numHero, Heroes* heroArray){
+	ofstream heroFile;
+	char choice;
+	string filename;
+	cout << "Would you like to save your Superheroes to a file? (y/n)\n" 
+		 << "CHOICE: ";
+	cin >> choice;
+	choice = toupper(choice);
+	while(!cin || (choice != 'Y' && choice != 'N')){
+		cin.clear();
+		cin.ignore(100, '\n');
+		cout << "Please enter a VALID choice: ";
+		cin >> choice;
+		choice = toupper(choice);
+	}
+	cin.ignore();
 
+	if(choice == 'Y'){
+		cout << "\nWhat is the name of the file you want to save your Heroes to?\n"
+			 << "FILENAME (NO EXTENSION!): ";
+		getline(cin, filename);
+		for(int i = 0; i < filename.length() ; i++){
+			if(filename[i] == ' '){
+				filename[i] = '_';
+			}
+		}
+		filename += ".txt";
+
+		heroFile.open(filename);
+		
+		for(int i = 0; i < numHero; i++){
+			heroFile << heroArray[i].name << "#" 
+				 	 << heroArray[i].description << "#"
+					 << heroArray[i].dangerous << "#"
+					 << heroArray[i].rentPrice << "#"
+					 << heroArray[i].damageCost << "#"
+					 << heroArray[i].numYears << "#";
+		}
+
+		cout << "\nYour Heroes were succesfully saved to " << filename << "!\n";
+	}else{
+		cout << "\nYour Heroes were not saved!\n";
+	}
+	heroFile.close();
 }
