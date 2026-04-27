@@ -1,9 +1,9 @@
 /*
     Author      : Grace Brown
     Created     : 16 April 2026
-    Last Edited : 26 April 2026
+    Last Edited : 27 April 2026
     File Name   : functions.cpp
-    Purpose     : 
+    Purpose     : functions for prog5.cpp condo management!
 */
 
 
@@ -64,45 +64,71 @@ int enterHeroes(int max, int numHeroes , Heroes* heroList)
 					}
 					//load heroes from file	
 										
-					while(getline(inputFile, data, '#') && numHeroes < max) 
+					while(getline(inputFile, data, '#') && numHeroes < max) //I CHANGED THIS SORRY!!!
 					{
-						heroList[numHeroes].name = data;
-						getline(inputFile, heroList[numHeroes].description, '#');
+						string tempName, tempDesc;	//temp variables for Homelander comparison!
+						char tempChar;
+						double tempRent, tempDamage, tempYears;
+
+						
+						tempName = data;
+						getline(inputFile, tempDesc, '#');
 						getline(inputFile, data, '#');
-						heroList[numHeroes].dangerous = stoi(data);
+						tempChar = stoi(data);
 						getline(inputFile, data, '#');
-						heroList[numHeroes].rentPrice = stof(data);
+						tempRent = stof(data);
 						getline(inputFile, data, '#');
-						heroList[numHeroes].damageCost = stof(data);
+						tempDamage = stof(data);
 						getline(inputFile, data, '#');
-						heroList[numHeroes].numYears = stof(data);
-						//increment current num heroes in array				
-						numHeroes++;
-						//increment num heroes read in from the file
-						numHeroesFromFile++;			
+						tempYears = stof(data);
+						
+						if(tempName != "Homelander"){	//NO DUPLICATE HOMELANDERS!!!!!!!!!!!
+							heroList[numHeroes].name = tempName;
+							heroList[numHeroes].description = tempDesc;
+							heroList[numHeroes].dangerous = tempChar;
+							heroList[numHeroes].rentPrice = tempRent;
+							heroList[numHeroes].damageCost = tempDamage;
+							heroList[numHeroes].numYears = tempYears;
+
+							//increment current num heroes in array				
+							numHeroes++;
+							//increment num heroes read in from the file
+							numHeroesFromFile++;
+						}
 					}
 					inputFile.close();
 					inputFile.clear();
 					
+
 					cout << endl << numHeroesFromFile << " heroes from " << filename << " have been added to your condo complex.\n";
 					break;
 					
 			case 2: //enter one hero manually
 					
-					//YOU HAVE TO FINISH THIS CASE - allow user to add a hero one at a time from keyboard until they want to stop
-					do{
-						char tempChar;
+					do{	//beginning of loop
+						char tempChar;	//is converted to a uppercase char later
 
 						cout << "SUPERHERO NAME: ";
 						getline(cin, heroList[numHeroes].name);
+
+						if(islower(heroList[numHeroes].name[0])){	//capitalizes the first letter
+							heroList[numHeroes].name[0] = toupper(heroList[numHeroes].name[0]);
+						}
+
+						while(heroList[numHeroes].name == "Homelander"){	//ensures no duplicate homelanders
+							cin.clear();
+							cout << "Theres already a Homelander. Please do not add another.\n"
+								 << "Pick another Hero: ";
+							getline(cin, heroList[numHeroes].name);
+						}
 						
 						cout << "DESCRIPTION: ";
 						getline(cin, heroList[numHeroes].description);
 
 						cout << "\nARE THEY DANGEROUS? (y/n): ";
 						cin >> tempChar;
-						tempChar = toupper(tempChar);
-						while(!cin || (tempChar != 'Y' && tempChar != 'N')){
+						tempChar = toupper(tempChar);	//capitalizes letter
+						while(!cin || (tempChar != 'Y' && tempChar != 'N')){	//user validation
 							cin.clear();
 							cin.ignore(100, '\n');
 							cout << "Please enter a valid option! (y/n): ";
@@ -110,7 +136,8 @@ int enterHeroes(int max, int numHeroes , Heroes* heroList)
 							tempChar = toupper(tempChar);
 						}
 						cin.ignore();
-						if(tempChar == 'Y'){
+
+						if(tempChar == 'Y'){	//assignment to struct array
 							heroList[numHeroes].dangerous = true;
 						}else{
 							heroList[numHeroes].dangerous = false;
@@ -119,7 +146,7 @@ int enterHeroes(int max, int numHeroes , Heroes* heroList)
 						cout << "\nHow much does " << heroList[numHeroes].name << " pay for rent per month?\n"
 							 << "RENT PRICE: ";
 						cin >> heroList[numHeroes].rentPrice;
-						while(!cin || heroList[numHeroes].rentPrice < 0){
+						while(!cin || heroList[numHeroes].rentPrice < 0){ //user validation
 							cin.clear();
 							cin.ignore(100, '\n');
 							cout << "Please enter a valid price: ";
@@ -127,10 +154,10 @@ int enterHeroes(int max, int numHeroes , Heroes* heroList)
 						}
 						cin.ignore();
 
-						cout << "What is the typical cost of damage " << heroList[numHeroes].name << " has each month?\n"
+						cout << "\nWhat is the typical cost of damage " << heroList[numHeroes].name << " has each month?\n"
 							 << "DAMAGE COST: ";
 						cin >> heroList[numHeroes].damageCost;
-						while(!cin || heroList[numHeroes].damageCost < 0){
+						while(!cin || heroList[numHeroes].damageCost < 0){ //user validation
 							cin.clear();
 							cin.ignore();
 							cout << "Please enter a valid option: ";
@@ -138,10 +165,10 @@ int enterHeroes(int max, int numHeroes , Heroes* heroList)
 						}
 						cin.ignore();
 
-						cout << "How many years has " << heroList[numHeroes].name << " lived in your condo?\n"
+						cout << "\nHow many years has " << heroList[numHeroes].name << " lived in your condo?\n"
 							 << "YEARS: ";
 						cin >> heroList[numHeroes].numYears;
-						while(!cin || heroList[numHeroes].numYears < 0){
+						while(!cin || heroList[numHeroes].numYears < 0){	//user validation
 							cin.clear();
 							cin.ignore();
 							cout << "Please enter a valid option: ";
@@ -152,22 +179,23 @@ int enterHeroes(int max, int numHeroes , Heroes* heroList)
 						cout << heroList[numHeroes].name << " has been added!\n"
 							 << "\nWant to add more heroes?\n1.) Yes\n2.) No\nCHOICE: ";
 						cin >> choice;
-						while(!cin || (choice < 1 || choice > 2)){
+						while(!cin || (choice < 1 || choice > 2)){	//user validation
 							cin.clear();
 							cin.ignore(100, '\n');
 							cout << "Please enter a valid option: ";
 							cin >> choice;
 						}
+						cin.ignore();
 						numHeroes++;
-					}while(choice == 1);
+					}while(choice == 1);	
 					break;	
 		} //end of switch		
 	return numHeroes;
 }
 
 /*
-	Function: 
-	Purpose:  
+	Function: deleteHero()
+	Purpose:  Deletes the selected hero in your condo... calls other function to resize array
 	
 */
 int deleteHero(int numHero, Heroes* heroArray, int& homelanderStatus){
@@ -175,13 +203,13 @@ int deleteHero(int numHero, Heroes* heroArray, int& homelanderStatus){
 	string matchedHero;
 
 	cout << "\nHere are all your heroes:\n";
-	for(int i = 0 ; i < numHero ; i++){
+	for(int i = 0 ; i < numHero ; i++){						//shows all your heroes
 		cout << i + 1 << ".) "<< heroArray[i].name << "\n";
 	}
 	cout << "\nWhich hero are you Evicting? You Cannot Evict Homelander.\n"	//it is a sunday night. I thought this program was due on wednesday. No offense but i dont have time to make a string matching loop sobbing emoji
 		 << "CHOICE: ";
 	cin >> choice;
-	while(!cin || (choice <= 0 || choice > numHero)){
+	while(!cin || (choice <= 0 || choice > numHero)){	//user validation
 		cin.clear();
 		cin.ignore(100, '\n');
 		cout << "Please enter a valid choice: ";
@@ -189,9 +217,9 @@ int deleteHero(int numHero, Heroes* heroArray, int& homelanderStatus){
 	}
 	cin.ignore();
 
-	heroIndex = choice - 1;
+	heroIndex = choice - 1;	//corrects the index
 
-	if(heroArray[heroIndex].name == "Homelander"){	//consequences for removing homelander
+	if(heroArray[heroIndex].name == "Homelander"){	//consequences for removing homelander!! DO NOT REMOVE HIMMMMMM
 		homelanderStatus = 1;
 		return numHero;
 	}
@@ -214,8 +242,8 @@ int deleteHero(int numHero, Heroes* heroArray, int& homelanderStatus){
 }
 
 /*
-	Function: 
-	Purpose:  
+	Function: moveArrayElements()
+	Purpose:  resizes and resorts array by deleting and shifting all the elements
 	
 */
 bool moveArrayElements(string name, int numHero, Heroes*& heroArray){
@@ -247,8 +275,8 @@ bool moveArrayElements(string name, int numHero, Heroes*& heroArray){
 }
 
 /*
-	Function: 
-	Purpose:  
+	Function: printHeroes()
+	Purpose:  displays all your heroes!
 	
 */
 void printHeroes(int numHero, Heroes* heroArray){
@@ -262,19 +290,21 @@ void printHeroes(int numHero, Heroes* heroArray){
 
 		cout << "\n. . • ☆ . ° .• °:. *₊ ° . ☆. . • ☆ . ° .• °:. *₊ ° . ☆\n"
 			 << "HERO " << i + 1 << ":\n"
-			 << "\nNAME:" << setw(10) << heroArray[i].name << "\n"
-			 << "DESC:" << setw(10) << heroArray[i].description << "\n"
-			 << "DANGEROUS:" << setw(6) << yesNo << "\n"
-			 << "RENT:" << setw(10) << "$" << heroArray[i].rentPrice << "\n"
-			 << "DAMAGE COST:" << setw(4) << "$" << heroArray[i].damageCost << "\n"
-			 << "YEARS:" << setw(9) << heroArray[i].numYears << "\n";
+			 << fixed << setprecision(2)
+			 << "\n"
+			 << left << setw(15) << "NAME:" << heroArray[i].name  << "\n"
+			 << left << setw(15) << "DESC:" << heroArray[i].description << "\n"
+			 << left << setw(15) << "DANGEROUS:" << yesNo  << "\n"
+			 << left << setw(15) << "RENT:" << "$ " << heroArray[i].rentPrice << "\n"
+			 << left << setw(15) << "DAMAGE COST:" << "$ " << heroArray[i].damageCost << "\n"
+			 << left << setw(15) << "YEARS:" << heroArray[i].numYears << "\n";
 	}
 		cout << "\n. . • ☆ . ° .• °:. *₊ ° . ☆. . • ☆ . ° .• °:. *₊ ° . ☆\n";
 }
 
 /*
-	Function: 
-	Purpose:  
+	Function: printRentDetails()
+	Purpose:  prints out all the money stuff in a neat row/column display! totals all the heroes costs!
 	
 */
 void printRentDetails(int numHero, Heroes* heroArray){
@@ -285,7 +315,7 @@ void printRentDetails(int numHero, Heroes* heroArray){
 	cout << fixed << setprecision(2); //for the decimal points
 
 	cout << "\nRENT DETAILS OF EACH HERO:\n" << endl
-		 << left << setw(20) << "SUPERHERO" << right << setw(15) << "MONTHLY" << " RENT" << right << setw(15) << "DAMAGE" << " COST" << endl;
+		 << left << setw(20) << "SUPERHERO" << right << setw(10) << "MONTHLY" << " RENT" << right << setw(10) << "DAMAGE" << " COST" << endl;
 	
 	for(int i = 0; i < numHero; i++){
 
@@ -302,8 +332,8 @@ void printRentDetails(int numHero, Heroes* heroArray){
 }
 
 /*
-	Function: 
-	Purpose:  
+	Function: saveToFile()
+	Purpose:  allows you to save your heroes and their info for later use!
 	
 */
 void saveToFile(int numHero, Heroes* heroArray){

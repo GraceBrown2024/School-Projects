@@ -1,9 +1,9 @@
 /*
     Author      : Grace Brown
     Created     : 16 April 2026
-    Last Edited : 26 April 2026
+    Last Edited : 27 April 2026
     File Name   : Prog5.h
-    Purpose     : 
+    Purpose     : prototypes and struct for Hero Condo!
 */
 
 

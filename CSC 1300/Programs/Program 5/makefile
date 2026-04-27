@@ -1,3 +1,5 @@
+
+
 all:	prog5
 
 prog5:	prog5.cpp functions.cpp
