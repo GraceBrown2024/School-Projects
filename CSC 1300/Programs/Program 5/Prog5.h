@@ -1,7 +1,7 @@
 /*
     Author      : Grace Brown
     Created     : 16 April 2026
-    Last Edited : 16 April 2026
+    Last Edited : 26 April 2026
     File Name   : Prog5.h
     Purpose     : 
 */
@@ -14,6 +14,7 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
+#include <cctype>
 using namespace std;
 
 struct Heroes{
@@ -25,16 +26,16 @@ struct Heroes{
     double numYears;
 };
 
-int enterHeroes(int, int, Heroes*);
+int enterHeroes(int, int&, Heroes*);
 
-int deleteHero();
+int deleteHero(int&, Heroes*, int&);
 
-bool moveArrayElements();
+bool moveArrayElements(string, int, Heroes*&);
 
-void printHeroes();
+void printHeroes(int, Heroes*);
 
-void printRentDetails();
+void printRentDetails(int, Heroes*);
 
-void saveToFile();
+void saveToFile(int, Heroes*);
 
 #endif
