@@ -176,17 +176,24 @@ int enterHeroes(int max, int numHeroes , Heroes* heroList)
 						}
 						cin.ignore();
 
-						cout << heroList[numHeroes].name << " has been added!\n"
-							 << "\nWant to add more heroes?\n1.) Yes\n2.) No\nCHOICE: ";
-						cin >> choice;
-						while(!cin || (choice < 1 || choice > 2)){	//user validation
-							cin.clear();
-							cin.ignore(100, '\n');
-							cout << "Please enter a valid option: ";
-							cin >> choice;
-						}
-						cin.ignore();
+						cout << heroList[numHeroes].name << " has been added!\n";
+
 						numHeroes++;
+
+						if(max != numHeroes){	//ensures you cannot overload the array
+							cout << "\nWant to add more heroes?\n1.) Yes\n2.) No\nCHOICE: ";
+							cin >> choice;
+							while(!cin || (choice < 1 || choice > 2)){	//user validation
+								cin.clear();
+								cin.ignore(100, '\n');
+								cout << "Please enter a valid option: ";
+								cin >> choice;
+							}
+							cin.ignore();
+						}else if(max == numHeroes){
+							cout << "\nCondo is full!\n";
+							choice = 2;
+						}
 					}while(choice == 1);	
 					break;	
 		} //end of switch		
@@ -198,7 +205,7 @@ int enterHeroes(int max, int numHeroes , Heroes* heroList)
 	Purpose:  Deletes the selected hero in your condo... calls other function to resize array
 	
 */
-int deleteHero(int numHero, Heroes* heroArray, int& homelanderStatus){
+int deleteHero(int numHero, Heroes*& heroArray, int& homelanderStatus){
 	int choice, heroIndex;
 	string matchedHero;
 
@@ -224,21 +231,21 @@ int deleteHero(int numHero, Heroes* heroArray, int& homelanderStatus){
 		return numHero;
 	}
 
-	for(int i = 0; i < numHero; i++){
+	for(int i = 0; i < numHero; i++){	//makes sure the name is matched to the index.. kinda redundant but its 2am so I will keep it
 		if(heroIndex == i){
 			matchedHero = heroArray[i].name;
 			break;
 		}
 	}
 
-	if(moveArrayElements(matchedHero, numHero, heroArray) == true){
+	if(moveArrayElements(matchedHero, numHero, heroArray) == true){	//if hero found, moveArrayElements deletes and rearragnes the array
 		numHero--;
 		cout << "\n" << matchedHero << " has been Evicted\n";
 	}else{
 		cout << "\n" << matchedHero << " could NOT be evicted.\n";
 	}
 
-	return numHero;
+	return numHero;	//updates teh heroNumeber 
 }
 
 /*
@@ -246,17 +253,17 @@ int deleteHero(int numHero, Heroes* heroArray, int& homelanderStatus){
 	Purpose:  resizes and resorts array by deleting and shifting all the elements
 	
 */
-bool moveArrayElements(string name, int numHero, Heroes*& heroArray){
+bool moveArrayElements(string name, int numHero, Heroes*& heroArray){	//USING SAME PROCESS AS LAB 10!!
 	Heroes *tempArray;
-	tempArray = new Heroes[numHero];
+	tempArray = new Heroes[numHero];	//temporary array that will have heroArray copied to it 
 
-	for(int i = 0; i < numHero; i++){
+	for(int i = 0; i < numHero; i++){	//copies lists
 		tempArray[i] = heroArray[i];
 	}
 	delete [] heroArray;	//frees heroArray for relisting
 	heroArray = new Heroes[numHero - 1]; //reallocated hero array
 
-	for(int i = 0; i < numHero ; i++){
+	for(int i = 0; i < numHero ; i++){	//begins reassigning array MINUS the selected index
 		if(name == tempArray[i].name){
 			int k = 0;
 			for(int j = 0; j < numHero; j++){
@@ -271,7 +278,8 @@ bool moveArrayElements(string name, int numHero, Heroes*& heroArray){
 			return true;
 		}
 	}
-	return false;
+	delete [] tempArray;	//just in case hero not found
+	return false;	//in case somethign goes wrong???
 }
 
 /*
@@ -279,7 +287,7 @@ bool moveArrayElements(string name, int numHero, Heroes*& heroArray){
 	Purpose:  displays all your heroes!
 	
 */
-void printHeroes(int numHero, Heroes* heroArray){
+void printHeroes(int numHero, Heroes* heroArray){	//prints all the heroes
 	for(int i = 0; i < numHero ; i++){
 		string yesNo;
 		if(heroArray[i].dangerous == true){
@@ -288,7 +296,7 @@ void printHeroes(int numHero, Heroes* heroArray){
 			yesNo = "No";
 		}
 
-		cout << "\n. . • ☆ . ° .• °:. *₊ ° . ☆. . • ☆ . ° .• °:. *₊ ° . ☆\n"
+		cout << "\n. . • ☆ . ° .• °:. *₊ ° . ☆. . • ☆ . ° .• °:. *₊ ° . ☆\n"	//pretty formatting i think
 			 << "HERO " << i + 1 << ":\n"
 			 << fixed << setprecision(2)
 			 << "\n"
@@ -325,7 +333,7 @@ void printRentDetails(int numHero, Heroes* heroArray){
 		totalPrice += heroArray[i].rentPrice;
 		totalDamage += heroArray[i].damageCost;
 	}
-	cout << borderLine << "\n" << endl
+	cout << borderLine << "\n" << endl					//shows totals of all the heroes
 		 << left << setw(20) << "TOTALS:" << " $"
 		 << right << setw(10) << totalPrice << " $"
 		 << right << setw(10) << totalDamage << "\n";
@@ -357,16 +365,16 @@ void saveToFile(int numHero, Heroes* heroArray){
 		cout << "\nWhat is the name of the file you want to save your Heroes to?\n"
 			 << "FILENAME (NO EXTENSION!): ";
 		getline(cin, filename);
-		for(int i = 0; i < filename.length() ; i++){
+		for(int i = 0; i < filename.length() ; i++){	//makes sure there are no spaces
 			if(filename[i] == ' '){
 				filename[i] = '_';
 			}
 		}
-		filename += ".txt";
+		filename += ".txt";	//adds the extension. Just didnt want to risk my program exploding if someone put .pdf or smth
 
 		heroFile.open(filename);
 		
-		for(int i = 0; i < numHero; i++){
+		for(int i = 0; i < numHero; i++){	//iterates through array and adds each element unti by unit
 			heroFile << heroArray[i].name << "#" 
 				 	 << heroArray[i].description << "#"
 					 << heroArray[i].dangerous << "#"
@@ -377,7 +385,7 @@ void saveToFile(int numHero, Heroes* heroArray){
 
 		cout << "\nYour Heroes were succesfully saved to " << filename << "!\n";
 	}else{
-		cout << "\nYour Heroes were not saved!\n";
+		cout << "\nYour Heroes were not saved!\n";	//in case you selected not to save???
 	}
 	heroFile.close();
 }

@@ -28,7 +28,7 @@ struct Heroes{
 
 int enterHeroes(int, int, Heroes*);
 
-int deleteHero(int, Heroes*, int&);
+int deleteHero(int, Heroes*&, int&);
 
 bool moveArrayElements(string, int, Heroes*&);
 
