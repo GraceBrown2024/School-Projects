@@ -1,5 +1,5 @@
 <h1> <b> Current Roadmap -- </b> <h1>
-<h3> Degree <div> style = "padding: 32px;"> :</div> <i> Computer Science </i> </h3>
+<h3> Degree        :<i> Computer Science </i> </h3>
 <h3> Concentration : <i> Cyber Security </i> </h3>
 <h3> Standing      : <i> Freshman </i> </h3>
 <h3> GPA           : <i> 4.0 </i> </h3>
