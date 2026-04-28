@@ -116,7 +116,7 @@
   <tr>
     <td> Program 5 </td>
     <td> April 29 2026 </td>
-    <td> IN PROGRESS </td>
+    <td> COMPLETE </td>
     <td> </td>
   </tr>
 </table>
