@@ -23,7 +23,7 @@ int main(){
     listings = new Furby[*listSize]; //dynamically allocates a new furby array
 
     Account *account;
-    account = new Account[peopleNum];    // allocates new account array
+    account = new Account[peopleNum + 10];    // allocates new account array
 
     createAccountArray(account);
     
