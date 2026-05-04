@@ -68,13 +68,13 @@
     <td> Lab 10</td>
     <td> April 22 2026</td>
     <td> COMPLETE </td>
-    <td> </td>
+    <td> 100 </td>
   </tr>
   <tr>
     <td> Lab 11</td>
     <td> April 29 2026 </td>
     <td> COMPLETE </td>
-    <td> </td>
+    <td> 94 </td>
   </tr>
 </table>
 
@@ -111,7 +111,7 @@
     <td> Program 4 </td>
     <td> April 15 2026 </td>
     <td> COMPLETE </td>
-    <td> </td>
+    <td> 100 </td>
   </tr>
   <tr>
     <td> Program 5 </td>
