@@ -117,7 +117,7 @@
     <td> Program 5 </td>
     <td> April 29 2026 </td>
     <td> COMPLETE </td>
-    <td> </td>
+    <td> 100 </td>
   </tr>
 </table>
 
