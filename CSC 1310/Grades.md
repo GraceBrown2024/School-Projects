@@ -13,61 +13,61 @@
   <tr>
     <td> Lab 1</td>
     <td> </td>
-    <td> </td>
+    <td> INCOMPLETE </td>
     <td> </td>
   </tr>
   <tr>
     <td> Lab 2</td>
     <td> </td>
-    <td> </td>
+    <td> INCOMPLETE</td>
     <td> </td>
   </tr>
   <tr>
     <td> Lab 3</td>
     <td> </td>
-    <td> </td>
+    <td>INCOMPLETE </td>
     <td> </td>
   </tr>
   <tr>
     <td> Lab 4</td>
     <td> </td>
-    <td> </td>
+    <td>INCOMPLETE </td>
     <td> </td>
   </tr>
   <tr>
     <td> Lab 5</td>
     <td> </td>
-    <td> </td>
+    <td>INCOMPLETE </td>
     <td> </td>
   </tr>
   <tr>
     <td> Lab 6</td>
     <td> </td>
-    <td> </td>
+    <td>INCOMPLETE </td>
     <td> </td>
   </tr>
   <tr>
     <td> Lab 7</td>
     <td> </td>
-    <td> </td>
+    <td> INCOMPLETE</td>
     <td> </td>
   </tr>
   <tr>
     <td> Lab 8</td>
     <td> </td>
-    <td> </td>
+    <td>INCOMPLETE </td>
     <td> </td>
   </tr>
   <tr>
     <td> Lab 9</td>
     <td> </td>
-    <td> </td>
+    <td>INCOMPLETE </td>
     <td> </td>
   </tr>
   <tr>
     <td> Lab 10</td>
     <td> </td>
-    <td> </td>
+    <td> INCOMPLETE</td>
     <td> </td>
   </tr>
 </table>
@@ -86,25 +86,25 @@
   <tr>
     <td> Program 1 </td>
     <td> </td>
-    <td> </td>
+    <td> INCOMPLETE</td>
     <td> </td>
   </tr>
   <tr>
     <td> Program 2 </td>
     <td> </td>
-    <td> </td>
+    <td> INCOMPLETE</td>
     <td> </td>
   </tr>
   <tr>
     <td> Program 3 </td>
     <td> </td>
-    <td> </td>
+    <td>INCOMPLETE </td>
     <td> </td>
   </tr>
   <tr>
     <td> Program 4 </td>
     <td> </td>
-    <td> </td>
+    <td> INCOMPLETE</td>
     <td> </td>
   </tr>
 </table>
