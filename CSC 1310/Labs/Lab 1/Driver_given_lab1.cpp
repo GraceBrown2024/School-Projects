@@ -8,7 +8,6 @@
 */
 
 #include "Course.h"
-#include <iostream>
 
 using namespace std;
 
@@ -25,7 +24,8 @@ int main ()
 	cin >> numCourses;
 	cin.ignore();
 	
-	
+	Course* tempArray;
+	tempArray = new Course[numCourses];
 	//Dynamically allocate a new array of pointers to Courses of size numCourses and assign this array to myCourses
 	
 	
@@ -41,7 +41,7 @@ int main ()
 		cin >> numSections;
 		cin.ignore();
 		
-		//LOOK!!
+		myCourses[i] = createCourse(name, location, numHours, numSections);
 		//Call the createCourse function and make sure to assign the returned value to myCourses[i]
 
 		
