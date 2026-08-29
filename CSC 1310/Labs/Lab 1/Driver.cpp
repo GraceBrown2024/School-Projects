@@ -13,7 +13,7 @@ using namespace std;
 
 int main ()
 {
-	Course** myCourses;
+	Course** myCourses; //creates an array of pointers
 
 	int numCourses, numSections;
 	string name, location;
@@ -27,7 +27,7 @@ int main ()
 	//Dynamically allocate a new array of pointers to Courses of size numCourses and assign this array to myCourses
 	
 	
-	for (int i=0; i< numCourses; i++)
+	for (int i=0; i< numCourses; i++)	//allows user to input course info as long as there are slots in the array
 	{
 		cout << "\nCOURSE NAME:\t\t";
 		getline(cin, name);
@@ -39,11 +39,11 @@ int main ()
 		cin >> numSections;
 		cin.ignore(100, '\n');
 		
-		myCourses[i] = createCourse(name, location, numSections, numHours);
+		myCourses[i] = createCourse(name, location, numSections, numHours);	//puts all info into slot of myCourses pointer array
 		
 
 		
-		for(int x=0; x<numSections; x++)
+		for(int x=0; x<numSections; x++)	//loop for distinct course sections
 		{
 			cout << "\nSECTION " << x+1 << ":\t\t";
 			getline(cin, myCourses[i]->sections[x]); //if this doesnt work i will be so sad
