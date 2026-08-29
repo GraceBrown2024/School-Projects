@@ -48,9 +48,8 @@ int main ()
 		for(int x=0; x<numSections; x++)
 		{
 			cout << "\nSECTION " << x+1 << ":\t\t";
-			//LOOK!!
+			
 			//Read in the string from the user and put in the correct array element of the sections array
-
 		}
 		cout << "\n*******************************\n";
 	}
