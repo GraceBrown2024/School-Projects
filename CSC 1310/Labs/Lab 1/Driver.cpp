@@ -4,7 +4,7 @@
 	Authors: April Crockett and Grace Brown 
 	
 	Date Created: 1/19/2026
-	Date Updated: 8/25/2026 
+	Date Updated: 8/29/2026 
 */
 
 #include "Course.h"
@@ -15,7 +15,6 @@ int main ()
 {
 	Course** myCourses;
 
-	
 	int numCourses, numSections;
 	string name, location;
 	int numHours;
@@ -24,8 +23,7 @@ int main ()
 	cin >> numCourses;
 	cin.ignore();
 	
-	Course* tempArray;
-	tempArray = new Course[numCourses];
+	myCourses = new Course* [numCourses];
 	//Dynamically allocate a new array of pointers to Courses of size numCourses and assign this array to myCourses
 	
 	
@@ -39,17 +37,17 @@ int main ()
 		cin >> numHours;
 		cout << "\nNUMBER OF SECTIONS?\t";
 		cin >> numSections;
-		cin.ignore();
+		cin.ignore(100, '\n');
 		
-		myCourses[i] = createCourse(name, location, numHours, numSections);
-		//Call the createCourse function and make sure to assign the returned value to myCourses[i]
+		myCourses[i] = createCourse(name, location, numSections, numHours);
+		
 
 		
 		for(int x=0; x<numSections; x++)
 		{
 			cout << "\nSECTION " << x+1 << ":\t\t";
+			getline(cin, myCourses[i]->sections[x]); //if this doesnt work i will be so sad
 			
-			//Read in the string from the user and put in the correct array element of the sections array
 		}
 		cout << "\n*******************************\n";
 	}

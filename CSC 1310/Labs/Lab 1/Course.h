@@ -16,6 +16,6 @@ struct Course{
     int credits;
 };
 
-Course* createCourse(string, string, int, int);
+Course* createCourse(string a, string b, int c, int d);
 void destroyCourse(Course* mycourse);
 void printCourse(Course* myCourse);
