@@ -12,10 +12,11 @@ Purpose     :
 #include <iomanip>
 #include <string>
 #include "Movie.h"
+using namespace std;
 
 class Showing{
     private:
-        Movie* movie;
+        Movie* movie = nullptr;
         string showTime;
         int auditoriumNumber;
         float ticketPrice;
