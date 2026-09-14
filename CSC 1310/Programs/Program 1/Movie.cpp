@@ -36,8 +36,6 @@ string Movie::getRating(){
 void Movie::editMovie(){
     int x;
    do{
-    int tempNum = 0;
-    string tempStrng = "";
 
     cout << "Please select a Choice:\n"
          << "1.) Change Title\n"
@@ -61,42 +59,38 @@ void Movie::editMovie(){
     switch(x){
         case 1:
             cout << "\nPlease enter your New Title: ";
-            getline(cin, tempStrng, '\n');
-            Movie::setTitle(tempStrng);
+            getline(cin, title, '\n');
             break;
 
         case 2:
             cout << "Please enter your New Release Year: ";
-            cin >> tempNum;
+            cin >> releaseYear;
 
             while(!cin){
                 cin.clear();
                 cin.ignore(100, '\n');
                 cout << "\nPlease enter a VALID year: ";
-                cin  >> tempNum;
+                cin  >> releaseYear;
             }
             cin.ignore(100, '\n');
-            Movie::setReleaseYear(tempNum);
             break;
         
         case 3:
             cout << "Please enter your New Runtime: ";
-            cin >> tempNum;
+            cin >> runtimeMinutes;
 
             while(!cin){
                 cin.clear();
                 cin.ignore(100, '\n');
                 cout << "\nPlease enter a VALID amount: ";
-                cin  >> tempNum;
+                cin  >> runtimeMinutes;
             }
             cin.ignore(100, '\n');
-            Movie::setRuntimeMinutes(tempNum);
             break;
         
         case 4:
             cout << "Please enter your New Rating: ";
-            getline(cin, tempStrng, '\n');
-            Movie::setRating(tempStrng);
+            getline(cin, rating, '\n');
             break;
     }
     cout << "\n";
@@ -108,15 +102,15 @@ void Movie::printMovie(){
     //PRINT ALL MOVIE DETAILS
     //if runtime or RY is 0, print "unknown"
     string printRunTime;
-    if(Movie::getRuntimeMinutes() == 0){
+    if(getRuntimeMinutes() == 0){
         printRunTime = "Unknown";
     }else{
-        printRunTime = Movie::getRuntimeMinutes();
+        printRunTime = to_string(getRuntimeMinutes());
     }
     cout << '\n' << title << " DETAILS\n"
-         << "Title       : " << Movie::getTitle() << '\n'
-         << "Release Year: " << Movie::getReleaseYear() << '\n'
+         << "Title       : " << getTitle() << '\n'
+         << "Release Year: " << getReleaseYear() << '\n'
          << "Runtime     : " << printRunTime << '\n'
-         << "Rating      : " << Movie::getRating() << '\n\n';
+         << "Rating      : " << getRating() << '\n' << endl;
  
 }

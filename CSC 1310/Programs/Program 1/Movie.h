@@ -22,10 +22,16 @@ class Movie{
 
     public:
         Movie(){
-            //DEFAULT
+            title = "";
+            releaseYear = 0;
+            runtimeMinutes = 0;
+            rating = "";
         }
         Movie(string t, int rY, int rM, string r){
-            //OVERLOADED CONSTRUCTOR
+            title = t;
+            releaseYear = rY;
+            runtimeMinutes = rM;
+            rating = r;
         }
         void setTitle(string t);
         void setReleaseYear(int rY);

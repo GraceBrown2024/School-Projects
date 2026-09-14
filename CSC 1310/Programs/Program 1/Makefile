@@ -6,7 +6,7 @@
 all:	Movie
 
 Movie:	Driver.cpp
-		g++ -W -o movie Driver.cpp Movie.cpp Showing.cpp Theatre.cpp
+		g++ -W -o movie Driver.cpp Movie.cpp Showing.cpp Theater.cpp
 
 run:	movie
 		./movie

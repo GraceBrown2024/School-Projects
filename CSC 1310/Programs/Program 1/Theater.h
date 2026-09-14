@@ -28,11 +28,30 @@ class Theater{
         int maxShowings;
 
     public:
-        Theater(string tN, Movie** mA, int nM, int mM, Showing** sA, int nS, int mS){
-            //OVERLOADED CONSTRUCTOR
+        Theater(string tN, int mM, int mS){
+            theaterName = tN;
+            maxMovies = mM;
+            maxShowings = mS;
+
+            numShowings = 0;
+            numMovies = 0;
+
+            movieArray = new Movie*[maxMovies];
+            showingArray = new Showing*[maxShowings];
+
+            
         }
         ~Theater(){
             //DECONSTRUCTOR
+            for(int i = 0; i < numShowings; i++){
+                delete showingArray[i];
+            }
+            delete [] showingArray;
+
+            for(int i = 0; i < numMovies; i++){
+                delete movieArray[i];
+            }
+            delete [] movieArray;
         }
         int getNumMovies();
         int getNumShowings();

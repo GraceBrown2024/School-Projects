@@ -16,7 +16,7 @@ using namespace std;
 
 class Showing{
     private:
-        Movie* movie = nullptr;
+        Movie* movie;
         string showTime;
         int auditoriumNumber;
         float ticketPrice;
@@ -24,10 +24,18 @@ class Showing{
 
     public:
         Showing(){
-            //DEFAULT CONSTRUCTOR
+            movie = nullptr;
+            showTime = "Unknown";
+            auditoriumNumber = 0;
+            ticketPrice = 0.00;
+            seatsAvailable = 0;
         }
         Showing(Movie* m, string sT, int aN, float tP, int sA){
-            //OVERLOADED CONSTRUCTOR
+            movie = m;
+            showTime = sT;
+            auditoriumNumber = aN;
+            ticketPrice = tP;
+            seatsAvailable = sA;
         }
         void setMovie(Movie* m);
         void setShowTime(string sT);

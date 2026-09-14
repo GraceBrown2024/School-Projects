@@ -43,6 +43,7 @@ void Showing::editShowing(){
     do{
     int tempNum = 0;
     string tempStrng = "";
+    float tempFloat;
 
     cout << "Please select a Choice:\n"
          << "1.) Change Show Time\n"
@@ -85,7 +86,6 @@ void Showing::editShowing(){
             break;
         
         case 3:
-            float tempFloat = 0.00;
             cout << "Please enter your New Ticket Price: ";
             cin >> tempFloat;
 
@@ -119,16 +119,20 @@ void Showing::editShowing(){
    }while(x != 5);
 }
 void Showing::printShowing(){
-    string currentTitle = "";
-    if(getMovie() == nullptr){
+    string currentTitle;
+
+    if(movie == nullptr){
         currentTitle = "[NO MOVIE ASSIGNED]";
+        cout << currentTitle;
     }else{
         currentTitle = movie->getTitle();
-    }
+    
 
-    cout << "\nSHOWING DETAILS\n"
-         << "Movie Title        : " << currentTitle << "\n"
-         << "Auditorium Number  : " << getAuditoriumNumber() << "\n"
-         << "Ticket Price       : " << setprecision(2) << getTicketPrice() << "\n"
-         << "Seats Available    : " << getSeatsAvailable() << "\n";
+        cout << "\nSHOWING DETAILS\n"
+            << "Movie Title        : " << currentTitle << "\n"
+            << "Showing Time       : " << getShowTime() << "\n"
+            << "Auditorium Number  : " << getAuditoriumNumber() << "\n"
+            << "Ticket Price       : $" << setprecision(2) << getTicketPrice() << "\n"
+            << "Seats Available    : " << getSeatsAvailable() << "\n";
+    }
 }
