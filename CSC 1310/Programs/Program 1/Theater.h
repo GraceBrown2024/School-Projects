@@ -47,11 +47,13 @@ class Theater{  //class attributes for Theatre
                 delete showingArray[i];
             }
             delete [] showingArray; //deletes array
+            cout << "\nDeleted Showing Array...\n";
 
             for(int i = 0; i < numMovies; i++){ //deletes each object
                 delete movieArray[i];   
             }
             delete [] movieArray;   //deletes array
+            cout << "\nDeleted Movie Array...\n";
         }
         int getNumMovies();
         int getNumShowings();
