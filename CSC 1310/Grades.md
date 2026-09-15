@@ -12,14 +12,14 @@
   </tr>
   <tr>
     <td> Lab 1</td>
-    <td> </td>
-    <td> INCOMPLETE </td>
-    <td> </td>
+    <td> Sept 1 2026</td>
+    <td> COMPLETE </td>
+    <td> 99 </td>
   </tr>
   <tr>
     <td> Lab 2</td>
-    <td> </td>
-    <td> INCOMPLETE</td>
+    <td> Sept 15 2026 </td>
+    <td> COMPLETE</td>
     <td> </td>
   </tr>
   <tr>
@@ -85,8 +85,8 @@
   </tr>
   <tr>
     <td> Program 1 </td>
-    <td> </td>
-    <td> INCOMPLETE</td>
+    <td> Sept 15 2026</td>
+    <td> COMPLETE</td>
     <td> </td>
   </tr>
   <tr>
