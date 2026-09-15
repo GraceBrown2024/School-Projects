@@ -2,8 +2,8 @@
 Name        : Grace Brown
 File        : Movie.h
 Created     : 9/8/2026
-Last Updated: 9/8/2026
-Purpose     :
+Last Updated: 9/14/2026
+Purpose     : create functions and attributes for movie class
 */
 
 #ifndef MOVIE_H
@@ -13,7 +13,7 @@ Purpose     :
 #include <string>
 using namespace std;
 
-class Movie{
+class Movie{    //class attributes for movie
     private:
         string title;
         int releaseYear;

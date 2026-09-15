@@ -2,13 +2,13 @@
 Name        : Grace Brown
 File        : Movie.cpp
 Created     : 9/8/2026
-Last Updated: 9/8/2026
-Purpose     :
+Last Updated: 9/14/2026
+Purpose     : Define functions for Movie class
 */
 
 #include "Movie.h"
 
-
+//setters and getters for the movies objects
 void Movie::setTitle(string t){
     title = t;
 }
@@ -21,7 +21,7 @@ void Movie::setRuntimeMinutes(int rM){
 void Movie::setRating(string r){
     rating = r;
 }
-string Movie::getTitle(){
+string Movie::getTitle(){   
    return title; 
 }
 int Movie::getReleaseYear(){
@@ -33,9 +33,12 @@ int Movie::getRuntimeMinutes(){
 string Movie::getRating(){
     return rating;
 }
+/* allows user to edit specific values in the move array objects
+    returns void
+*/
 void Movie::editMovie(){
     int x;
-   do{
+   do{  //loop allows menu options to repeat
 
     cout << "Please select a Choice:\n"
          << "1.) Change Title\n"
@@ -46,7 +49,7 @@ void Movie::editMovie(){
          << "----- ENTER NUMBER --> ";
     cin >> x;
 
-    while(!cin || (x < 1 || x > 5)){
+    while(!cin || (x < 1 || x > 5)){    //verification for int
         cin.clear();
         cin.ignore(100, '\n');
         cout << "Please enter a VALID choice!\n"
@@ -56,7 +59,7 @@ void Movie::editMovie(){
 
     cin.ignore(100, '\n');
 
-    switch(x){
+    switch(x){  //different cases for user to choose from in menu
         case 1:
             cout << "\nPlease enter your New Title: ";
             getline(cin, title, '\n');
@@ -66,7 +69,7 @@ void Movie::editMovie(){
             cout << "Please enter your New Release Year: ";
             cin >> releaseYear;
 
-            while(!cin){
+            while(!cin){    //verification
                 cin.clear();
                 cin.ignore(100, '\n');
                 cout << "\nPlease enter a VALID year: ";
@@ -79,7 +82,7 @@ void Movie::editMovie(){
             cout << "Please enter your New Runtime: ";
             cin >> runtimeMinutes;
 
-            while(!cin){
+            while(!cin){    //verification
                 cin.clear();
                 cin.ignore(100, '\n');
                 cout << "\nPlease enter a VALID amount: ";
@@ -95,9 +98,14 @@ void Movie::editMovie(){
     }
     cout << "\n";
 
-   }while(x != 5);
+   }while(x != 5);  //loops until user selects to quit
         
 }
+
+/* Prints details for one movie
+    is used in a loop to print all movies in a array
+    returns void
+*/
 void Movie::printMovie(){
     //PRINT ALL MOVIE DETAILS
     //if runtime or RY is 0, print "unknown"

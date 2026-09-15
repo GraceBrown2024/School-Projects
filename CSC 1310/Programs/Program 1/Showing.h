@@ -2,8 +2,8 @@
 Name        : Grace Brown
 File        : Showing.h
 Created     : 9/8/2026
-Last Updated: 9/8/2026
-Purpose     :
+Last Updated: 9/14/2026
+Purpose     : define and list attributes of showing class
 */
 
 #ifndef SHOWING_H
@@ -14,7 +14,7 @@ Purpose     :
 #include "Movie.h"
 using namespace std;
 
-class Showing{
+class Showing{  //class attributes for showing
     private:
         Movie* movie;
         string showTime;
@@ -24,7 +24,7 @@ class Showing{
 
     public:
         Showing(){
-            movie = nullptr;
+            movie = nullptr;    //defaults for showings
             showTime = "Unknown";
             auditoriumNumber = 0;
             ticketPrice = 0.00;
