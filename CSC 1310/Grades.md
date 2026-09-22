@@ -24,8 +24,8 @@
   </tr>
   <tr>
     <td> Lab 3</td>
-    <td> </td>
-    <td>INCOMPLETE </td>
+    <td> Sept 15 2026</td>
+    <td>COMPLETE </td>
     <td> </td>
   </tr>
   <tr>
