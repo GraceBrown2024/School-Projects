@@ -1,5 +1,9 @@
 /*
-	fill in this comment block
+Name            : Grace Brown
+File            : lab4.h
+Date Created    : 9/22/26 (GIVEN FILE)
+Last Modified   : 9/22/26
+Purpose         : functions and libraries for sorting algorthims
 */
 #ifndef LAB4_H
 #define LAB4_H
