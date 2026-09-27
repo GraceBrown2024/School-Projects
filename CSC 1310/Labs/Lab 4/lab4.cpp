@@ -122,3 +122,69 @@ void scramble(string* arr, int size) {
 		swap(arr[i], arr[j]);
 	}
 }
+
+void bubbleSort(string* arr, int size){
+    string tempForSwap;
+    bool swapped;
+
+    for(int i = 0; i < size - 1; i++){
+        swapped = false;
+        for (int j = 0; j < size - 1; j++){
+            if(arr[j] > arr[j+1]){
+                tempForSwap = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = tempForSwap;
+                swapped = true;
+            }
+        }
+        if(!swapped){
+            break;
+        }
+    }
+}
+
+void selectionSort(string* arr, int size){
+    int minIndex;
+    string minValue;
+    string temp;
+    for(int i = 0; i < size - 1; i++){
+        minIndex = i;
+        minValue = arr[i];
+
+        for(int j = i+1; j < size; j++){
+            if(arr[j] < minValue){
+                minValue = arr[j];
+                minIndex = j;
+            }
+        }
+        temp = arr[minIndex];
+        arr[minIndex] = arr[i];
+        arr[i] = temp;
+    }
+
+}
+
+void insertionSort(string* arr, int size){
+    string key;
+    int j;
+    
+    for(int i = 1; i < size; i++){
+        key = arr[i];
+        j = i - 1;
+        while(j >= 0 && arr[j] > key){
+            arr[j+1] = arr[j];
+            j = j-1;
+        }
+        arr[j+1] = key;
+    }
+}
+
+void printArray(string* arr, int size){
+    for(int i = 0; i < size; i++){
+        cout << arr[i] << endl;
+    }
+}
+
+int doubleArray(string*& arr, int size){
+
+}
