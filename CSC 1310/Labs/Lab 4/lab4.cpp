@@ -59,6 +59,24 @@ int main() {
             auto ms_bubble = duration_cast<milliseconds>(t1 - t0).count();
             cout << "Bubble sort completed in " << ms_bubble << " ms.\n";
         }
+        else if(choice == 3){
+            cout << "I am going to selection sort the array of " << numMovies << " movies\n";
+            auto t0 = steady_clock::now();
+            //call bubble sort
+            selectionSort(movies, numMovies);
+            auto t1 = steady_clock::now();
+            auto ms_bubble = duration_cast<milliseconds>(t1 - t0).count();
+            cout << "Selection sort completed in " << ms_bubble << " ms.\n";
+        }
+        else if( choice == 4){
+            cout << "I am going to insertion sort the array of " << numMovies << " movies\n";
+            auto t0 = steady_clock::now();
+            //call bubble sort
+            insertionSort(movies, numMovies);
+            auto t1 = steady_clock::now();
+            auto ms_bubble = duration_cast<milliseconds>(t1 - t0).count();
+            cout << "Insertion sort completed in " << ms_bubble << " ms.\n";
+        }
         else if(choice == 5){ // Scramble
             scramble(movies, numMovies);
             cout << "Array scrambled.\n";
@@ -129,7 +147,7 @@ void bubbleSort(string* arr, int size){
 
     for(int i = 0; i < size - 1; i++){
         swapped = false;
-        for (int j = 0; j < size - 1; j++){
+        for (int j = 0; j < size - 1 - i; j++){
             if(arr[j] > arr[j+1]){
                 tempForSwap = arr[j];
                 arr[j] = arr[j+1];
@@ -186,5 +204,21 @@ void printArray(string* arr, int size){
 }
 
 int doubleArray(string*& arr, int size){
+    int newMaxSize;
+    if(size > 0){
+        newMaxSize = size * 2;
+        cout << "Array size doubled from " << size << " to " << newMaxSize << "! \n";
 
+        string* newArr = new string[newMaxSize];
+
+        for(int i = 0; i < size; i++){
+            newArr[i] = arr[i];
+        }
+
+        delete [] arr;
+
+        arr = newArr;
+    }
+
+    return newMaxSize;
 }
