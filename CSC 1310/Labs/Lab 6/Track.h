@@ -8,6 +8,8 @@ File Name   : Track.h
 #define TRACK_H
 
 #include <iostream>
+#include <string>
+using namespace std;
 
 class Track{
     private:
