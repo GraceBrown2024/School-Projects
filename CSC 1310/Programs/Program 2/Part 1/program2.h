@@ -27,6 +27,19 @@ void scramble(vector<T>&);
  * Declare the function prototypes below for each sort
  * function 
  ********************************************************/
-
-
+template <typename T>
+void bubbleSort(vector<T>& v);
+template <typename T>
+void mergeSort(vector<T>& v, int lowIndex, int highIndex); //input a vector, low index, and high index
+template <typename T>
+void parallelMergeSort(vector<T>& v, int left, int right, int depth); //input a vector, left index, right index, and DEPTH of int var for parallelization
+template <typename T>
+void quickSort(vector<T>& v, int left, int right); //inout a vector, left and right indices
+template <typename T>
+void parallelQuickSort(vector<T>& v, int left, int right); //input a vector, left and right indices
+template <typename T>
+void merge(vector<T>& v, int left, int mid, int right); //input a vector, right and left indices, middle index... CALLED BY MERGESORT AND PARALLELMERGESORT
+template <typename T>
+int partition(vector<T> & v, int left, int right);
+void swap(int& one, int& two);
 #endif
