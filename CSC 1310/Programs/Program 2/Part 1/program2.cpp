@@ -39,9 +39,7 @@ int main()
 	cout << "\nHow many threads do you want OpenMP to use? (Enter 1-500) ";
 	cin >> num_threads;
 	
-	//*********************LOOK!************************************************
-	//add in the code to validate the user's input
-	//make sure the user entered in an integer 1 through 500 (and that they actually entered in an integer)
+	//validation for user input
 	while(!cin || (num_threads < 1 && num_threads > 500)){
 		cin.clear();
 		cin.ignore(100, '\n');
@@ -94,123 +92,81 @@ int main()
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
 
-    /*********************************************************************************
-		BUBBLE SORT
-		
-		First, scramble the two vectors (call the scramble function)
-		
-		Start the clock
-		Call the bubbleSort function here for nums vector
-		Stop the clock
-		Compute the runtime (see example above)
-		Print out result to screen
-		
-		Start the clock
-		Call the bubbleSort function for the words vector
-		Stop the clock
-		Compute the runtime
-		Print out result to screen.
-		
-     *********************************************************************************/
+
 	scramble(nums);
 	scramble(words);
 
 	start = chrono::high_resolution_clock::now();
-	bubbleSort(nums);
+	bubbleSort(nums);									//calls bubbleSort with the int vector
 	 end = chrono::high_resolution_clock::now();
 	cout << "\nBubble Sort (int): " 
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
-	 start = chrono::high_resolution_clock::now();
-	bubbleSort(words);
+	 start = chrono::high_resolution_clock::now();	
+	bubbleSort(words);									//calls bubbleSort with the string vector
 	 end = chrono::high_resolution_clock::now();
 	cout << "\nBubble Sort Runtime (String): " 
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
-	
 
-    /*********************************************************************************
-		MERGE SORT
-		
-		do all the same stuff described in bubble sort except call the 
-		mergeSort function
-     *********************************************************************************/
-	scramble(nums);
+	scramble(nums);		//scrambles the vectors to allow for unique sorting each run
 	scramble(words);
 
 	 start = chrono::high_resolution_clock::now();
-	mergeSort(nums, 0 , nums.size() - 1);
+	mergeSort(nums, 0 , nums.size() - 1);	//calls mergeSort with the int vector
 	 end = chrono::high_resolution_clock::now();
-	cout << "\nMerge Sort (int): " 
+	cout << "\nMerge Sort (int): " 			
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
 	 start = chrono::high_resolution_clock::now();
-	mergeSort(words,  0 , words.size() - 1);
+	mergeSort(words,  0 , words.size() - 1);	//calls MergeSort with the string vector
 	 end = chrono::high_resolution_clock::now();
 	cout << "\nMerge Sort Runtime (String): " 
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
 
-    /*********************************************************************************
-		PARALLEL MERGE SORT
-		
-		do all the same stuff described in bubble sort except call the 
-		parallelMergeSort function
-     *********************************************************************************/
 	scramble(nums);
 	scramble(words);
 
 	 start = chrono::high_resolution_clock::now();
-	parallelMergeSort(nums, 0, nums.size() - 1, 0);
+	parallelMergeSort(nums, 0, nums.size() - 1, 0);	//calls parallelMergeSort with the int vector
 	 end = chrono::high_resolution_clock::now();
 	cout << "\nParallel Merge Sort (int): " 
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
 	 start = chrono::high_resolution_clock::now();
-	parallelMergeSort(words, 0 , words.size() - 1, 0);
+	parallelMergeSort(words, 0 , words.size() - 1, 0);	//calls parallelMergeSort with the string vector
 	 end = chrono::high_resolution_clock::now();
 	cout << "\nParallel Merge Sort Runtime (String): " 
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
-    /*********************************************************************************
-		QUICK SORT
-		
-		do all the same stuff described in bubble sort except call the 
-		quicksort function
-     *********************************************************************************/
-	scramble(nums);
+    
+	scramble(nums);		
 	scramble(words);
 
 	 start = chrono::high_resolution_clock::now();
-	quickSort(nums, 0 , nums.size() - 1);
+	quickSort(nums, 0 , nums.size() - 1);	//calls quickSort with the int vector
 	 end = chrono::high_resolution_clock::now();
 	cout << "\nQuick Sort (int): " 
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
 	 start = chrono::high_resolution_clock::now();
-	quickSort(words, 0, words.size() - 1);
+	quickSort(words, 0, words.size() - 1);	//calls quickSort with the string vector
 	 end = chrono::high_resolution_clock::now();
 	cout << "\nQuick Sort Runtime (String): " 
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
-
-    /*********************************************************************************
-		PARALLEL QUICK SORT
-		
-		do all the same stuff described in bubble sort except call the 
-		parallelQuickSort function
-     *********************************************************************************/
 	scramble(nums);
 	scramble(words);
 
 	 start = chrono::high_resolution_clock::now();
-	parallelQuickSort(nums, 0, nums.size() - 1);
+	parallelQuickSort(nums, 0, nums.size() - 1);	//calls parallelQuickSort with the int vector
 	 end = chrono::high_resolution_clock::now();
 	cout << "\nParallel Quick Sort (int): " 
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
 
 	 start = chrono::high_resolution_clock::now();
-	parallelQuickSort(words, 0, words.size() - 1);
+	parallelQuickSort(words, 0, words.size() - 1);	//calls parallelQuickSort with the string vector
 	 end = chrono::high_resolution_clock::now();
 	cout << "\nParallel Quick Sort Runtime (String): " 
 	     << chrono::duration<double>(end - start).count() << " seconds" << endl;
@@ -218,14 +174,6 @@ int main()
 
     return 0; 
 }
-
-
-/*********************************************************
- * HELPER FUNCTIONS
- * These functions help read in the data from the files
- * scramble the data, and print the data to the console.
- * You should not have to touch these.
- **********************************************************/
 
 /*
 	Function: readFromFile()
@@ -286,32 +234,38 @@ void scramble(vector<T>& v)
     }
 }
 
-/*************************************************
- * SORTING FUNCTIONS
- * These functions implement the sorting algorithms
- *************************************************/
-
-// Implement all the sort algorithms below that were described in the assignment
+// SORTING FUNCTIONS
+/*
+	Function: bubbleSort()
+	Purpose: 
+		Sorts the vectors repeatedly by comparing each pair of ADJACENT items and swaps them if they are in incorrect order
+*/
 template <typename T>
 void bubbleSort(vector<T>& v){
-	T tempForSwap;
-	bool swapped;
+	T tempForSwap;	
+	bool swapped;	//used to signal if the two elements being compared are fully in order
 	for(size_t i = 0; i < v.size(); i++){
 		swapped= false;
-		for(size_t j = 0; j < v.size() - i - 1; j++){
-			if(v[j] > v[j+1]){
-				tempForSwap = v[j];
+		for(size_t j = 0; j < v.size() - i - 1; j++){	//iterates through the vector 
+			if(v[j] > v[j+1]){	//checks to see if the two elements next to each other are larger than the other
+				tempForSwap = v[j];	//swaps the two elements if left is greater than right
 				v[j] = v[j+1];
-				v[j+1] = tempForSwap;
+				v[j+1] = tempForSwap;	
 				swapped = true;
 			}
 		}
-		if(!swapped){
+		if(!swapped){	//stops checking if the elements have been swapped
 			break;
 		}
 	}
 }
 
+/*
+	Function: mergeSort()
+	Purpose: 
+		divide and conquer sorting algorithm that divides list into TWO HALVES then recursively sorts through each half
+		Merges the two halves in the end
+*/
 template <typename T>
 void mergeSort(vector<T>& v, int lowIndex, int highIndex){
 	int mid = 0;
@@ -319,13 +273,18 @@ void mergeSort(vector<T>& v, int lowIndex, int highIndex){
 	if(lowIndex < highIndex){ 
 		mid = (lowIndex + highIndex) / 2; //find midpoint 
 
-		mergeSort(v, lowIndex, mid);
+		mergeSort(v, lowIndex, mid);	//recursively calls mergeSort for the left and right sides 
 		mergeSort(v, mid+1, highIndex);
 
-		merge(v, lowIndex, mid, highIndex);
+		merge(v, lowIndex, mid, highIndex);	//combines the two new vectors from mergeSort
 	}
 } //input a vector, low index, and high index
 
+/*
+	Function: parallelMergeSort()
+	Purpose: 
+		creates seperate threads to sort through each half of the divided list at the same time, reducing sorting time
+*/
 template <typename T>
 void parallelMergeSort(vector<T>& v, int left, int right, int depth){
 	if(left < right){
@@ -335,7 +294,7 @@ void parallelMergeSort(vector<T>& v, int left, int right, int depth){
 		if (depth < 4){
 			#pragma omp parallel sections
 			{
-				#pragma omp section
+				#pragma omp section	//creates two sections that can work simultaneously on the left vector and right vector
 				{
 					parallelMergeSort(v, left, mid, depth + 1);
 				}
@@ -345,14 +304,19 @@ void parallelMergeSort(vector<T>& v, int left, int right, int depth){
 				}
 			}
 		}else{
-			parallelMergeSort(v, left, mid, depth + 1);
+			parallelMergeSort(v, left, mid, depth + 1);	
 			parallelMergeSort(v, mid + 1, right, depth + 1);
 		}
 
-		merge(v, left, mid, right);
+		merge(v, left, mid, right);	//merges two vectors
 	}
 } //input a vector, left index, right index, and DEPTH of int var for parallelization
 
+/*
+	Function: quickSort()
+	Purpose: 
+		Divide and conquer strategy that quickly sorts data from a large itemized list using partitioning
+*/
 template <typename T>
 void quickSort(vector<T>& v, int left, int right){
 	int split = 0;
@@ -361,11 +325,16 @@ void quickSort(vector<T>& v, int left, int right){
 		return;
 	}
 
-	split = partition(v, left, right);
+	split = partition(v, left, right);	//partitions the left and right sides of the vector evenly
 	quickSort(v, left, split);	//sort left partition
 	quickSort(v, split+1, right); //sort right partition
 } //inout a vector, left and right indices
 
+/*
+	Function: parallelQuickSort()
+	Purpose: 
+		partitions the vector and creates seperate threads to sort at same time to increase time efficiency
+*/
 template <typename T>
 void parallelQuickSort(vector<T>& v, int left, int right){
 	if (left < right)
@@ -383,6 +352,11 @@ void parallelQuickSort(vector<T>& v, int left, int right){
     }
 } //input a vector, left and right indices
 
+/*
+	Function: merge()
+	Purpose: function to allow mergeSort and parallelMergeSort to function properly by dividing the vectors into left and right sides, then combines them once the sort is complete
+		
+*/
 template <typename T>
 void merge(vector<T>& v, int left, int mid, int right){
 	int n1 = mid - left + 1;
@@ -423,12 +397,17 @@ void merge(vector<T>& v, int left, int mid, int right){
 	
 } //input a vector, right and left indices, middle index... CALLED BY MERGESORT AND PARALLELMERGESORT
 
+/*
+	Function: partition()
+	Purpose: 
+		splits the vector in half to allow quickSort to divide and conquer
+*/
 template <typename T>
 int partition(vector<T> & v, int left, int right){
-	T pivot = v[left];
+	T pivot = v[left];	
 	left--;
 	right++;
-	while(left < right){
+	while(left < right){	//divides the vector given into a smaller left side and larger right side
 		do{
 			right--;
 		}
@@ -445,6 +424,11 @@ int partition(vector<T> & v, int left, int right){
 	return right;
 }
 
+/*
+	Function: swap()
+	Purpose: 
+		swaps the two items in a list 
+*/
 void swap(int& one, int& two){
 	int temp = one;
 	one = two;
