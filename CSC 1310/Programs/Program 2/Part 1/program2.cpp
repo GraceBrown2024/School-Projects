@@ -40,7 +40,7 @@ int main()
 	cin >> num_threads;
 	
 	//validation for user input
-	while(!cin || (num_threads < 1 && num_threads > 500)){
+	while(!cin || (num_threads < 1 || num_threads > 500)){
 		cin.clear();
 		cin.ignore(100, '\n');
 		cout << "Please enter a number 1-500: ";
@@ -60,7 +60,7 @@ int main()
 		success = readFromFile(words, filename);	
 	} while(!success);
 	do {
-		cout << "\nWhat is the name of the string (word) text file?\n(numsSmall.txt or numsLarge.txt)\nFILENAME: ";
+		cout << "\nWhat is the name of the number (int) text file?\n(numsSmall.txt or numsLarge.txt)\nFILENAME: ";
 		cin >> filename;
 		success = readFromFile(nums, filename);
 	} while(!success);
