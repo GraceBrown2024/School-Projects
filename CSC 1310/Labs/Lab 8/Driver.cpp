@@ -20,10 +20,6 @@ void printVideo(const Video& v);
 void printMenu();
 int userChoice();
 
-// TODO: implement printVideo and any helper functions you choose.
-// TODO: create the menu from the assignment (options 1-7).
-// TODO: handle invalid numeric input.
-
 int main() {
 	const int BUCKETS = 1010;
     HashTable<Video> videos(BUCKETS);
@@ -73,14 +69,14 @@ int main() {
 				Video exist; //new Video object
 				if(videos.getValue(vidIdNew, exist)){
 					cout << "Error: Video ID already Exists\n";
-				}else{
+				}else{	//begins creating each item one by one based on user choice
 					cout << "Title: ";
 					getline(cin, titleNew);
 					cout << "Channel: ";
 					getline(cin, channelNew);
 					cout << "Comment Count: ";
 					cin >> comments;
-					while(!cin){
+					while(!cin){	//validation
 						cin.clear();
 						cin.ignore(100, '\n');
 						cout << "Please enter a valid number: ";
@@ -88,8 +84,8 @@ int main() {
 					}
 					cin.ignore(100, '\n');
 					cout << "Views: ";
-					cin >> views;
-					while(!cin){
+					cin >> views;	
+					while(!cin){	//validation
 						cin.clear();
 						cin.ignore(100, '\n');
 						cout << "Please enter a valid number: ";
@@ -97,7 +93,7 @@ int main() {
 					}
 					cin.ignore(100, '\n');
 					cout << "Likes: ";
-					while(!cin){
+					while(!cin){	//validation
 						cin.clear();
 						cin.ignore(100, '\n');
 						cout << "Please enter a valid number: ";
@@ -105,8 +101,8 @@ int main() {
 					}
 					cin.ignore(100, '\n');
 
-					Video newVid{vidIdNew, titleNew, channelNew, views, likes, comments}; //creates new video
-					videos.putValue(vidIdNew, newVid);
+					Video newVid{vidIdNew, titleNew, channelNew, views, likes, comments}; //creates new video and adds user items
+					videos.putValue(vidIdNew, newVid);	//calls function to fully implement values
 				}
 				break;
 			}
@@ -115,13 +111,13 @@ int main() {
 				string id;
 				cout << "Enter Video ID to update: ";
 				getline(cin, id);
-				Video v;
+				Video v;	//created video object
 
-				if(videos.getValue(id, v)){
+				if(videos.getValue(id, v)){	//begins updating video stats
 					cout << "Enter new Statistics\n"
 						 << "New Views: ";
 					cin >> v.views;
-					while(!cin){
+					while(!cin){	//validation
 						cin.clear();
 						cin.ignore(100, '\n');
 						cout << "Please enter a valid number: ";
@@ -130,7 +126,7 @@ int main() {
 					cin.ignore(100, '\n');
 					cout << "New Likes: ";
 					cin >> v.likes;
-					while(!cin){
+					while(!cin){	//validatopn
 						cin.clear();
 						cin.ignore(100, '\n');
 						cout << "Please enter a valid number: ";
@@ -138,8 +134,8 @@ int main() {
 					}
 					cin.ignore(100, '\n');
 					cout << "New Comment Count: ";
-					cin >> v.commentCount;
-					while(!cin){
+					cin >> v.commentCount;	
+					while(!cin){	//validatop 
 						cin.clear();
 						cin.ignore(100, '\n');
 						cout << "Please enter a valid number: ";
@@ -154,7 +150,7 @@ int main() {
 				}
 				break;
 			}
-			case 4:{
+			case 4:{	//removes video
 				string id;
 				cout << "You chose to Remove a video\n";
 				cout << "Enter Video ID to remove: ";
@@ -166,17 +162,17 @@ int main() {
 				}
 				break;
 			}
-			case 5:{
+			case 5:{	//prints stats
 				cout << "You chose to Display Hash Table Stats\n";
 				videos.printStatistics();
 				break;
 			}
-			case 6:{
-				int bucketIndex;
+			case 6:{	//displays all byucket into
+				int bucketIndex;	
 				cout << "You chose to Display a Bucket\n";
 				cout << "Enter Bucket Index (0-" << videos.getBucketCount() << "): ";
 				cin >> bucketIndex;
-				while(!cin || (bucketIndex < 0 || bucketIndex >= videos.getBucketCount())){
+				while(!cin || (bucketIndex < 0 || bucketIndex >= videos.getBucketCount())){	//user validatopn
 						cin.clear();
 						cin.ignore(100, '\n');
 						cout << "Please enter a valid number: ";
@@ -268,7 +264,7 @@ Purpose: Allows user to choose the menu option and returns the value they chose 
 int userChoice(){
 	int choice;
 	cin >> choice;
-	while(!cin || (choice < 1 || choice > 7)){
+	while(!cin || (choice < 1 || choice > 7)){	//user validatoin loop
 		if(!cin){
 			cout << "\nPlease enter an integer!\n";
 		}else{
@@ -284,6 +280,11 @@ int userChoice(){
 	return choice;
 }
 
+/*
+			Function: printVideo()
+			Purpose: prints the video details
+			Returns:  void
+		*/	
 void printVideo(const Video& v){
 	cout << "\nID: " << v.videoId << endl
 		 << "Title: " << v.title << endl

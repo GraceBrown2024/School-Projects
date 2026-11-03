@@ -143,7 +143,7 @@ class HashTable {
 			HashEntry *entry;
 			HashEntry *prevEntry;
 			int bucketIndex = indexFor(key);
-			if(hashArray[bucketIndex] != NULL){
+			if(hashArray[bucketIndex] != NULL){	
 				//transverse through list and find key
 				prevEntry = NULL;
 				entry = hashArray[bucketIndex];
@@ -153,7 +153,7 @@ class HashTable {
 				}
 				if(entry->key == key){
 					if(prevEntry == NULL){
-						HashEntry *nextEntry = entry->next;
+						HashEntry *nextEntry = entry->next;	//goes to next item
 
 						delete entry;
 						hashArray[bucketIndex] = nextEntry; //re-link list
@@ -179,7 +179,11 @@ class HashTable {
 			return indexFor(key); 
 		}
 		
-		
+		/*
+			Function:
+			Purpose: 
+			Returns: 
+		*/		
 		int bucketLength(int index) {
 			// TODO: count nodes in this bucket (return -1 for an invalid index).
 			if(index < 0 || index >= tableSize){
@@ -194,7 +198,11 @@ class HashTable {
 			return count;
 		}
 		
-		
+		/*
+			Function: printBucket()
+			Purpose: prints out all info from bucket
+			Returns: void
+		*/	
 		void printBucket(int index) {
 			// TODO: display the keys in the chain, or report an invalid index.
 			if(index < 0 || index >= tableSize){
@@ -216,12 +224,16 @@ class HashTable {
 			cout << "NULL" << endl;
 		}
 		
-		
+		/*
+			Function: printHashTable()
+			Purpose: prints out all details from the hash table
+			Returns: void
+		*/	
 		void printHashTable() {
 			//display every bucket and its chain.
 			cout << "----------\n";
 			
-			for(int i=0; i<tableSize; i++)
+			for(int i=0; i<tableSize; i++)	//begins loop for looking through each bucket
 			{
 				if(hashArray[i] != NULL)
 				{
@@ -240,7 +252,11 @@ class HashTable {
 			cout << "----------\n\n";
 		}
 		
-		
+		/*
+			Function: printStatistics()
+			Purpose: prints out stats for specific video
+			Returns:  void
+		*/	
 		void printStatistics() {
 			// TODO: total unique videos, buckets, occupied/collision buckets,
 			// longest chain, and average entries per bucket.
@@ -262,7 +278,7 @@ class HashTable {
 				}
 			}
 
-			if(tableSize == 0){
+			if(tableSize == 0){	//checks if there are any entries
 				avgEntries = 0.0; //in case there are no entries in any buvkets
 			}else{
 				avgEntries = static_cast<double>(entries) / tableSize; //casts as a double
