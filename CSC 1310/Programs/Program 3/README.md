@@ -1,7 +1,6 @@
 # WORKING TITLE
----
-Developer: Grace Brown
-Purpose  : *Health tracking and management* ... Log what you eat in a day!
+Developer: Grace Brown <br>
+Purpose  : *Health tracking and management* ... Log what you eat in a day!<br>
 ---
 ## How to Compile and Run
 >WORK IN PROGRESS
