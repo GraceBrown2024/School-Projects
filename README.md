@@ -30,13 +30,6 @@
     <th> IN PROGRESS </th>
     <td> N/A</td>
   </tr>
-   <tr>
-    <td> CSC 2570 </td>
-    <td> Introduction to Cybersecurity/Privacy. Covers fundamental principles of common attacks and defenses in security and networking.</td>
-    <td> Bash </td>
-    <th> IN PROGRESS </th>
-    <td> N/A </td>
-  </tr>
   
 </table>
 
