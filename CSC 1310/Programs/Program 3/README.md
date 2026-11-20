@@ -1,9 +1,14 @@
-# WORKING TITLE
+# Food Tracker 1310 
 Developer: Grace Brown <br>
 Purpose  : *Health tracking and management* ... Log what you eat in a day!<br>
 ---
 ## How to Compile and Run
->WORK IN PROGRESS
+1. Install and Update Makefile Package (per your OS)
+2. Open Command Prompt / Terminal
+3. Navigate to PROGRAM 3 Directory
+4. In directory, type "make" 
+5. After successful compilation, type "make run"
+**NOTE: This is a TERMINAL-BASED PROGRAM! No GUIs have been implemented!**
 ---
 ## Data Structures Used
 ### 2D Array <br>
@@ -25,7 +30,7 @@ Gemini Prompt -> *Create me a CSV list of 1000 different foods with the datapoin
 ---
 
 ## TO DO
-
+- Correct directories for MAKEFILE *** IMPORTANT ***
 - Complete userInfo Class functions
 - Dynamically Allocate 2D array for profiles
 - Link files and folders to specific users 
