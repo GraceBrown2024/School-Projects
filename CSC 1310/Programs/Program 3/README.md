@@ -6,7 +6,7 @@ Purpose  : *Health tracking and management* ... Log what you eat in a day!<br>
 >WORK IN PROGRESS
 ---
 ## Data Structures Used
-2D Array <br>
+### 2D Array <br>
 Used to store user information based on profile. The information will be stored in the following format:
 | Date | Current Weight | Calorie Limit  | Calorie Intake | Exceeded Limit |
 | -----------| ----------- | ----------- | ----------- | ----------- |
