@@ -10,6 +10,7 @@ PURPOSE     : Functions for food.cpp
 #define FOOD_H
 #include <iostream>
 #include <string>
+using namespace std;
 
 class Food{
     private:
@@ -19,7 +20,7 @@ class Food{
         int calories;
         int fiber;
         int protein;
-        int carb;
+        int carbohydrates;
         int sugar;
         int fats;
         string category;
@@ -32,26 +33,26 @@ class Food{
         }
     //overloaded constructor for food class. 
     //Items will be loaded from list and added based on class attributes 
-        Food(int foodID, string name; double gramsServing, int calories, int fiber, int protein, int carb, int sugar, int fat, string category){
-        int foodID = foodID;
-        string name = name;
-        double gramsServing = gramsServing;
-        int calories = calories;
-        int fiber = fiber;
-        int protein = protein;
-        int carb = carb;
-        int sugar = sugar;
-        int fats = fats;
-        string category = category;
-        }  
+        Food(int fid, string n, double gS, int cal, int f, int p, int carb, int s, int fat, string c){
+        foodID = fid;
+        name = n;
+        gramsServing = gS;
+        calories = cal;
+        fiber = f;
+        protein = p;
+        carbohydrates = carb;
+        sugar = s;
+        fats = fat;
+        category = c;
+        }
 
-    //Splits the CSV rows into fields
-        void parseFoods();
+        void parseFoods(); //Splits the CSV rows into fields
+
     
 
 
 
 
-}
+};
 
 #endif

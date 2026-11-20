@@ -12,14 +12,18 @@ PURPOSE     : Functions to calculate the daily calorie count and macronutrients
 #include <string>
 #include <cmath>
 #include "food.h"
+#include "UserInfo.h"
+using namespace std;
 
 class Calculations{
     private:
         Food foodItem;
+        UserInfo user;
     
     public: 
-        int totalCalories(Food foodItem, double servings); //rounds UP
-        int totalMacros(Food foodItem, double servings); //rounds UP
-}
+        int totalCalories(Food foodItem, double servings); //Adds up all calories for today ... ROUNDS UP
+        int totalMacros(Food foodItem, double servings); //Adds up each macro count for today ... ROUNDS UP
+        
+};
 
 #endif

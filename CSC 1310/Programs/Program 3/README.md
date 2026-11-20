@@ -5,8 +5,8 @@ Purpose  : *Health tracking and management* ... Log what you eat in a day!<br>
 ## How to Compile and Run
 1. Install and Update Makefile Package (per your OS)
 2. Open Command Prompt / Terminal
-3. Navigate to PROGRAM 3 Directory
-4. In directory, type "make" 
+3. Navigate to PROGRAM 3 Directory, then CODE Directory
+4. In CODE directory, type "make" 
 5. After successful compilation, type "make run"
 **NOTE: This is a TERMINAL-BASED PROGRAM! No GUIs have been implemented!**
 ---
@@ -15,9 +15,11 @@ Purpose  : *Health tracking and management* ... Log what you eat in a day!<br>
 Used to store user information based on profile. The information will be stored in the following format:
 | Date | Current Weight | Calorie Limit  | Calorie Intake | Exceeded Limit |
 | -----------| ----------- | ----------- | ----------- | ----------- |
-| 112026 | 180 | 1500 | 1450 | True |
-| 112126 | 179.8 | 1500 | 1510 | False | 
+| 112026 | 180 | 1500 | 1450 | 1 |
+| 112126 | 179.8 | 1500 | 1510 | 0 | 
 <br>
+
+**NOTE: The last column is stored as an integer, but will be converted to a boolean for display!**
 
 ### Hash Table <br>
 ---
@@ -30,7 +32,7 @@ Gemini Prompt -> *Create me a CSV list of 1000 different foods with the datapoin
 ---
 
 ## TO DO
-- Correct directories for MAKEFILE *** IMPORTANT ***
+- Correct directories for MAKEFILE **IMPORTANT**
 - Complete userInfo Class functions
 - Dynamically Allocate 2D array for profiles
 - Link files and folders to specific users 

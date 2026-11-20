@@ -10,8 +10,9 @@ PURPOSE     : Class for userInfo
 #define USERINFO_H
 #include <iostream>
 #include <string>
+using namespace std;
 
-    class userInfo{
+    class UserInfo{
         private:
             string name;
             int age;
@@ -22,7 +23,9 @@ PURPOSE     : Class for userInfo
             string password; //very secure. trust me
             string username;
         public:
-            userInfo(){
+            string assignedSex(int userChoice);
+
+            UserInfo(){
                 name = "John Doe"; 
                 age = 18;
                 sex = "MALE";
@@ -30,18 +33,17 @@ PURPOSE     : Class for userInfo
                 startingWeight = 190;
                 currentWeight = 190;
             }
-            userInfo(string name, int age, string sex, int calorieLimit, double startingWeight, double currentWeight, string password, string username){
-            name = name;
-            age = age;
-            sex = assignedSex(); 
-            calorieLimit = calorieLimit;
-            startingWeight = startingWeight;
-            currentWeight = currentWeight;
-            password = password; //very secure. trust me. 
-            username = username;
+            UserInfo(string n, int a, string s, int calLim, double sW, double cW, string pW, string uN, int userChoice){
+            name = n;
+            age = a;
+            sex = assignedSex(userChoice); 
+            calorieLimit = calLim;
+            startingWeight = sW;
+            currentWeight = cW;
+            password = pW; //very secure. trust me. 
+            username = uN;
             }
 
-            string assignedSex(int userChoice); //assigns sex to user based on previous choice given
             void profileCreation(); //creates a folder in daily_logs with their info in a file ... WIP
             void profileLogIn(); // accesses 2d array with user info that accesses the logs folder ... WIP
             void profileMenu(); // displays menu upon booting program to log in or create account
@@ -50,5 +52,5 @@ PURPOSE     : Class for userInfo
             void deleteProfile(); //allows user to delete their account once logged in
             void settings(); // user settings to either log out, delete profile, or update info
             void displayProfile(); //displays all the information for the user's profile
-    }
+    };
 #endif

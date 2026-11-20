@@ -11,8 +11,12 @@ PURPOSE     : Runs all code from helper files
 #include "calculations.h"
 #include "food.h"
 #include "UserInfo.h"
+using namespace std;
 
 int main(){
-    
+    UserInfo user;
+    Food food;
+
+    user.profileMenu();
     return 0;
 }
