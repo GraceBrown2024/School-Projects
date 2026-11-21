@@ -10,10 +10,13 @@ PURPOSE     : Class for userInfo
 #define USERINFO_H
 #include <iostream>
 #include <string>
+#include <filesystem>
 using namespace std;
 
     class UserInfo{
         private:
+            vector<string> usersList; //stores the loaded users from Data/Users.txt
+            
             string name;
             int age;
             string sex; //haha
@@ -52,5 +55,31 @@ using namespace std;
             void deleteProfile(); //allows user to delete their account once logged in
             void settings(); // user settings to either log out, delete profile, or update info
             void displayProfile(); //displays all the information for the user's profile
-    };
+            string correctedUserName(string tempName); //corrects the username entry for creating profile
+           
+            vector<string> loadUsers(); //takes Users.txt from Data/ and adds all the names to an array
+
+            //getters
+            string getName() const ;
+            int getAge() const ;
+            string getSex() const ;
+            int getCalorieLimit() const ;
+            double getStartingWeight() const ;
+            double getCurrentWeight() const ;
+            string getUsername() const ;
+
+            //setters
+            void setName(string n);
+            void setAge(int a);
+            void setSex(string s);
+            void setCalorieLimit(int cL);
+            void setStartingWeight(double sW);
+            void setCurrentWeight(double sW);
+            void setUsername(string uN);
+            void setPassword(string pW);
+    }; 
+
+    
+
+
 #endif

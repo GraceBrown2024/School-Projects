@@ -12,16 +12,36 @@ PURPOSE     : Functions to calculate the daily calorie count and macronutrients.
 #include "calculations.h"
 using namespace std;
 
-int Calculations::totalCalories(Food foodItem, double servings){
+/*
+NAME: totalCalories
+Parameters: foodItem and Servings
+Returns: NONE
+Purpose: Calculates the total cals of the inputted 
+        food and places it into the 2D array
+*/
+void Calculations::totalCalories(Food foodItem, double servings){
     //TO DO:
     // calculate the servings x gramsPerServing ... put that in varible for GRAMS EATEN
     //calculate GRAMS EATEN x calories ... PUT IN USER ARRAY FOR TODAYS DATE
+    int totalGrams = servings * foodItem.getGramsServ();
+    int totalCals = totalGrams * foodItem.getCals();
+
 }
 
-int Calculations::totalMacros(Food foodItem, double servings){
+/*
+NAME: totalMacros
+Parameters: foodItem and Servings
+Returns: NONE
+Purpose: Calculates the total macros of the inputted 
+        food and places it into the 2D array
+*/
+void Calculations::totalMacros(Food foodItem, double servings){
     /*TO DO:
         calculate servings X gramsPerServing ... put in GRAMS EATEN
         calculate each GRAMS EATEN x macro ... PUT IN USER ARRAY FOR TODAYS DATE
     */
+    int totalGrams = servings * foodItem.getGramsServ();
+
+    
 }
 

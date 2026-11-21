@@ -21,8 +21,9 @@ class Calculations{
         UserInfo user;
     
     public: 
-        int totalCalories(Food foodItem, double servings); //Adds up all calories for today ... ROUNDS UP
-        int totalMacros(Food foodItem, double servings); //Adds up each macro count for today ... ROUNDS UP
+        void totalCalories(Food foodItem, double servings); //Adds up all calories for today ... ROUNDS UP
+        void totalMacros(Food foodItem, double servings); //Adds up each macro count for today ... ROUNDS UP
+        
         
 };
 

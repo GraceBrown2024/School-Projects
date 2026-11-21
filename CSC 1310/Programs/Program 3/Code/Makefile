@@ -29,4 +29,5 @@ $(TARGET): $(SRCS)
 run:	$(TARGET)
 		./$(TARGET)
 
-clean:	rm -f $(TARGET)
+clean:	$(TARGET)
+		rm -f $(TARGET)

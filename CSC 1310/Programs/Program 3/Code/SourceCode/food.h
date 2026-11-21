@@ -10,6 +10,8 @@ PURPOSE     : Functions for food.cpp
 #define FOOD_H
 #include <iostream>
 #include <string>
+#include <unordered_map> //for hash table
+#include <vector>
 using namespace std;
 
 class Food{
@@ -18,11 +20,11 @@ class Food{
         string name;
         double gramsServing;
         int calories;
-        int fiber;
-        int protein;
-        int carbohydrates;
-        int sugar;
-        int fats;
+        double fiber;
+        double protein;
+        double carbohydrates;
+        double sugar;
+        double fats;
         string category;
 
     public:
@@ -33,7 +35,7 @@ class Food{
         }
     //overloaded constructor for food class. 
     //Items will be loaded from list and added based on class attributes 
-        Food(int fid, string n, double gS, int cal, int f, int p, int carb, int s, int fat, string c){
+        Food(int fid, string n, double gS, int cal, double f, double p, double carb, double s, double fat, string c){
         foodID = fid;
         name = n;
         gramsServing = gS;
@@ -46,12 +48,19 @@ class Food{
         category = c;
         }
 
-        void parseFoods(); //Splits the CSV rows into fields
+        bool parseFoods(string line, vector<string>& fields); //Splits the CSV rows into fields
+        static void loadFoods(string foodFile, unordered_map<int, Food>& foodTable);
 
-    
-
-
-
+        //getters
+        string getName() const ;
+        double getGramsServ() const ;
+        int getCals() const ;
+        double getFiber() const ;
+        double getProt() const ;
+        double getCarb() const ;
+        double getSugar() const ;
+        double getFat() const ;
+        string getCategory() const ;
 
 };
 
