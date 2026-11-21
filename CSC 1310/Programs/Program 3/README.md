@@ -38,16 +38,15 @@ Gemini Prompt -> *Create me a CSV list of 1000 different foods with the datapoin
 ---
 
 ## TO DO
-
-[x] Correct directories for MAKEFILE **IMPORTANT**
-[] Complete userInfo Class functions **ALMOST COMPLETE**
-[] Complete Hash table ordering
-[] Allow user input custom foods
-[] Dynamically Allocate 2D array for daily log
-[] Link files and folders to specific users 
-[x] Create parsing functions for CSV files
-[] User verification for password and username
-[x] FIX FORMATTING ON MENUS
-[x] Create function in UserInfo to break apart username string and eliminate spaces
-[x] Load Profiles onto vector from Users.txt
+- [x] Correct directories for MAKEFILE **IMPORTANT**
+- [] Complete userInfo Class functions **ALMOST COMPLETE**
+- [] Complete Hash table ordering
+- [] Allow user input custom foods
+- [] Dynamically Allocate 2D array for daily log
+- [] Link files and folders to specific users 
+- [x] Create parsing functions for CSV files
+- [] User verification for password and username
+- [x] FIX FORMATTING ON MENUS
+- [x] Create function in UserInfo to break apart username string and eliminate spaces
+- [x] Load Profiles onto vector from Users.txt
 
