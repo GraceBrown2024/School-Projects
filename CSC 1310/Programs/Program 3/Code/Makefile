@@ -1,5 +1,5 @@
 
-#WIPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+
 #COMPILATION FOR FOOD TRACKER 1310
 #in your terminal, you will type "make" then "make run"
 #Windows: Ensure MinGW is installed before compilation ... You will have to rename the command!

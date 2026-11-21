@@ -34,12 +34,12 @@ Gemini Prompt -> *Create me a CSV list of 1000 different foods with the datapoin
 - custom CSV not implemented
 - password is currently redundant
 - Userinfo is not permanently stored yet
-
+- Calculations and Profiles not put into arrays completely
 ---
 
 ## TO DO
 - [x] Correct directories for MAKEFILE **IMPORTANT**
-- [] Complete userInfo Class functions
+- [] Complete userInfo Class functions **ALMOST COMPLETE**
 - [] Complete Hash table ordering
 - [] Allow user input custom foods
 - [] Dynamically Allocate 2D array for daily log
